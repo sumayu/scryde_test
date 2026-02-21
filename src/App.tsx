@@ -414,11 +414,11 @@ export default function App() {
       <footer className="bg-black border-t border-blue-900/50 py-24 mt-32">
         <div className="max-w-7xl mx-auto px-6 text-center space-y-12">
           <img 
-            src="https://ais-dev-5z7cqgma7kqupugtcilb7x-127797539241.europe-west2.run.app/logo.png" 
-            alt="Scryde" 
-            className="h-12 mx-auto brightness-125 opacity-60"
+            src="https://ais-dev-5z7cqgma7kqupugtcilb7x-127797539241.europe-west2.run.app/logo_small.png" 
+            alt="Scryde Small" 
+            className="h-16 mx-auto brightness-125 opacity-60"
             onError={(e) => {
-              (e.target as HTMLImageElement).src = 'https://picsum.photos/seed/scryde-logo/200/80';
+              (e.target as HTMLImageElement).src = 'https://picsum.photos/seed/scryde-small/100/100';
             }}
           />
           <div className="flex justify-center gap-12">
