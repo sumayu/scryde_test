@@ -210,7 +210,7 @@ export default function App() {
             <img 
               src="https://i.ibb.co/nq0Ksmgk/logo.png" 
               alt="Scryde" 
-              className="h-8 brightness-125"
+              className="h-10 brightness-125 drop-shadow-[0_0_10px_rgba(37,99,235,0.3)]"
               onError={(e) => {
                 (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1599305090748-366398a67cb5?auto=format&fit=crop&q=60&w=200';
               }}
@@ -503,8 +503,8 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-6 text-center space-y-12">
           <img 
             src="https://i.ibb.co/nq0Ksmgk/logo.png" 
-            alt="Scryde Small" 
-            className="h-16 mx-auto brightness-125 opacity-60"
+            alt="Scryde Footer" 
+            className="h-16 mx-auto brightness-110 opacity-80 drop-shadow-[0_0_20px_rgba(37,99,235,0.2)]"
             onError={(e) => {
               (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1599305090748-366398a67cb5?auto=format&fit=crop&q=60&w=100';
             }}
