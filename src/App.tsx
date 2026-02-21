@@ -66,7 +66,7 @@ const OrnamentalDivider = () => (
   </div>
 );
 
-const SkillCard = ({ name, desc, onClick }: { name: string, desc: string, onClick: () => void }) => (
+const SkillCard = ({ name, desc, onClick }: { name: string, desc: string, onClick: () => void, key?: string }) => (
   <motion.div 
     layout
     initial={{ opacity: 0, scale: 0.95 }}
@@ -78,11 +78,11 @@ const SkillCard = ({ name, desc, onClick }: { name: string, desc: string, onClic
     <div className="flex gap-4">
       <div className="flex-shrink-0 w-12 h-12 border border-blue-900 bg-black/40 overflow-hidden">
         <img 
-          src="https://ais-dev-5z7cqgma7kqupugtcilb7x-127797539241.europe-west2.run.app/skill.png" 
+          src="/skill.png" 
           alt="Skill Icon" 
           className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
           onError={(e) => {
-            (e.target as HTMLImageElement).src = 'https://picsum.photos/seed/l2-skill/64/64';
+            (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=60&w=100&h=100';
           }}
         />
       </div>
@@ -115,11 +115,11 @@ const SkillDetailModal = ({ isOpen, onClose, skill }: { isOpen: boolean, onClose
             <div className="flex gap-6 items-start">
               <div className="w-20 h-20 border-2 border-blue-500/30 bg-black/60 p-1">
                 <img 
-                  src="https://ais-dev-5z7cqgma7kqupugtcilb7x-127797539241.europe-west2.run.app/skill.png" 
+                  src="/skill.png" 
                   alt="Skill Icon" 
                   className="w-full h-full object-cover"
                   onError={(e) => {
-                    (e.target as HTMLImageElement).src = 'https://picsum.photos/seed/l2-skill-large/128/128';
+                    (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=200&h=200';
                   }}
                 />
               </div>
@@ -187,11 +187,11 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-6">
             <img 
-              src="https://ais-dev-5z7cqgma7kqupugtcilb7x-127797539241.europe-west2.run.app/logo.png" 
+              src="/logo.png" 
               alt="Scryde" 
               className="h-8 brightness-125"
               onError={(e) => {
-                (e.target as HTMLImageElement).src = 'https://picsum.photos/seed/scryde-logo/200/80';
+                (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1599305090748-366398a67cb5?auto=format&fit=crop&q=60&w=200';
               }}
             />
             <div className="hidden md:flex gap-8">
@@ -345,14 +345,17 @@ export default function App() {
                   <div className="lg:col-span-12 relative">
                     <div className="relative aspect-[21/9] overflow-hidden border-2 border-blue-900/50 shadow-2xl glow-blue rounded-lg">
                       <img 
-                        src="https://ais-dev-5z7cqgma7kqupugtcilb7x-127797539241.europe-west2.run.app/apostle.png" 
+                        src="/apostle.png" 
                         alt="Апостол" 
-                        className="w-full h-full object-cover object-top brightness-90 saturate-[0.8]"
+                        className="w-full h-full object-cover object-top brightness-90 saturate-[0.8] mix-blend-lighten"
+                        style={{ filter: 'hue-rotate(180deg) brightness(0.8) contrast(1.2) sepia(0.5) saturate(2) hue-rotate(-180deg) drop-shadow(0 0 20px rgba(37, 99, 235, 0.5))' }}
                         onError={(e) => {
-                          (e.target as HTMLImageElement).src = 'https://picsum.photos/seed/apostle-l2-blue/1920/1080';
+                          (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1519074063912-ad2fe3f51964?auto=format&fit=crop&q=80&w=1920&h=1080';
+                          (e.target as HTMLImageElement).style.filter = 'none';
                         }}
                         referrerPolicy="no-referrer"
                       />
+                      <div className="absolute inset-0 bg-blue-900/20 mix-blend-overlay pointer-events-none" />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#02040a] via-transparent to-transparent" />
                       <div className="absolute bottom-12 left-12 space-y-4">
                         <div className="flex items-center gap-3 text-blue-400">
@@ -414,11 +417,11 @@ export default function App() {
       <footer className="bg-black border-t border-blue-900/50 py-24 mt-32">
         <div className="max-w-7xl mx-auto px-6 text-center space-y-12">
           <img 
-            src="https://ais-dev-5z7cqgma7kqupugtcilb7x-127797539241.europe-west2.run.app/logo_small.png" 
+            src="/logo_small.png" 
             alt="Scryde Small" 
             className="h-16 mx-auto brightness-125 opacity-60"
             onError={(e) => {
-              (e.target as HTMLImageElement).src = 'https://picsum.photos/seed/scryde-small/100/100';
+              (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1599305090748-366398a67cb5?auto=format&fit=crop&q=60&w=100';
             }}
           />
           <div className="flex justify-center gap-12">
