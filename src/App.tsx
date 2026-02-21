@@ -287,28 +287,24 @@ export default function App() {
             >
               <OrnamentalDivider />
               
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-                <div className="lg:col-span-4 space-y-8">
-                  <div className="space-y-4">
-                    <h2 className="font-display text-4xl text-white tracking-widest uppercase">Линия Людей</h2>
-                    <p className="text-zinc-400 font-serif leading-relaxed">
-                      В данном макете реализован только Апостол для демонстрации структуры и дизайна сайта.
+              <div className="space-y-12">
+                {/* Уведомление о макете */}
+                <motion.div 
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  className="max-w-4xl mx-auto p-4 border-l-2 border-blue-500 bg-blue-900/10 flex items-center gap-4"
+                >
+                  <Info size={18} className="text-blue-400 shrink-0" />
+                  <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6">
+                    <span className="font-display text-[10px] tracking-widest text-blue-300 uppercase whitespace-nowrap">Тестовый макет:</span>
+                    <p className="text-[11px] text-zinc-400 font-serif italic leading-tight">
+                      В данном макете реализован только Апостол. Все остальные классы и расы находятся в разработке.
                     </p>
                   </div>
-                  <div className="p-6 border-l-4 border-blue-700 bg-blue-900/20 space-y-3">
-                    <div className="flex items-center gap-2 text-blue-400">
-                      <Crosshair size={18} />
-                      <span className="font-display text-xs tracking-widest uppercase">Тестовый макет</span>
-                    </div>
-                    <p className="text-xs text-zinc-500 italic">
-                      Все остальные классы и расы находятся в разработке.
-                    </p>
-                  </div>
-                </div>
+                </motion.div>
 
-                <div className="lg:col-span-8 space-y-12">
-                  <div className="space-y-16">
-                    <h2 className="font-display text-2xl text-blue-400/80 tracking-[0.3em] uppercase text-center">Древо Классов Людей</h2>
+                <div className="space-y-16">
+                  <h2 className="font-display text-2xl text-blue-400/80 tracking-[0.3em] uppercase text-center">Древо Классов Людей</h2>
                     
                     <div className="grid grid-cols-1 gap-20">
                       {HUMAN_CLASSES.warriors.map((branch, idx) => (
@@ -381,7 +377,6 @@ export default function App() {
                     </div>
                   </div>
                 </div>
-              </div>
             </motion.section>
           )}
         </AnimatePresence>
@@ -536,12 +531,13 @@ export default function App() {
 
       {/* Футер */}
       <footer className="relative bg-black border-t border-blue-900/50 py-24 mt-32 overflow-hidden">
-        {/* Фоновое изображение для футера (старое) */}
+        {/* Фоновое изображение для футера */}
         <div 
-          className="absolute inset-0 z-0 opacity-20 bg-cover bg-center bg-no-repeat"
+          className="absolute inset-0 z-0 opacity-40 bg-cover bg-no-repeat"
           style={{ 
-            backgroundImage: 'url("https://i.ibb.co/WmcTTC6/bg.png")',
-            filter: 'grayscale(1) brightness(0.3)'
+            backgroundImage: 'url("https://i.ibb.co/whxs4Mbc/footer.png")',
+            backgroundPosition: 'center center',
+            filter: 'brightness(0.4)'
           }}
         />
         <div className="max-w-7xl mx-auto px-6 text-center space-y-12 relative z-10">
