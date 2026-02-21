@@ -83,7 +83,7 @@ const SkillCard = ({ name, desc, onClick }: { name: string, desc: string, onClic
         <div className="absolute inset-0 bg-blue-500/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity" />
         <div className="relative w-14 h-14 border-2 border-blue-900/50 bg-black/60 p-1 rounded-sm overflow-hidden group-hover:border-blue-400 transition-colors">
           <img 
-            src="/skill.png" 
+            src="https://i.ibb.co/8Q4nhHL/skill.png" 
             alt="Skill Icon" 
             className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"
             onError={(e) => {
@@ -127,7 +127,7 @@ const SkillDetailModal = ({ isOpen, onClose, skill }: { isOpen: boolean, onClose
             <div className="flex gap-6 items-start">
               <div className="w-20 h-20 border-2 border-blue-500/30 bg-black/60 p-1">
                 <img 
-                  src="/skill.png" 
+                  src="https://i.ibb.co/8Q4nhHL/skill.png" 
                   alt="Skill Icon" 
                   className="w-full h-full object-cover"
                   onError={(e) => {
@@ -199,7 +199,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-6">
             <img 
-              src="/logo.png" 
+              src="https://i.ibb.co/nq0Ksmgk/logo.png" 
               alt="Scryde" 
               className="h-8 brightness-125"
               onError={(e) => {
@@ -219,12 +219,14 @@ export default function App() {
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <button 
-              onClick={() => openMockup()}
-              className="px-4 py-1.5 border border-blue-700 font-display text-[10px] tracking-widest uppercase text-white hover:bg-blue-900/30 transition-all glow-blue"
+            <a 
+              href="https://new45.scryde.ws/?utm_source=board&utm_content=header"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-1.5 border border-blue-700 font-display text-[10px] tracking-widest uppercase text-white hover:bg-blue-900/30 transition-all glow-blue flex items-center justify-center"
             >
               Начать игру
-            </button>
+            </a>
           </div>
         </div>
       </nav>
@@ -357,7 +359,7 @@ export default function App() {
                   <div className="lg:col-span-12 relative">
                     <div className="relative aspect-[21/9] overflow-hidden border-2 border-blue-900/50 shadow-2xl glow-blue rounded-lg">
                       <img 
-                        src="/apostle.png" 
+                        src="https://i.ibb.co/93fQYNq4/apostle.png" 
                         alt="Апостол" 
                         className="w-full h-full object-cover object-top brightness-90 saturate-[0.8] mix-blend-lighten"
                         style={{ filter: 'hue-rotate(180deg) brightness(0.8) contrast(1.2) sepia(0.5) saturate(2) hue-rotate(-180deg) drop-shadow(0 0 20px rgba(37, 99, 235, 0.5))' }}
@@ -439,7 +441,7 @@ export default function App() {
       <footer className="bg-black border-t border-blue-900/50 py-24 mt-32">
         <div className="max-w-7xl mx-auto px-6 text-center space-y-12">
           <img 
-            src="/logo_small.png" 
+            src="https://i.ibb.co/nq0Ksmgk/logo.png" 
             alt="Scryde Small" 
             className="h-16 mx-auto brightness-125 opacity-60"
             onError={(e) => {
