@@ -429,7 +429,7 @@ export default function App() {
 
                   {/* Правая колонка: Изображение */}
                   <div className="lg:col-span-5 relative flex items-start justify-center pt-4">
-                    <div className="relative w-full max-w-[400px] h-[500px] md:h-[650px] overflow-hidden rounded-xl border border-blue-900/20 bg-slate-950/10 backdrop-blur-sm shadow-2xl">
+                    <div className="relative w-full max-w-[400px] h-[500px] md:h-[650px] overflow-hidden">
                       <img 
                         src="https://i.ibb.co/fGKj02CN/apostle.png" 
                         alt="Апостол" 
@@ -443,7 +443,7 @@ export default function App() {
                         referrerPolicy="no-referrer"
                       />
                       {/* Мягкое затемнение снизу для эстетичного перехода */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#02040a] via-transparent to-transparent opacity-80 pointer-events-none" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#02040a]/80 via-transparent to-transparent pointer-events-none" />
                     </div>
                   </div>
                 </div>
