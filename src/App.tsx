@@ -78,10 +78,12 @@ const SkillCard = ({ name, desc, onClick }: { name: string, desc: string, onClic
     <div className="flex gap-4">
       <div className="flex-shrink-0 w-12 h-12 border border-blue-900 bg-black/40 overflow-hidden">
         <img 
-          src="https://picsum.photos/seed/l2-skill-icon/64/64" 
+          src="https://ais-dev-5z7cqgma7kqupugtcilb7x-127797539241.europe-west2.run.app/skill.png" 
           alt="Skill Icon" 
           className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
-          referrerPolicy="no-referrer"
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = 'https://picsum.photos/seed/l2-skill/64/64';
+          }}
         />
       </div>
       <div className="space-y-1">
@@ -113,10 +115,12 @@ const SkillDetailModal = ({ isOpen, onClose, skill }: { isOpen: boolean, onClose
             <div className="flex gap-6 items-start">
               <div className="w-20 h-20 border-2 border-blue-500/30 bg-black/60 p-1">
                 <img 
-                  src="https://picsum.photos/seed/l2-skill-icon-large/128/128" 
+                  src="https://ais-dev-5z7cqgma7kqupugtcilb7x-127797539241.europe-west2.run.app/skill.png" 
                   alt="Skill Icon" 
                   className="w-full h-full object-cover"
-                  referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = 'https://picsum.photos/seed/l2-skill-large/128/128';
+                  }}
                 />
               </div>
               <div className="flex-1 space-y-4">
@@ -183,10 +187,12 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-6">
             <img 
-              src="https://picsum.photos/seed/scryde-logo-blue/200/80" 
+              src="https://ais-dev-5z7cqgma7kqupugtcilb7x-127797539241.europe-west2.run.app/logo.png" 
               alt="Scryde" 
-              className="h-8 brightness-125 saturate-[1.5]"
-              referrerPolicy="no-referrer"
+              className="h-8 brightness-125"
+              onError={(e) => {
+                (e.target as HTMLImageElement).src = 'https://picsum.photos/seed/scryde-logo/200/80';
+              }}
             />
             <div className="hidden md:flex gap-8">
               {['Расы', 'Классы', 'Умения', 'Библиотека'].map(item => (
@@ -408,10 +414,12 @@ export default function App() {
       <footer className="bg-black border-t border-blue-900/50 py-24 mt-32">
         <div className="max-w-7xl mx-auto px-6 text-center space-y-12">
           <img 
-            src="https://picsum.photos/seed/scryde-footer-blue/200/80" 
+            src="https://ais-dev-5z7cqgma7kqupugtcilb7x-127797539241.europe-west2.run.app/logo.png" 
             alt="Scryde" 
-            className="h-12 mx-auto brightness-125 saturate-[1.5] opacity-60"
-            referrerPolicy="no-referrer"
+            className="h-12 mx-auto brightness-125 opacity-60"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = 'https://picsum.photos/seed/scryde-logo/200/80';
+            }}
           />
           <div className="flex justify-center gap-12">
             {['База данных', 'Карта', 'Предметы', 'Кланы'].map(item => (
