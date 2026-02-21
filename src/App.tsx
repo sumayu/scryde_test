@@ -9,309 +9,425 @@ import {
   Shield, 
   Zap, 
   Flame, 
-  Wind, 
-  Droplets, 
   Skull, 
   Heart, 
   Sword, 
-  BookOpen, 
   Users, 
-  ChevronRight,
   Info,
-  Star
+  Star,
+  Scroll,
+  Crosshair,
+  Gem,
+  X,
+  AlertCircle,
+  ChevronDown
 } from 'lucide-react';
 import { RACES, HUMAN_CLASSES, APOSTLE_SKILLS } from './constants';
 
-const SkillCard = ({ name, desc, icon: Icon }: { name: string, desc: string, icon: any }) => (
+const MockupModal = ({ isOpen, onClose, message }: { isOpen: boolean, onClose: () => void, message?: string }) => (
+  <AnimatePresence>
+    {isOpen && (
+      <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.9, y: 20 }}
+          className="stone-card max-w-md w-full p-8 rounded-lg border-blue-900 relative"
+        >
+          <button onClick={onClose} className="absolute top-4 right-4 text-blue-400 hover:text-white transition-colors">
+            <X size={20} />
+          </button>
+          <div className="flex flex-col items-center text-center space-y-4">
+            <div className="w-16 h-16 rounded-full bg-blue-900/20 flex items-center justify-center text-blue-500 glow-blue">
+              <AlertCircle size={32} />
+            </div>
+            <h3 className="font-display text-xl text-white uppercase tracking-widest">Внимание</h3>
+            <p className="text-zinc-400 font-serif italic">
+              {message || "Это макет сайта. Данный функционал находится в разработке и на данный момент недоступен."}
+            </p>
+            <button 
+              onClick={onClose}
+              className="w-full py-3 bg-blue-700 text-white font-display text-xs tracking-widest uppercase hover:bg-blue-600 transition-colors"
+            >
+              Понятно
+            </button>
+          </div>
+        </motion.div>
+      </div>
+    )}
+  </AnimatePresence>
+);
+
+const OrnamentalDivider = () => (
+  <div className="flex items-center justify-center gap-4 my-12">
+    <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-blue-900 to-transparent" />
+    <Gem size={16} className="text-blue-500" />
+    <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent via-blue-900 to-transparent" />
+  </div>
+);
+
+const SkillCard = ({ name, desc, onClick }: { name: string, desc: string, onClick: () => void }) => (
   <motion.div 
     layout
-    initial={{ opacity: 0, y: 10 }}
-    animate={{ opacity: 1, y: 0 }}
-    className="group relative bg-zinc-900/50 border border-zinc-800 p-4 rounded-xl hover:bg-zinc-800/50 transition-all duration-300"
+    initial={{ opacity: 0, scale: 0.95 }}
+    animate={{ opacity: 1, scale: 1 }}
+    onClick={onClick}
+    className="stone-card group p-5 rounded-sm relative overflow-hidden cursor-pointer hover:border-blue-500/50 transition-all"
   >
-    <div className="flex items-start gap-3">
-      <div className="p-2 bg-zinc-800 rounded-lg group-hover:bg-indigo-500/20 group-hover:text-indigo-400 transition-colors">
-        <Icon size={18} />
+    <div className="absolute top-0 left-0 w-1 h-full bg-blue-900 group-hover:bg-blue-500 transition-colors" />
+    <div className="flex gap-4">
+      <div className="flex-shrink-0 w-12 h-12 border border-blue-900 bg-black/40 overflow-hidden">
+        <img 
+          src="https://picsum.photos/seed/l2-skill-icon/64/64" 
+          alt="Skill Icon" 
+          className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+          referrerPolicy="no-referrer"
+        />
       </div>
-      <div>
-        <h4 className="text-zinc-100 font-semibold text-sm mb-1">{name}</h4>
-        <p className="text-zinc-400 text-xs leading-relaxed">{desc}</p>
+      <div className="space-y-1">
+        <h4 className="font-display text-white text-sm font-bold tracking-wider uppercase">{name}</h4>
+        <p className="text-zinc-400 text-xs italic leading-relaxed">{desc}</p>
       </div>
     </div>
   </motion.div>
 );
 
+const SkillDetailModal = ({ isOpen, onClose, skill }: { isOpen: boolean, onClose: () => void, skill: { name: string, desc: string } | null }) => (
+  <AnimatePresence>
+    {isOpen && skill && (
+      <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9, y: 30 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.9, y: 30 }}
+          className="stone-card max-w-lg w-full p-0 rounded-lg border-blue-500/40 relative overflow-hidden"
+        >
+          <div className="bg-blue-900/20 p-6 border-b border-blue-900/50 flex justify-between items-center">
+            <h3 className="font-display text-2xl text-white tracking-widest uppercase">{skill.name}</h3>
+            <button onClick={onClose} className="text-blue-400 hover:text-white transition-colors">
+              <X size={24} />
+            </button>
+          </div>
+          
+          <div className="p-8 space-y-8">
+            <div className="flex gap-6 items-start">
+              <div className="w-20 h-20 border-2 border-blue-500/30 bg-black/60 p-1">
+                <img 
+                  src="https://picsum.photos/seed/l2-skill-icon-large/128/128" 
+                  alt="Skill Icon" 
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div className="flex-1 space-y-4">
+                <div className="space-y-1">
+                  <span className="text-[10px] uppercase tracking-[0.2em] text-blue-400 font-display">Описание умения</span>
+                  <p className="text-zinc-300 font-serif italic text-lg leading-relaxed">
+                    {skill.desc}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-6 bg-blue-900/10 border border-blue-900/30 rounded-sm text-center">
+              <p className="font-display text-blue-400 text-sm tracking-widest uppercase animate-pulse">
+                Скоро разработаем )
+              </p>
+            </div>
+
+            <button 
+              onClick={onClose}
+              className="w-full py-4 bg-blue-700/80 hover:bg-blue-600 text-white font-display text-xs tracking-[0.3em] uppercase transition-all"
+            >
+              Закрыть книгу заклинаний
+            </button>
+          </div>
+        </motion.div>
+      </div>
+    )}
+  </AnimatePresence>
+);
+
 export default function App() {
   const [activeTab, setActiveTab] = useState<'buffs' | 'magical' | 'physical' | 'debuffs' | 'toggle'>('buffs');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState<string | undefined>();
+  const [selectedRace, setSelectedRace] = useState<string | null>(null);
+  const [selectedClass, setSelectedClass] = useState<string | null>(null);
+  const [selectedSkill, setSelectedSkill] = useState<{ name: string, desc: string } | null>(null);
 
-  const getIcon = (category: string) => {
-    switch (category) {
-      case 'buffs': return Heart;
-      case 'magical': return Zap;
-      case 'physical': return Sword;
-      case 'debuffs': return Skull;
-      case 'toggle': return Flame;
-      default: return Info;
-    }
+  const openMockup = (message?: string) => {
+    setModalMessage(message);
+    setIsModalOpen(true);
+  };
+
+  const openSkillDetail = (skill: { name: string, desc: string }) => {
+    setSelectedSkill(skill);
+  };
+
+  const tabLabels = {
+    buffs: 'Усиливающие',
+    magical: 'Магические',
+    physical: 'Физические',
+    debuffs: 'Отрицательные',
+    toggle: 'Переключаемые'
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-zinc-300 font-sans selection:bg-indigo-500/30">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-black/80 backdrop-blur-md border-bottom border-zinc-800">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-4">
+    <div className="min-h-screen selection:bg-blue-900/30">
+      <MockupModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} message={modalMessage} />
+      <SkillDetailModal isOpen={!!selectedSkill} onClose={() => setSelectedSkill(null)} skill={selectedSkill} />
+
+      {/* Навигация */}
+      <nav className="border-b border-blue-900/50 bg-black/95 backdrop-blur-sm sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+          <div className="flex items-center gap-6">
             <img 
-              src="https://ais-dev-5z7cqgma7kqupugtcilb7x-127797539241.europe-west2.run.app/logo.png" 
-              alt="Scryde Logo" 
-              className="h-10 w-auto brightness-110"
-              onError={(e) => {
-                // Fallback if the local image isn't available yet or path is wrong
-                (e.target as HTMLImageElement).src = 'https://picsum.photos/seed/scryde/200/80';
-              }}
+              src="https://picsum.photos/seed/scryde-logo-blue/200/80" 
+              alt="Scryde" 
+              className="h-8 brightness-125 saturate-[1.5]"
+              referrerPolicy="no-referrer"
             />
-            <div className="h-6 w-px bg-zinc-800 mx-2" />
-            <span className="text-sm font-mono tracking-widest uppercase text-zinc-500">Database v2.5</span>
-          </div>
-          <nav className="hidden md:flex items-center gap-8">
-            {['Races', 'Classes', 'Skills', 'Guide'].map((item) => (
-              <a key={item} href={`#${item.toLowerCase()}`} className="text-xs uppercase tracking-widest font-semibold hover:text-white transition-colors">
-                {item}
-              </a>
-            ))}
-          </nav>
-        </div>
-      </header>
-
-      <main className="max-w-7xl mx-auto px-6 py-12 space-y-32">
-        
-        {/* Hero Section */}
-        <section id="hero" className="relative grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8 z-10">
-            <motion.div 
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-[10px] font-bold uppercase tracking-widest"
-            >
-              <Star size={12} />
-              Featured Class: Apostle
-            </motion.div>
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-6xl md:text-8xl font-bold text-white tracking-tighter leading-none"
-            >
-              APOSTLE <br />
-              <span className="text-zinc-600">THE DIVINE</span>
-            </motion.h1>
-            <motion.p 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="text-lg text-zinc-400 max-w-md leading-relaxed"
-            >
-              The ultimate support class of the Human race. Masters of divine protection, 
-              Apostles empower their allies with unmatched buffs, turning any party into an unstoppable force.
-            </motion.p>
-            <div className="flex gap-4">
-              <button className="px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-zinc-200 transition-colors">
-                Start Playing
-              </button>
-              <button className="px-8 py-4 border border-zinc-800 text-white font-bold rounded-full hover:bg-zinc-900 transition-colors">
-                View Tree
-              </button>
-            </div>
-          </div>
-
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="relative aspect-square rounded-3xl overflow-hidden bg-zinc-900 border border-zinc-800 group"
-          >
-            <img 
-              src="https://ais-dev-5z7cqgma7kqupugtcilb7x-127797539241.europe-west2.run.app/apostle.png" 
-              alt="Apostle" 
-              className="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700"
-              onError={(e) => {
-                (e.target as HTMLImageElement).src = 'https://picsum.photos/seed/apostle/800/800';
-              }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
-            <div className="absolute bottom-8 left-8 right-8 flex justify-between items-end">
-              <div>
-                <p className="text-xs font-mono text-zinc-500 uppercase mb-1">Class Tier</p>
-                <p className="text-2xl font-bold text-white">S-RANK SUPPORT</p>
-              </div>
-              <div className="text-right">
-                <p className="text-xs font-mono text-zinc-500 uppercase mb-1">Primary Stat</p>
-                <p className="text-2xl font-bold text-white">WIT / MEN</p>
-              </div>
-            </div>
-          </motion.div>
-        </section>
-
-        {/* Race System */}
-        <section id="races" className="space-y-12">
-          <div className="flex items-end justify-between border-b border-zinc-800 pb-8">
-            <h2 className="text-4xl font-bold text-white tracking-tight">RACE SYSTEM</h2>
-            <p className="text-sm font-mono text-zinc-500">01 / 06 RACES AVAILABLE</p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {RACES.map((race, idx) => (
-              <div 
-                key={race}
-                className={`p-6 rounded-2xl border transition-all duration-300 ${race === 'Человек' ? 'bg-white border-white text-black' : 'bg-zinc-900/50 border-zinc-800 hover:border-zinc-700'}`}
-              >
-                <p className="text-[10px] font-bold mb-4 opacity-50">0{idx + 1}</p>
-                <h3 className="text-lg font-bold uppercase tracking-tight">{race}</h3>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Class Tree */}
-        <section id="classes" className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          <div className="lg:col-span-1 space-y-6">
-            <h2 className="text-4xl font-bold text-white tracking-tight">HUMAN TREE</h2>
-            <p className="text-zinc-400 leading-relaxed">
-              Humans are the most versatile race, offering a wide range of specializations from heavy warriors to powerful mystics.
-            </p>
-            <div className="p-6 bg-indigo-500/10 border border-indigo-500/20 rounded-2xl">
-              <div className="flex items-center gap-3 text-indigo-400 mb-2">
-                <Info size={18} />
-                <span className="text-sm font-bold uppercase tracking-wider">Note</span>
-              </div>
-              <p className="text-xs text-indigo-300/80">
-                Apostle is the final evolution of the Cleric path, focusing on party-wide enhancements.
-              </p>
-            </div>
-          </div>
-
-          <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="space-y-4">
-              <div className="flex items-center gap-2 text-zinc-500 font-mono text-xs uppercase tracking-widest mb-4">
-                <Sword size={14} /> Warriors
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {HUMAN_CLASSES.warriors.map(cls => (
-                  <span key={cls} className="px-3 py-1.5 bg-zinc-900 border border-zinc-800 rounded-lg text-xs hover:border-zinc-600 transition-colors cursor-default">
-                    {cls}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <div className="space-y-4">
-              <div className="flex items-center gap-2 text-zinc-500 font-mono text-xs uppercase tracking-widest mb-4">
-                <Zap size={14} /> Mystics
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {HUMAN_CLASSES.mystics.map(cls => (
-                  <span 
-                    key={cls} 
-                    className={`px-3 py-1.5 rounded-lg text-xs transition-all duration-300 cursor-default border ${cls === 'Апостол' ? 'bg-indigo-500 border-indigo-400 text-white shadow-lg shadow-indigo-500/20' : 'bg-zinc-900 border-zinc-800 hover:border-zinc-600'}`}
-                  >
-                    {cls}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Apostle Skills */}
-        <section id="skills" className="space-y-12">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
-            <h2 className="text-4xl font-bold text-white tracking-tight">APOSTLE SKILLS</h2>
-            <div className="flex flex-wrap gap-2 p-1 bg-zinc-900 rounded-xl border border-zinc-800">
-              {(['buffs', 'magical', 'physical', 'debuffs', 'toggle'] as const).map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={`px-4 py-2 rounded-lg text-[10px] font-bold uppercase tracking-widest transition-all duration-300 ${activeTab === tab ? 'bg-zinc-800 text-white' : 'text-zinc-500 hover:text-zinc-300'}`}
+            <div className="hidden md:flex gap-8">
+              {['Расы', 'Классы', 'Умения', 'Библиотека'].map(item => (
+                <button 
+                  key={item} 
+                  onClick={() => openMockup()}
+                  className="font-display text-[10px] tracking-[0.2em] uppercase text-blue-400/60 hover:text-white transition-colors"
                 >
-                  {tab}
+                  {item}
                 </button>
               ))}
             </div>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <AnimatePresence mode="wait">
-              {APOSTLE_SKILLS[activeTab].map((skill) => (
-                <SkillCard 
-                  key={skill.name} 
-                  name={skill.name} 
-                  desc={skill.desc} 
-                  icon={getIcon(activeTab)} 
-                />
-              ))}
-            </AnimatePresence>
+          <div className="flex items-center gap-4">
+            <button 
+              onClick={() => openMockup()}
+              className="px-4 py-1.5 border border-blue-700 font-display text-[10px] tracking-widest uppercase text-white hover:bg-blue-900/30 transition-all glow-blue"
+            >
+              Начать игру
+            </button>
           </div>
-          
-          {/* Special Skills */}
-          <div className="pt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="p-8 bg-gradient-to-br from-indigo-500/10 to-transparent border border-indigo-500/20 rounded-3xl space-y-4">
-              <div className="flex items-center gap-3 text-indigo-400">
-                <Zap size={24} />
-                <h3 className="text-xl font-bold uppercase tracking-tight">Transformation: Inquisitor</h3>
-              </div>
-              <p className="text-sm text-zinc-400 leading-relaxed">
-                {APOSTLE_SKILLS.transformation[0].desc}
-              </p>
-            </div>
-            <div className="p-8 bg-gradient-to-br from-zinc-800/50 to-transparent border border-zinc-800 rounded-3xl space-y-4">
-              <div className="flex items-center gap-3 text-zinc-300">
-                <Users size={24} />
-                <h3 className="text-xl font-bold uppercase tracking-tight">Clan & Hero Skills</h3>
-              </div>
-              <p className="text-sm text-zinc-400 leading-relaxed">
-                Magic Firework: Магия вне Хогвартса!
-              </p>
-            </div>
+        </div>
+      </nav>
+
+      <main className="max-w-7xl mx-auto px-6 py-16">
+        
+        {/* Выбор расы */}
+        <section id="races" className="space-y-12 mb-24">
+          <div className="text-center space-y-4">
+            <h2 className="font-display text-4xl text-white tracking-widest uppercase">Выбор Расы</h2>
+            <p className="font-serif italic text-zinc-500">Выберите свое происхождение в мире Адена</p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {RACES.map((race) => (
+              <button 
+                key={race}
+                onClick={() => {
+                  if (race === 'Человек') {
+                    setSelectedRace(race);
+                    setSelectedClass(null); // Reset class when race changes
+                  } else {
+                    openMockup(`Раса ${race} не реализована в данном тесте. Доступен только Человек.`);
+                  }
+                }}
+                className={`group p-6 border transition-all duration-500 relative overflow-hidden ${selectedRace === race ? 'bg-blue-900/30 border-blue-500' : 'bg-slate-900/40 border-blue-900/50 hover:border-blue-500/50'}`}
+              >
+                <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <h3 className={`font-display text-sm tracking-widest uppercase transition-colors ${selectedRace === race ? 'text-white' : 'text-zinc-500 group-hover:text-blue-400'}`}>
+                  {race}
+                </h3>
+                {race !== 'Человек' && (
+                  <div className="absolute top-1 right-1">
+                    <AlertCircle size={10} className="text-zinc-700" />
+                  </div>
+                )}
+              </button>
+            ))}
           </div>
         </section>
 
+        {/* Древо классов */}
+        <AnimatePresence>
+          {selectedRace === 'Человек' && (
+            <motion.section 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              className="space-y-16 mb-24"
+            >
+              <OrnamentalDivider />
+              
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+                <div className="lg:col-span-4 space-y-8">
+                  <div className="space-y-4">
+                    <h2 className="font-display text-4xl text-white tracking-widest uppercase">Линия Людей</h2>
+                    <p className="text-zinc-400 font-serif leading-relaxed">
+                      В данном макете реализован только Апостол для демонстрации структуры и дизайна сайта.
+                    </p>
+                  </div>
+                  <div className="p-6 border-l-4 border-blue-700 bg-blue-900/20 space-y-3">
+                    <div className="flex items-center gap-2 text-blue-400">
+                      <Crosshair size={18} />
+                      <span className="font-display text-xs tracking-widest uppercase">Тестовый макет</span>
+                    </div>
+                    <p className="text-xs text-zinc-500 italic">
+                      Все остальные классы и расы находятся в разработке.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="lg:col-span-8 space-y-12">
+                  <div className="space-y-6">
+                    <h3 className="font-display text-lg text-blue-400/60 tracking-[0.2em] uppercase border-b border-blue-900/50 pb-2">Воины</h3>
+                    <div className="flex flex-wrap gap-3">
+                      {HUMAN_CLASSES.warriors.map(cls => (
+                        <button 
+                          key={cls} 
+                          onClick={() => openMockup(`Класс ${cls} не реализован. В макете доступен только Апостол.`)}
+                          className="px-4 py-2 border border-blue-900/50 bg-slate-900/40 text-xs font-display tracking-widest text-zinc-500 hover:text-blue-400 hover:border-blue-700 transition-all"
+                        >
+                          {cls}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="space-y-6">
+                    <h3 className="font-display text-lg text-blue-400/60 tracking-[0.2em] uppercase border-b border-blue-900/50 pb-2">Мистики</h3>
+                    <div className="flex flex-wrap gap-3">
+                      {HUMAN_CLASSES.mystics.map(cls => (
+                        <button 
+                          key={cls} 
+                          onClick={() => {
+                            if (cls === 'Апостол') {
+                              setSelectedClass(cls);
+                              setTimeout(() => {
+                                document.getElementById('apostle-details')?.scrollIntoView({ behavior: 'smooth' });
+                              }, 100);
+                            } else {
+                              openMockup(`Класс ${cls} не реализован. В макете доступен только Апостол.`);
+                            }
+                          }}
+                          className={`px-4 py-2 border font-display tracking-widest text-xs transition-all ${selectedClass === cls ? 'bg-blue-700 text-white border-blue-500 shadow-[0_0_20px_rgba(37,99,235,0.3)]' : 'bg-slate-900/40 border-blue-900/50 text-zinc-500 hover:text-blue-400 hover:border-blue-700'}`}
+                        >
+                          {cls}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.section>
+          )}
+        </AnimatePresence>
+
+        {/* Детали Апостола */}
+        <AnimatePresence>
+          {selectedClass === 'Апостол' && (
+            <motion.div
+              id="apostle-details"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="space-y-32"
+            >
+              <OrnamentalDivider />
+
+              {/* Герой-секция */}
+              <section className="relative">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                  <div className="lg:col-span-12 relative">
+                    <div className="relative aspect-[21/9] overflow-hidden border-2 border-blue-900/50 shadow-2xl glow-blue rounded-lg">
+                      <img 
+                        src="https://ais-dev-5z7cqgma7kqupugtcilb7x-127797539241.europe-west2.run.app/apostle.png" 
+                        alt="Апостол" 
+                        className="w-full h-full object-cover object-top brightness-90 saturate-[0.8]"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).src = 'https://picsum.photos/seed/apostle-l2-blue/1920/1080';
+                        }}
+                        referrerPolicy="no-referrer"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#02040a] via-transparent to-transparent" />
+                      <div className="absolute bottom-12 left-12 space-y-4">
+                        <div className="flex items-center gap-3 text-blue-400">
+                          <Scroll size={20} />
+                          <span className="font-display text-xs tracking-[0.3em] uppercase">Класс: Апостол</span>
+                        </div>
+                        <h1 className="font-display text-6xl md:text-8xl font-black tracking-tighter leading-none text-white">
+                          АПОСТОЛ
+                        </h1>
+                        <p className="text-xl text-zinc-400 font-serif italic max-w-2xl leading-relaxed border-l-2 border-blue-700 pl-6">
+                          "Голос богов звучит в их молитвах. Апостол не просто сражается; он диктует саму нить судьбы."
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* Секция умений */}
+              <section id="skills" className="space-y-12">
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-blue-900/50 pb-8">
+                  <div className="space-y-2">
+                    <h2 className="font-display text-5xl text-white tracking-widest uppercase">Умения Апостола</h2>
+                    <p className="font-serif italic text-zinc-500">Божественные искусства защиты и усиления</p>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {(Object.keys(tabLabels) as Array<keyof typeof tabLabels>).map((tab) => (
+                      <button
+                        key={tab}
+                        onClick={() => setActiveTab(tab)}
+                        className={`px-6 py-2 font-display text-[10px] tracking-[0.2em] uppercase transition-all ${activeTab === tab ? 'bg-blue-700 text-white' : 'text-blue-400/40 hover:text-blue-400 hover:bg-blue-900/20'}`}
+                      >
+                        {tabLabels[tab]}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <AnimatePresence mode="wait">
+                    {APOSTLE_SKILLS[activeTab].map((skill) => (
+                      <SkillCard 
+                        key={skill.name} 
+                        name={skill.name} 
+                        desc={skill.desc} 
+                        onClick={() => openSkillDetail(skill)}
+                      />
+                    ))}
+                  </AnimatePresence>
+                </div>
+              </section>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-zinc-900 py-20 mt-32">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
-          <div className="col-span-1 md:col-span-2 space-y-6">
-            <img 
-              src="https://ais-dev-5z7cqgma7kqupugtcilb7x-127797539241.europe-west2.run.app/logo.png" 
-              alt="Scryde Logo" 
-              className="h-8 w-auto grayscale opacity-50"
-              onError={(e) => {
-                (e.target as HTMLImageElement).src = 'https://picsum.photos/seed/scryde/200/80';
-              }}
-            />
-            <p className="text-sm text-zinc-500 max-w-xs">
-              The ultimate knowledge base for Lineage II adventurers. Crafted for the Scryde community.
+      {/* Футер */}
+      <footer className="bg-black border-t border-blue-900/50 py-24 mt-32">
+        <div className="max-w-7xl mx-auto px-6 text-center space-y-12">
+          <img 
+            src="https://picsum.photos/seed/scryde-footer-blue/200/80" 
+            alt="Scryde" 
+            className="h-12 mx-auto brightness-125 saturate-[1.5] opacity-60"
+            referrerPolicy="no-referrer"
+          />
+          <div className="flex justify-center gap-12">
+            {['База данных', 'Карта', 'Предметы', 'Кланы'].map(item => (
+              <button 
+                key={item} 
+                onClick={() => openMockup()}
+                className="font-display text-[10px] tracking-[0.3em] uppercase text-blue-400/40 hover:text-white transition-colors"
+              >
+                {item}
+              </button>
+            ))}
+          </div>
+          <div className="pt-12 border-t border-blue-900/10">
+            <p className="font-display text-[9px] tracking-[0.4em] text-zinc-700 uppercase">
+              © 2026 Lineage II Fan Database • Создано для сообщества Scryde
             </p>
-          </div>
-          <div className="space-y-4">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-white">Resources</h4>
-            <ul className="space-y-2 text-sm text-zinc-500">
-              <li><a href="#" className="hover:text-zinc-300 transition-colors">Class Guides</a></li>
-              <li><a href="#" className="hover:text-zinc-300 transition-colors">Raid Bosses</a></li>
-              <li><a href="#" className="hover:text-zinc-300 transition-colors">Item Database</a></li>
-            </ul>
-          </div>
-          <div className="space-y-4">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-white">Community</h4>
-            <ul className="space-y-2 text-sm text-zinc-500">
-              <li><a href="#" className="hover:text-zinc-300 transition-colors">Discord</a></li>
-              <li><a href="#" className="hover:text-zinc-300 transition-colors">Forum</a></li>
-              <li><a href="#" className="hover:text-zinc-300 transition-colors">Support</a></li>
-            </ul>
-          </div>
-        </div>
-        <div className="max-w-7xl mx-auto px-6 pt-20 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest">© 2026 SCRYDE DATABASE. ALL RIGHTS RESERVED.</p>
-          <div className="flex gap-6">
-            <a href="#" className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest hover:text-zinc-400">Privacy Policy</a>
-            <a href="#" className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest hover:text-zinc-400">Terms of Service</a>
           </div>
         </div>
       </footer>
