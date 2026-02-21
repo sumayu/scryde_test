@@ -190,7 +190,16 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen selection:bg-blue-900/30">
+    <div className="min-h-screen selection:bg-blue-900/30 relative overflow-x-hidden bg-[#02040a]">
+      {/* Основной фон сайта */}
+      <div 
+        className="fixed inset-0 z-0 opacity-40 pointer-events-none bg-cover bg-center bg-no-repeat"
+        style={{ 
+          backgroundImage: 'url("https://i.ibb.co/WmcTTC6/bg.png")',
+          filter: 'brightness(0.5) saturate(1.2)'
+        }}
+      />
+      
       <MockupModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} message={modalMessage} />
       <SkillDetailModal isOpen={!!selectedSkill} onClose={() => setSelectedSkill(null)} skill={selectedSkill} />
 
@@ -353,34 +362,88 @@ export default function App() {
             >
               <OrnamentalDivider />
 
-              {/* Герой-секция */}
-              <section className="relative">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                  <div className="lg:col-span-12 relative">
-                    <div className="relative aspect-video lg:aspect-[21/9] overflow-hidden border-2 border-blue-900/50 shadow-2xl glow-blue rounded-lg bg-slate-900">
+              {/* Герой-секция в стиле Wiki */}
+              <section className="relative stone-card p-8 md:p-12 rounded-xl border-blue-900/40 bg-slate-950/50 backdrop-blur-sm overflow-hidden">
+                <div className="absolute top-0 right-0 w-1/2 h-full bg-blue-600/5 blur-[120px] pointer-events-none" />
+                
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 relative z-10">
+                  {/* Левая колонка: Инфо и Статы */}
+                  <div className="lg:col-span-7 space-y-10">
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-3 text-blue-400">
+                        <Scroll size={18} />
+                        <span className="font-display text-[10px] tracking-[0.4em] uppercase opacity-70">Класс: Мистик</span>
+                      </div>
+                      <h1 className="font-display text-6xl md:text-7xl text-white tracking-tighter uppercase leading-none">
+                        Апостол
+                      </h1>
+                      <p className="text-lg text-zinc-400 font-serif italic leading-relaxed max-w-xl">
+                        "Высшая ступень развития Проповедника. Мастер божественных усилений, способный превратить обычный отряд в непобедимую армию."
+                      </p>
+                    </div>
+
+                    {/* Роли */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 border-y border-blue-900/30 py-8">
+                      <div className="space-y-1">
+                        <span className="text-[10px] uppercase tracking-widest text-blue-400/60 font-display">Роль</span>
+                        <p className="text-white font-display text-sm uppercase">Баффер / Поддержка</p>
+                      </div>
+                      <div className="space-y-1">
+                        <span className="text-[10px] uppercase tracking-widest text-blue-400/60 font-display">Оружие</span>
+                        <p className="text-white font-display text-sm uppercase">Меч / Дубина / Копье</p>
+                      </div>
+                      <div className="space-y-1">
+                        <span className="text-[10px] uppercase tracking-widest text-blue-400/60 font-display">Доспехи</span>
+                        <p className="text-white font-display text-sm uppercase">Тяжелые / Роба</p>
+                      </div>
+                    </div>
+
+                    {/* Статы */}
+                    <div className="space-y-6 max-w-md">
+                      <h3 className="font-display text-xs tracking-[0.2em] uppercase text-white/40">Характеристики класса</h3>
+                      {[
+                        { label: 'Соло-игра', val: 40 },
+                        { label: 'Групповой фарм', val: 100 },
+                        { label: 'Групповое PvP', val: 95 },
+                        { label: 'Поддержка', val: 100 },
+                        { label: 'Выживаемость', val: 70 },
+                        { label: 'Контроль', val: 30 },
+                      ].map((stat) => (
+                        <div key={stat.label} className="space-y-2">
+                          <div className="flex justify-between text-[10px] uppercase tracking-widest">
+                            <span className="text-zinc-400">{stat.label}</span>
+                            <span className="text-blue-400">{stat.val}%</span>
+                          </div>
+                          <div className="h-1 w-full bg-blue-900/20 rounded-full overflow-hidden">
+                            <motion.div 
+                              initial={{ width: 0 }}
+                              animate={{ width: `${stat.val}%` }}
+                              transition={{ duration: 1, delay: 0.5 }}
+                              className="h-full bg-gradient-to-r from-blue-700 to-blue-400 shadow-[0_0_10px_rgba(37,99,235,0.5)]"
+                            />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Правая колонка: Изображение */}
+                  <div className="lg:col-span-5 relative flex items-start justify-center pt-4">
+                    <div className="relative w-full max-w-[400px] h-[500px] md:h-[650px] overflow-hidden rounded-xl border border-blue-900/20 bg-slate-950/10 backdrop-blur-sm shadow-2xl">
                       <img 
-                        src="https://i.ibb.co/93fQYNq4/apostle.png" 
+                        src="https://i.ibb.co/fGKj02CN/apostle.png" 
                         alt="Апостол" 
-                        className="w-full h-full object-contain object-center brightness-110"
+                        className="w-full h-full object-contain object-top block relative z-0"
+                        style={{ 
+                          imageRendering: 'smooth',
+                        }}
                         onError={(e) => {
                           (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1519074063912-ad2fe3f51964?auto=format&fit=crop&q=80&w=1920&h=1080';
                         }}
                         referrerPolicy="no-referrer"
                       />
-                      <div className="absolute inset-0 bg-blue-900/20 mix-blend-overlay pointer-events-none" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#02040a] via-transparent to-transparent" />
-                      <div className="absolute bottom-12 left-12 space-y-4">
-                        <div className="flex items-center gap-3 text-blue-400">
-                          <Scroll size={20} />
-                          <span className="font-display text-xs tracking-[0.3em] uppercase">Класс: Апостол</span>
-                        </div>
-                        <h1 className="font-display text-6xl md:text-8xl font-black tracking-tighter leading-none text-white">
-                          АПОСТОЛ
-                        </h1>
-                        <p className="text-xl text-zinc-400 font-serif italic max-w-2xl leading-relaxed border-l-2 border-blue-700 pl-6">
-                          "Голос богов звучит в их молитвах. Апостол не просто сражается; он диктует саму нить судьбы."
-                        </p>
-                      </div>
+                      {/* Мягкое затемнение снизу для эстетичного перехода */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#02040a] via-transparent to-transparent opacity-80 pointer-events-none" />
                     </div>
                   </div>
                 </div>
