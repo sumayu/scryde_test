@@ -357,15 +357,13 @@ export default function App() {
               <section className="relative">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                   <div className="lg:col-span-12 relative">
-                    <div className="relative aspect-[21/9] overflow-hidden border-2 border-blue-900/50 shadow-2xl glow-blue rounded-lg">
+                    <div className="relative aspect-video lg:aspect-[21/9] overflow-hidden border-2 border-blue-900/50 shadow-2xl glow-blue rounded-lg bg-slate-900">
                       <img 
                         src="https://i.ibb.co/93fQYNq4/apostle.png" 
                         alt="Апостол" 
-                        className="w-full h-full object-cover object-top brightness-90 saturate-[0.8] mix-blend-lighten"
-                        style={{ filter: 'hue-rotate(180deg) brightness(0.8) contrast(1.2) sepia(0.5) saturate(2) hue-rotate(-180deg) drop-shadow(0 0 20px rgba(37, 99, 235, 0.5))' }}
+                        className="w-full h-full object-contain object-center brightness-110"
                         onError={(e) => {
                           (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1519074063912-ad2fe3f51964?auto=format&fit=crop&q=80&w=1920&h=1080';
-                          (e.target as HTMLImageElement).style.filter = 'none';
                         }}
                         referrerPolicy="no-referrer"
                       />
