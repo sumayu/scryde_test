@@ -535,8 +535,16 @@ export default function App() {
       </main>
 
       {/* Футер */}
-      <footer className="bg-black border-t border-blue-900/50 py-24 mt-32">
-        <div className="max-w-7xl mx-auto px-6 text-center space-y-12">
+      <footer className="relative bg-black border-t border-blue-900/50 py-24 mt-32 overflow-hidden">
+        {/* Фоновое изображение для футера (старое) */}
+        <div 
+          className="absolute inset-0 z-0 opacity-20 bg-cover bg-center bg-no-repeat"
+          style={{ 
+            backgroundImage: 'url("https://i.ibb.co/WmcTTC6/bg.png")',
+            filter: 'grayscale(1) brightness(0.3)'
+          }}
+        />
+        <div className="max-w-7xl mx-auto px-6 text-center space-y-12 relative z-10">
           <img 
             src="https://i.ibb.co/nq0Ksmgk/logo.png" 
             alt="Scryde Footer" 
