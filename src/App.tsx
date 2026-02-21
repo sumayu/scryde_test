@@ -69,28 +69,40 @@ const OrnamentalDivider = () => (
 const SkillCard = ({ name, desc, onClick }: { name: string, desc: string, onClick: () => void, key?: string }) => (
   <motion.div 
     layout
-    initial={{ opacity: 0, scale: 0.95 }}
-    animate={{ opacity: 1, scale: 1 }}
+    initial={{ opacity: 0, y: 10 }}
+    animate={{ opacity: 1, y: 0 }}
+    whileHover={{ y: -4, transition: { duration: 0.2 } }}
     onClick={onClick}
-    className="stone-card group p-5 rounded-sm relative overflow-hidden cursor-pointer hover:border-blue-500/50 transition-all"
+    className="stone-card group p-6 rounded-lg relative overflow-hidden cursor-pointer border-blue-900/30 hover:border-blue-400/50 transition-all duration-300"
   >
-    <div className="absolute top-0 left-0 w-1 h-full bg-blue-900 group-hover:bg-blue-500 transition-colors" />
-    <div className="flex gap-4">
-      <div className="flex-shrink-0 w-12 h-12 border border-blue-900 bg-black/40 overflow-hidden">
-        <img 
-          src="/skill.png" 
-          alt="Skill Icon" 
-          className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
-          onError={(e) => {
-            (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=60&w=100&h=100';
-          }}
-        />
+    {/* Decorative corner */}
+    <div className="absolute -top-4 -right-4 w-12 h-12 bg-blue-500/10 rotate-45 group-hover:bg-blue-500/20 transition-colors" />
+    
+    <div className="flex gap-5 items-center">
+      <div className="flex-shrink-0 relative">
+        <div className="absolute inset-0 bg-blue-500/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity" />
+        <div className="relative w-14 h-14 border-2 border-blue-900/50 bg-black/60 p-1 rounded-sm overflow-hidden group-hover:border-blue-400 transition-colors">
+          <img 
+            src="/skill.png" 
+            alt="Skill Icon" 
+            className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=60&w=100&h=100';
+            }}
+          />
+        </div>
       </div>
-      <div className="space-y-1">
-        <h4 className="font-display text-white text-sm font-bold tracking-wider uppercase">{name}</h4>
-        <p className="text-zinc-400 text-xs italic leading-relaxed">{desc}</p>
+      <div className="space-y-1.5 flex-1">
+        <div className="flex justify-between items-start">
+          <h4 className="font-display text-white text-sm font-bold tracking-widest uppercase group-hover:text-blue-300 transition-colors">{name}</h4>
+          <Star size={10} className="text-blue-900 group-hover:text-blue-400 transition-colors" />
+        </div>
+        <p className="text-zinc-400 text-[11px] italic leading-relaxed line-clamp-2 group-hover:text-zinc-300 transition-colors">{desc}</p>
       </div>
     </div>
+    
+    {/* Bottom accent line */}
+    <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-blue-600 to-transparent group-hover:w-full transition-all duration-500" />
   </motion.div>
 );
 
@@ -381,14 +393,24 @@ export default function App() {
                     <h2 className="font-display text-5xl text-white tracking-widest uppercase">Умения Апостола</h2>
                     <p className="font-serif italic text-zinc-500">Божественные искусства защиты и усиления</p>
                   </div>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-3">
                     {(Object.keys(tabLabels) as Array<keyof typeof tabLabels>).map((tab) => (
                       <button
                         key={tab}
                         onClick={() => setActiveTab(tab)}
-                        className={`px-6 py-2 font-display text-[10px] tracking-[0.2em] uppercase transition-all ${activeTab === tab ? 'bg-blue-700 text-white' : 'text-blue-400/40 hover:text-blue-400 hover:bg-blue-900/20'}`}
+                        className={`px-6 py-3 font-display text-[10px] tracking-[0.2em] uppercase transition-all duration-300 border rounded-sm relative overflow-hidden group ${
+                          activeTab === tab 
+                            ? 'bg-blue-700/40 border-blue-400 text-white shadow-[0_0_15px_rgba(37,99,235,0.3)]' 
+                            : 'bg-slate-900/40 border-blue-900/50 text-blue-400/60 hover:text-white hover:border-blue-500 hover:bg-blue-900/20'
+                        }`}
                       >
-                        {tabLabels[tab]}
+                        {activeTab === tab && (
+                          <motion.div 
+                            layoutId="activeTabGlow"
+                            className="absolute inset-0 bg-blue-500/10 pointer-events-none"
+                          />
+                        )}
+                        <span className="relative z-10">{tabLabels[tab]}</span>
                       </button>
                     ))}
                   </div>
