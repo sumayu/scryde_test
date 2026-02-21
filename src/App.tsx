@@ -97,7 +97,7 @@ const SkillCard = ({ name, desc, onClick }: { name: string, desc: string, onClic
           <h4 className="font-display text-white text-sm font-bold tracking-widest uppercase group-hover:text-blue-300 transition-colors">{name}</h4>
           <Star size={10} className="text-blue-900 group-hover:text-blue-400 transition-colors" />
         </div>
-        <p className="text-zinc-400 text-[11px] italic leading-relaxed line-clamp-2 group-hover:text-zinc-300 transition-colors">{desc}</p>
+        <p className="text-zinc-200 text-base italic leading-relaxed line-clamp-3 group-hover:text-white transition-colors">{desc}</p>
       </div>
     </div>
     
@@ -195,7 +195,7 @@ export default function App() {
       <div 
         className="fixed inset-0 z-0 opacity-40 pointer-events-none bg-cover bg-center bg-no-repeat"
         style={{ 
-          backgroundImage: 'url("https://i.ibb.co/WmcTTC6/bg.png")',
+          backgroundImage: 'url("https://i.ibb.co/DfFxwn51/bg.png")',
           filter: 'brightness(0.5) saturate(1.2)'
         }}
       />
@@ -307,17 +307,53 @@ export default function App() {
                 </div>
 
                 <div className="lg:col-span-8 space-y-12">
-                  <div className="space-y-6">
-                    <h3 className="font-display text-lg text-blue-400/60 tracking-[0.2em] uppercase border-b border-blue-900/50 pb-2">Воины</h3>
-                    <div className="flex flex-wrap gap-3">
-                      {HUMAN_CLASSES.warriors.map(cls => (
-                        <button 
-                          key={cls} 
-                          onClick={() => openMockup(`Класс ${cls} не реализован. В макете доступен только Апостол.`)}
-                          className="px-4 py-2 border border-blue-900/50 bg-slate-900/40 text-xs font-display tracking-widest text-zinc-500 hover:text-blue-400 hover:border-blue-700 transition-all"
-                        >
-                          {cls}
-                        </button>
+                  <div className="space-y-16">
+                    <h2 className="font-display text-2xl text-blue-400/80 tracking-[0.3em] uppercase text-center">Древо Классов Людей</h2>
+                    
+                    <div className="grid grid-cols-1 gap-20">
+                      {HUMAN_CLASSES.warriors.map((branch, idx) => (
+                        <div key={idx} className="flex flex-col items-center space-y-8">
+                          {/* Базовый класс */}
+                          <div className="w-64 p-4 border-2 border-blue-600/50 bg-blue-900/30 text-center relative z-10 rounded-sm shadow-[0_0_20px_rgba(37,99,235,0.2)]">
+                            <span className="font-display text-xs tracking-[0.3em] text-white uppercase font-bold">{branch.base}</span>
+                          </div>
+                          
+                          {/* Линии разветвления */}
+                          <div className="relative w-full max-w-2xl h-8">
+                            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-4 bg-blue-500/50" />
+                            <div className="absolute top-4 left-1/4 right-1/4 h-[1px] bg-blue-500/50" />
+                            <div className="absolute top-4 left-1/4 w-[1px] h-4 bg-blue-500/50" />
+                            <div className="absolute top-4 right-1/4 w-[1px] h-4 bg-blue-500/50" />
+                          </div>
+
+                          {/* Параллельные пути */}
+                          <div className="grid grid-cols-2 gap-8 md:gap-16 w-full max-w-3xl">
+                            {branch.paths.map((path, pIdx) => (
+                              <div key={pIdx} className="flex flex-col items-center space-y-6">
+                                {/* Вторая профессия */}
+                                <button 
+                                  onClick={() => openMockup(`Класс ${path.second} не реализован.`)}
+                                  className="w-full p-3 border border-blue-900/50 bg-slate-900/60 text-[10px] font-display tracking-widest text-zinc-300 hover:text-blue-400 hover:border-blue-700 transition-all text-center rounded-sm hover:scale-105"
+                                >
+                                  {path.second}
+                                </button>
+                                
+                                {/* Линия вниз */}
+                                <div className="h-6 w-[1px] bg-blue-900/50 relative">
+                                  <div className="absolute bottom-0 -left-[5px] border-l-4 border-r-4 border-t-4 border-transparent border-t-blue-900/50" />
+                                </div>
+                                
+                                {/* Третья профессия */}
+                                <button 
+                                  onClick={() => openMockup(`Класс ${path.third} не реализован.`)}
+                                  className="w-full p-4 border border-blue-500/40 bg-blue-900/20 text-[10px] font-display tracking-widest text-blue-300 hover:text-white hover:border-blue-400 transition-all text-center shadow-[0_0_15px_rgba(37,99,235,0.1)] rounded-sm hover:scale-105"
+                                >
+                                  {path.third}
+                                </button>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
                       ))}
                     </div>
                   </div>
