@@ -10,30 +10,103 @@ export const RACES = [
 export const HUMAN_CLASSES = {
   warriors: [
     {
-      base: "ВОИТЕЛЬ",
+      base: "ВОИТЕЛЬ (Warrior)",
+      icon: "https://i.ibb.co/W4ZhyDnN/Warrior.png",
       paths: [
-        { second: "ПОЛКОВОДЕЦ", third: "МАСТЕР КОПЬЯ (Dreadnought)" },
-        { second: "ГЛАДИАТОР", third: "ДУЭЛИСТ (Duelist)" }
+        { 
+          second: "КОПЕЙЩИК (Warlord)", 
+          secondIcon: "https://i.ibb.co/RpW88z5t/Warlord.png",
+          third: "ПОЛКОВОДЕЦ (Dreadnought)",
+          thirdIcon: "https://i.ibb.co/XZ0q51p7/Dreadnought.png"
+        },
+        { 
+          second: "ГЛАДИАТОР (Gladiator)", 
+          secondIcon: "https://i.ibb.co/0y0ZntHD/Gladiator.png",
+          third: "ДУЭЛИСТ (Duelist)",
+          thirdIcon: "https://i.ibb.co/BVRW4fV6/Duelist.png"
+        }
       ]
     },
     {
-      base: "РЫЦАРЬ",
+      base: "РЫЦАРЬ (Human Knight)",
+      icon: "https://i.ibb.co/6R1fRG36/Human-Knight.png",
       paths: [
-        { second: "ПАЛАДИН", third: "РЫЦАРЬ ФЕНИКСА (Phoenix Knight)" },
-        { second: "МСТИТЕЛЬ", third: "РЫЦАРЬ АДА (Hell Knight)" }
+        { 
+          second: "ПАЛАДИН (Paladin)", 
+          secondIcon: "https://i.ibb.co/k2rh3NxR/Paladin.png",
+          third: "РЫЦАРЬ ФЕНИКСА (Phoenix Knight)",
+          thirdIcon: "https://i.ibb.co/cS4Lg2FZ/Phoenix-Knight.png"
+        },
+        { 
+          second: "МСТИТЕЛЬ (Dark Avenger)", 
+          secondIcon: "https://i.ibb.co/0RKQnH2G/Dark-Avenger.png",
+          third: "РЫЦАРЬ АДА (Hell Knight)",
+          thirdIcon: "https://i.ibb.co/2796p1fw/Hell-Knight.png"
+        }
       ]
     },
     {
-      base: "РАЗБОЙНИК",
+      base: "РАЗБОЙНИК (Rogue)",
+      icon: "https://i.ibb.co/rRwHh3gg/Rogue.png",
       paths: [
-        { second: "ИСКАТЕЛЬ СОКРОВИЩ", third: "АВАНТЮРИСТ (Adventurer)" },
-        { second: "СТРЕЛОК", third: "СНАЙПЕР (Sagittarius)" }
+        { 
+          second: "ИСКАТЕЛЬ СОКРОВИЩ (Treasure Hunter)", 
+          secondIcon: "https://i.ibb.co/hx4sQY6Z/Treasure-Hunter.png",
+          third: "АВАНТЮРИСТ (Adventurer)",
+          thirdIcon: "https://i.ibb.co/VcqWVQcv/Adventurer.png"
+        },
+        { 
+          second: "СТРЕЛОК (Hawkeye)", 
+          secondIcon: "https://i.ibb.co/G38V74RJ/Hawkeye.png",
+          third: "СНАЙПЕР (Sagittarius)",
+          thirdIcon: "https://i.ibb.co/XxqSGMfS/Sagittarius.png"
+        }
       ]
     }
   ],
   mystics: [
-    "Волшебник", "Архимаг", "Некромант", "Пожиратель Душ", "Колдун", "Чернокнижник",
-    "Клерик", "Епископ", "Кардинал", "Проповедник", "Апостол"
+    {
+      base: "МАГ (Mage)",
+      icon: "https://i.ibb.co/3YG77Zbg/Mage.png",
+      paths: [
+        { 
+          second: "ВОЛШЕБНИК (Wizard)", 
+          secondIcon: "https://i.ibb.co/BHVJqNY4/Wizard.png",
+          third: "АРХИМАГ (Archmage)",
+          thirdIcon: "https://i.ibb.co/0jHfz2kq/Archmage.png"
+        },
+        { 
+          second: "НЕКРОМАНТ (Necromancer)", 
+          secondIcon: "https://i.ibb.co/B215cyym/Necromancer.png",
+          third: "ПОЖИРАТЕЛЬ ДУШ (Soultaker)",
+          thirdIcon: "https://i.ibb.co/7JsFRzC4/Soultaker.png"
+        },
+        { 
+          second: "КОЛДУН (Warlock)", 
+          secondIcon: "https://i.ibb.co/ZpRncp85/Warlock.png",
+          third: "ЧЕРНОКНИЖНИК (Arcana Lord)",
+          thirdIcon: "https://i.ibb.co/Xrf80VNs/Arcana-Lord.png"
+        }
+      ]
+    },
+    {
+      base: "КЛЕРИК (Cleric)",
+      icon: "https://i.ibb.co/SWrpSLp/Cleric.png",
+      paths: [
+        { 
+          second: "ЕПИСКОП (Bishop)", 
+          secondIcon: "https://i.ibb.co/spBb7J3k/Bishop.png",
+          third: "КАРДИНАЛ (Cardinal)",
+          thirdIcon: "https://i.ibb.co/xqdHBbm1/Cardinal.png"
+        },
+        { 
+          second: "ПРОПОВЕДНИК (Prophet)", 
+          secondIcon: "https://i.ibb.co/93V08SLc/Prophet.png",
+          third: "АПОСТОЛ (Apostle)",
+          thirdIcon: "https://i.ibb.co/rYHNMwr/Apostle.png"
+        }
+      ]
+    }
   ]
 };
 

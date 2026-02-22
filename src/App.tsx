@@ -97,7 +97,7 @@ const SkillCard = ({ name, desc, onClick }: { name: string, desc: string, onClic
           <h4 className="font-display text-white text-sm font-bold tracking-widest uppercase group-hover:text-blue-300 transition-colors">{name}</h4>
           <Star size={10} className="text-blue-900 group-hover:text-blue-400 transition-colors" />
         </div>
-        <p className="text-zinc-200 text-base italic leading-relaxed line-clamp-3 group-hover:text-white transition-colors">{desc}</p>
+        <p className="text-white/90 text-base italic leading-relaxed line-clamp-3 group-hover:text-white transition-colors drop-shadow-sm">{desc}</p>
       </div>
     </div>
     
@@ -263,7 +263,7 @@ export default function App() {
                 className={`group p-6 border transition-all duration-500 relative overflow-hidden ${selectedRace === race ? 'bg-blue-900/30 border-blue-500' : 'bg-slate-900/40 border-blue-900/50 hover:border-blue-500/50'}`}
               >
                 <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                <h3 className={`font-display text-sm tracking-widest uppercase transition-colors ${selectedRace === race ? 'text-white' : 'text-zinc-500 group-hover:text-blue-400'}`}>
+                <h3 className={`font-display text-sm tracking-widest uppercase transition-colors ${selectedRace === race ? 'text-white' : 'text-zinc-100 group-hover:text-blue-400'}`}>
                   {race}
                 </h3>
                 {race !== 'Человек' && (
@@ -303,48 +303,71 @@ export default function App() {
                   </div>
                 </motion.div>
 
-                <div className="space-y-16">
-                  <h2 className="font-display text-2xl text-blue-400/80 tracking-[0.3em] uppercase text-center">Древо Классов Людей</h2>
+                <div className="grid grid-cols-1 xl:grid-cols-2 gap-16 items-start">
+                  {/* Группа Воинов */}
+                  <div className="space-y-12">
+                    <h2 className="font-display text-2xl text-white tracking-[0.3em] uppercase text-center border-b border-blue-900/30 pb-4">Воины Людей</h2>
                     
-                    <div className="grid grid-cols-1 gap-20">
+                    <div className="flex flex-col gap-16">
                       {HUMAN_CLASSES.warriors.map((branch, idx) => (
-                        <div key={idx} className="flex flex-col items-center space-y-8">
+                        <div key={idx} className="flex flex-col items-center space-y-6">
                           {/* Базовый класс */}
-                          <div className="w-64 p-4 border-2 border-blue-600/50 bg-blue-900/30 text-center relative z-10 rounded-sm shadow-[0_0_20px_rgba(37,99,235,0.2)]">
-                            <span className="font-display text-xs tracking-[0.3em] text-white uppercase font-bold">{branch.base}</span>
+                          <div className="flex flex-col items-center space-y-3">
+                            <button 
+                              onClick={() => openMockup(`Класс ${branch.base} не реализован.`)}
+                              className="w-64 p-4 border-2 border-blue-600/50 bg-blue-900/30 text-center relative z-10 rounded-sm flex items-center gap-4 group hover:border-blue-400 transition-all hover:scale-105 overflow-hidden"
+                            >
+                              <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                              <div className="w-10 h-10 shrink-0 relative z-10">
+                                <img src={branch.icon} alt={branch.base} className="w-full h-full object-contain group-hover:scale-110 transition-transform" />
+                              </div>
+                              <span className="relative z-10 font-display text-[10px] tracking-[0.2em] text-white uppercase font-bold text-left leading-tight group-hover:text-blue-200 transition-colors">{branch.base}</span>
+                            </button>
                           </div>
                           
                           {/* Линии разветвления */}
-                          <div className="relative w-full max-w-2xl h-8">
+                          <div className="relative w-full h-8">
                             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-4 bg-blue-500/50" />
-                            <div className="absolute top-4 left-1/4 right-1/4 h-[1px] bg-blue-500/50" />
-                            <div className="absolute top-4 left-1/4 w-[1px] h-4 bg-blue-500/50" />
-                            <div className="absolute top-4 right-1/4 w-[1px] h-4 bg-blue-500/50" />
+                            <div className="absolute top-4 left-[25%] right-[25%] h-[1px] bg-blue-500/50" />
+                            <div className="absolute top-4 left-[25%] w-[1px] h-4 bg-blue-500/50" />
+                            <div className="absolute top-4 right-[25%] w-[1px] h-4 bg-blue-500/50" />
                           </div>
 
                           {/* Параллельные пути */}
-                          <div className="grid grid-cols-2 gap-8 md:gap-16 w-full max-w-3xl">
+                          <div className="grid grid-cols-2 gap-4 w-full max-w-md">
                             {branch.paths.map((path, pIdx) => (
-                              <div key={pIdx} className="flex flex-col items-center space-y-6">
+                              <div key={pIdx} className="flex flex-col items-center space-y-4">
                                 {/* Вторая профессия */}
                                 <button 
                                   onClick={() => openMockup(`Класс ${path.second} не реализован.`)}
-                                  className="w-full p-3 border border-blue-900/50 bg-slate-900/60 text-[10px] font-display tracking-widest text-zinc-300 hover:text-blue-400 hover:border-blue-700 transition-all text-center rounded-sm hover:scale-105"
+                                  className="w-full group/btn relative flex flex-col items-center p-2 border border-blue-900/50 bg-slate-900/40 opacity-60 hover:opacity-100 hover:border-blue-700 transition-all rounded-sm hover:scale-105 overflow-hidden"
                                 >
-                                  {path.second}
+                                  <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover/btn:opacity-100 transition-opacity" />
+                                  <div className="w-10 h-10 mb-2 relative z-10">
+                                    <img src={path.secondIcon} alt={path.second} className="w-full h-full object-contain opacity-80 group-hover/btn:opacity-100 group-hover/btn:scale-110 transition-all" />
+                                  </div>
+                                  <span className="relative z-10 font-display text-[9px] tracking-widest text-white/80 group-hover/btn:text-white transition-colors text-center leading-tight">
+                                    {path.second}
+                                  </span>
                                 </button>
                                 
                                 {/* Линия вниз */}
-                                <div className="h-6 w-[1px] bg-blue-900/50 relative">
-                                  <div className="absolute bottom-0 -left-[5px] border-l-4 border-r-4 border-t-4 border-transparent border-t-blue-900/50" />
+                                <div className="h-4 w-[1px] bg-blue-900/50 relative">
+                                  <div className="absolute bottom-0 -left-[4px] border-l-[4px] border-r-[4px] border-t-[4px] border-transparent border-t-blue-900/50" />
                                 </div>
                                 
                                 {/* Третья профессия */}
                                 <button 
                                   onClick={() => openMockup(`Класс ${path.third} не реализован.`)}
-                                  className="w-full p-4 border border-blue-500/40 bg-blue-900/20 text-[10px] font-display tracking-widest text-blue-300 hover:text-white hover:border-blue-400 transition-all text-center shadow-[0_0_15px_rgba(37,99,235,0.1)] rounded-sm hover:scale-105"
+                                  className="w-full group/btn relative flex flex-col items-center p-3 border border-blue-900/50 bg-slate-900/40 opacity-60 hover:opacity-100 hover:border-blue-700 transition-all rounded-sm hover:scale-105 overflow-hidden shadow-[0_0_15px_rgba(37,99,235,0.1)]"
                                 >
-                                  {path.third}
+                                  <div className="absolute inset-0 bg-blue-500/10 opacity-0 group-hover/btn:opacity-100 transition-opacity" />
+                                  <div className="w-12 h-12 mb-2 relative z-10">
+                                    <img src={path.thirdIcon} alt={path.third} className="w-full h-full object-contain group-hover/btn:scale-110 transition-transform" />
+                                  </div>
+                                  <span className="relative z-10 font-display text-[9px] tracking-widest text-blue-300 group-hover/btn:text-white transition-colors text-center leading-tight">
+                                    {path.third}
+                                  </span>
                                 </button>
                               </div>
                             ))}
@@ -353,29 +376,100 @@ export default function App() {
                       ))}
                     </div>
                   </div>
-                  <div className="space-y-6">
-                    <h3 className="font-display text-lg text-blue-400/60 tracking-[0.2em] uppercase border-b border-blue-900/50 pb-2">Мистики</h3>
-                    <div className="flex flex-wrap gap-3">
-                      {HUMAN_CLASSES.mystics.map(cls => (
-                        <button 
-                          key={cls} 
-                          onClick={() => {
-                            if (cls === 'Апостол') {
-                              setSelectedClass(cls);
-                              setTimeout(() => {
-                                document.getElementById('apostle-details')?.scrollIntoView({ behavior: 'smooth' });
-                              }, 100);
-                            } else {
-                              openMockup(`Класс ${cls} не реализован. В макете доступен только Апостол.`);
-                            }
-                          }}
-                          className={`px-4 py-2 border font-display tracking-widest text-xs transition-all ${selectedClass === cls ? 'bg-blue-700 text-white border-blue-500 shadow-[0_0_20px_rgba(37,99,235,0.3)]' : 'bg-slate-900/40 border-blue-900/50 text-zinc-500 hover:text-blue-400 hover:border-blue-700'}`}
-                        >
-                          {cls}
-                        </button>
+
+                  {/* Группа Мистиков */}
+                  <div className="space-y-12">
+                    <h2 className="font-display text-2xl text-white tracking-[0.3em] uppercase text-center border-b border-blue-900/30 pb-4">Мистики Людей</h2>
+                    
+                    <div className="flex flex-col gap-16">
+                      {HUMAN_CLASSES.mystics.map((branch, idx) => (
+                        <div key={idx} className="flex flex-col items-center space-y-6">
+                          {/* Базовый класс */}
+                          <div className="flex flex-col items-center space-y-3">
+                            <button 
+                              onClick={() => openMockup(`Класс ${branch.base} не реализован.`)}
+                              className="w-64 p-4 border-2 border-blue-600/50 bg-blue-900/30 text-center relative z-10 rounded-sm flex items-center gap-4 group hover:border-blue-400 transition-all hover:scale-105 overflow-hidden"
+                            >
+                              <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                              <div className="w-10 h-10 shrink-0 relative z-10">
+                                <img src={branch.icon} alt={branch.base} className="w-full h-full object-contain group-hover:scale-110 transition-transform" />
+                              </div>
+                              <span className="relative z-10 font-display text-[10px] tracking-[0.2em] text-white uppercase font-bold text-left leading-tight group-hover:text-blue-200 transition-colors">{branch.base}</span>
+                            </button>
+                          </div>
+                          
+                          {/* Линии разветвления */}
+                          <div className="relative w-full h-8">
+                            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-4 bg-blue-500/50" />
+                            <div className={`absolute top-4 h-[1px] bg-blue-500/50 ${branch.paths.length === 3 ? 'left-[16.6%] right-[16.6%]' : 'left-1/4 right-1/4'}`} />
+                            {branch.paths.map((_, pIdx) => {
+                              let leftPos = "50%";
+                              if (branch.paths.length === 3) {
+                                if (pIdx === 0) leftPos = "16.6%";
+                                if (pIdx === 2) leftPos = "83.3%";
+                              } else {
+                                if (pIdx === 0) leftPos = "25%";
+                                if (pIdx === 1) leftPos = "75%";
+                              }
+                              return (
+                                <div key={pIdx} className="absolute top-4 w-[1px] h-4 bg-blue-500/50" style={{ left: leftPos }} />
+                              );
+                            })}
+                          </div>
+
+                          {/* Параллельные пути */}
+                          <div className={`grid gap-4 w-full max-w-xl ${branch.paths.length === 3 ? 'grid-cols-3' : 'grid-cols-2'}`}>
+                            {branch.paths.map((path, pIdx) => (
+                              <div key={pIdx} className="flex flex-col items-center space-y-4">
+                                {/* Вторая профессия */}
+                                <button 
+                                  onClick={() => openMockup(`Класс ${path.second} не реализован.`)}
+                                  className="w-full group/btn relative flex flex-col items-center p-2 border border-blue-900/50 bg-slate-900/40 opacity-60 hover:opacity-100 hover:border-blue-700 transition-all rounded-sm hover:scale-105 overflow-hidden"
+                                >
+                                  <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover/btn:opacity-100 transition-opacity" />
+                                  <div className="w-10 h-10 mb-2 relative z-10">
+                                    <img src={path.secondIcon} alt={path.second} className="w-full h-full object-contain opacity-80 group-hover/btn:opacity-100 group-hover/btn:scale-110 transition-all" />
+                                  </div>
+                                  <span className="relative z-10 font-display text-[9px] tracking-widest text-white/80 group-hover/btn:text-white transition-colors text-center leading-tight">
+                                    {path.second}
+                                  </span>
+                                </button>
+                                
+                                {/* Линия вниз */}
+                                <div className="h-4 w-[1px] bg-blue-900/50 relative">
+                                  <div className="absolute bottom-0 -left-[4px] border-l-[4px] border-r-[4px] border-t-[4px] border-transparent border-t-blue-900/50" />
+                                </div>
+                                
+                                {/* Третья профессия */}
+                                <button 
+                                  onClick={() => {
+                                    if (path.third.includes('Apostle') || path.third.includes('АПОСТОЛ')) {
+                                      setSelectedClass('Апостол');
+                                      setTimeout(() => {
+                                        document.getElementById('apostle-details')?.scrollIntoView({ behavior: 'smooth' });
+                                      }, 100);
+                                    } else {
+                                      openMockup(`Класс ${path.third} не реализован.`);
+                                    }
+                                  }}
+                                  className={`w-full group/btn relative flex flex-col items-center p-3 border transition-all rounded-sm hover:scale-105 overflow-hidden ${path.third.includes('Apostle') || path.third.includes('АПОСТОЛ') ? (selectedClass === 'Апостол' ? 'bg-blue-700 border-blue-400 shadow-[0_0_20px_rgba(37,99,235,0.4)]' : 'border-blue-500/40 bg-blue-900/20 hover:border-blue-400 shadow-[0_0_15px_rgba(37,99,235,0.1)]') : 'border-blue-900/50 bg-slate-900/40 opacity-60 hover:opacity-100 hover:border-blue-700'}`}
+                                >
+                                  <div className="absolute inset-0 bg-blue-500/10 opacity-0 group-hover/btn:opacity-100 transition-opacity" />
+                                  <div className="w-12 h-12 mb-2 relative z-10">
+                                    <img src={path.thirdIcon} alt={path.third} className="w-full h-full object-contain group-hover/btn:scale-110 transition-transform" />
+                                  </div>
+                                  <span className={`relative z-10 font-display text-[9px] tracking-widest text-center leading-tight transition-colors ${(path.third.includes('Apostle') || path.third.includes('АПОСТОЛ')) && selectedClass === 'Апостол' ? 'text-white' : 'text-blue-300 group-hover/btn:text-white'}`}>
+                                    {path.third}
+                                  </span>
+                                </button>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
                       ))}
                     </div>
                   </div>
+                </div>
                 </div>
             </motion.section>
           )}
@@ -544,25 +638,18 @@ export default function App() {
           <img 
             src="https://i.ibb.co/nq0Ksmgk/logo.png" 
             alt="Scryde Footer" 
-            className="h-16 mx-auto brightness-110 opacity-80 drop-shadow-[0_0_20px_rgba(37,99,235,0.2)]"
-            onError={(e) => {
-              (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1599305090748-366398a67cb5?auto=format&fit=crop&q=60&w=100';
-            }}
+            className="h-16 mx-auto brightness-125"
           />
-          <div className="flex justify-center gap-12">
-            {['База данных', 'Карта', 'Предметы', 'Кланы'].map(item => (
-              <button 
-                key={item} 
-                onClick={() => openMockup()}
-                className="font-display text-[10px] tracking-[0.3em] uppercase text-blue-400/40 hover:text-white transition-colors"
-              >
-                {item}
+          <div className="flex flex-wrap justify-center gap-x-12 gap-y-6">
+            {['База данных', 'Карта', 'Рейтинг', 'Поддержка', 'Форум'].map(link => (
+              <button key={link} onClick={() => openMockup()} className="font-display text-[10px] tracking-widest uppercase text-blue-400/40 hover:text-white transition-colors">
+                {link}
               </button>
             ))}
           </div>
-          <div className="pt-12 border-t border-blue-900/10">
-            <p className="font-display text-[9px] tracking-[0.4em] text-zinc-700 uppercase">
-              © 2026 Lineage II Fan Database • Создано для сообщества Scryde
+          <div className="pt-12 border-t border-blue-900/20">
+            <p className="text-zinc-600 text-[10px] font-serif italic tracking-wider">
+              © 2026 Scryde Encyclopedia. Все права защищены.
             </p>
           </div>
         </div>
