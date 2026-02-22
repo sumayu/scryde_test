@@ -246,7 +246,7 @@ export default function App() {
         <section id="races" className="space-y-12 mb-24">
           <div className="text-center space-y-4">
             <h2 className="font-display text-4xl text-white tracking-widest uppercase">Выбор Расы</h2>
-            <p className="font-serif italic text-zinc-500">Выберите свое происхождение в мире Адена</p>
+            <p className="font-serif italic text-zinc-500">Выберите свое происхождение в мире Scryde</p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {RACES.map((race) => (
@@ -318,8 +318,9 @@ export default function App() {
                               className="w-64 p-4 border-2 border-blue-600/50 bg-blue-900/30 text-center relative z-10 rounded-sm flex items-center gap-4 group hover:border-blue-400 transition-all hover:scale-105 overflow-hidden"
                             >
                               <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                              <div className="w-10 h-10 shrink-0 relative z-10">
-                                <img src={branch.icon} alt={branch.base} className="w-full h-full object-contain group-hover:scale-110 transition-transform" />
+                              <div className="w-12 h-12 shrink-0 relative z-10 flex items-center justify-center">
+                                <div className="absolute inset-0 bg-gradient-to-b from-blue-400/20 to-blue-900/40 rounded-full border border-blue-500/30 shadow-[0_0_10px_rgba(37,99,235,0.2)]" />
+                                <img src={branch.icon} alt={branch.base} className="w-8 h-8 object-contain relative z-20 group-hover:scale-110 transition-transform drop-shadow-[0_0_5px_rgba(255,255,255,0.3)]" />
                               </div>
                               <span className="relative z-10 font-display text-[10px] tracking-[0.2em] text-white uppercase font-bold text-left leading-tight group-hover:text-blue-200 transition-colors">{branch.base}</span>
                             </button>
@@ -343,8 +344,9 @@ export default function App() {
                                   className="w-full group/btn relative flex flex-col items-center p-2 border border-blue-900/50 bg-slate-900/40 opacity-60 hover:opacity-100 hover:border-blue-700 transition-all rounded-sm hover:scale-105 overflow-hidden"
                                 >
                                   <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover/btn:opacity-100 transition-opacity" />
-                                  <div className="w-10 h-10 mb-2 relative z-10">
-                                    <img src={path.secondIcon} alt={path.second} className="w-full h-full object-contain opacity-80 group-hover/btn:opacity-100 group-hover/btn:scale-110 transition-all" />
+                                  <div className="w-12 h-12 mb-2 relative z-10 flex items-center justify-center">
+                                    <div className="absolute inset-0 bg-slate-800/80 rounded-lg border border-blue-900/50 shadow-inner group-hover/btn:border-blue-500/50 transition-colors" />
+                                    <img src={path.secondIcon} alt={path.second} className="w-8 h-8 object-contain relative z-20 opacity-80 group-hover/btn:opacity-100 group-hover/btn:scale-110 transition-all drop-shadow-[0_0_3px_rgba(37,99,235,0.3)]" />
                                   </div>
                                   <span className="relative z-10 font-display text-[9px] tracking-widest text-white/80 group-hover/btn:text-white transition-colors text-center leading-tight">
                                     {path.second}
@@ -362,8 +364,9 @@ export default function App() {
                                   className="w-full group/btn relative flex flex-col items-center p-3 border border-blue-900/50 bg-slate-900/40 opacity-60 hover:opacity-100 hover:border-blue-700 transition-all rounded-sm hover:scale-105 overflow-hidden shadow-[0_0_15px_rgba(37,99,235,0.1)]"
                                 >
                                   <div className="absolute inset-0 bg-blue-500/10 opacity-0 group-hover/btn:opacity-100 transition-opacity" />
-                                  <div className="w-12 h-12 mb-2 relative z-10">
-                                    <img src={path.thirdIcon} alt={path.third} className="w-full h-full object-contain group-hover/btn:scale-110 transition-transform" />
+                                  <div className="w-14 h-14 mb-2 relative z-10 flex items-center justify-center">
+                                    <div className="absolute inset-0 bg-blue-900/40 rounded-md border border-blue-500/30 shadow-[0_0_10px_rgba(37,99,235,0.1)] group-hover/btn:border-blue-400 transition-colors" />
+                                    <img src={path.thirdIcon} alt={path.third} className="w-10 h-10 object-contain relative z-20 group-hover/btn:scale-110 transition-transform drop-shadow-[0_0_8px_rgba(37,99,235,0.5)]" />
                                   </div>
                                   <span className="relative z-10 font-display text-[9px] tracking-widest text-blue-300 group-hover/btn:text-white transition-colors text-center leading-tight">
                                     {path.third}
@@ -391,8 +394,9 @@ export default function App() {
                               className="w-64 p-4 border-2 border-blue-600/50 bg-blue-900/30 text-center relative z-10 rounded-sm flex items-center gap-4 group hover:border-blue-400 transition-all hover:scale-105 overflow-hidden"
                             >
                               <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                              <div className="w-10 h-10 shrink-0 relative z-10">
-                                <img src={branch.icon} alt={branch.base} className="w-full h-full object-contain group-hover:scale-110 transition-transform" />
+                              <div className="w-12 h-12 shrink-0 relative z-10 flex items-center justify-center">
+                                <div className="absolute inset-0 bg-gradient-to-b from-blue-400/20 to-blue-900/40 rounded-full border border-blue-500/30 shadow-[0_0_10px_rgba(37,99,235,0.2)]" />
+                                <img src={branch.icon} alt={branch.base} className="w-8 h-8 object-contain relative z-20 group-hover:scale-110 transition-transform drop-shadow-[0_0_5px_rgba(255,255,255,0.3)]" />
                               </div>
                               <span className="relative z-10 font-display text-[10px] tracking-[0.2em] text-white uppercase font-bold text-left leading-tight group-hover:text-blue-200 transition-colors">{branch.base}</span>
                             </button>
@@ -427,8 +431,9 @@ export default function App() {
                                   className="w-full group/btn relative flex flex-col items-center p-2 border border-blue-900/50 bg-slate-900/40 opacity-60 hover:opacity-100 hover:border-blue-700 transition-all rounded-sm hover:scale-105 overflow-hidden"
                                 >
                                   <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover/btn:opacity-100 transition-opacity" />
-                                  <div className="w-10 h-10 mb-2 relative z-10">
-                                    <img src={path.secondIcon} alt={path.second} className="w-full h-full object-contain opacity-80 group-hover/btn:opacity-100 group-hover/btn:scale-110 transition-all" />
+                                  <div className="w-12 h-12 mb-2 relative z-10 flex items-center justify-center">
+                                    <div className="absolute inset-0 bg-slate-800/80 rounded-lg border border-blue-900/50 shadow-inner group-hover/btn:border-blue-500/50 transition-colors" />
+                                    <img src={path.secondIcon} alt={path.second} className="w-8 h-8 object-contain relative z-20 opacity-80 group-hover/btn:opacity-100 group-hover/btn:scale-110 transition-all drop-shadow-[0_0_3px_rgba(37,99,235,0.3)]" />
                                   </div>
                                   <span className="relative z-10 font-display text-[9px] tracking-widest text-white/80 group-hover/btn:text-white transition-colors text-center leading-tight">
                                     {path.second}
@@ -455,8 +460,9 @@ export default function App() {
                                   className={`w-full group/btn relative flex flex-col items-center p-3 border transition-all rounded-sm hover:scale-105 overflow-hidden ${path.third.includes('Apostle') || path.third.includes('АПОСТОЛ') ? (selectedClass === 'Апостол' ? 'bg-blue-700 border-blue-400 shadow-[0_0_20px_rgba(37,99,235,0.4)]' : 'border-blue-500/40 bg-blue-900/20 hover:border-blue-400 shadow-[0_0_15px_rgba(37,99,235,0.1)]') : 'border-blue-900/50 bg-slate-900/40 opacity-60 hover:opacity-100 hover:border-blue-700'}`}
                                 >
                                   <div className="absolute inset-0 bg-blue-500/10 opacity-0 group-hover/btn:opacity-100 transition-opacity" />
-                                  <div className="w-12 h-12 mb-2 relative z-10">
-                                    <img src={path.thirdIcon} alt={path.third} className="w-full h-full object-contain group-hover/btn:scale-110 transition-transform" />
+                                  <div className="w-14 h-14 mb-2 relative z-10 flex items-center justify-center">
+                                    <div className="absolute inset-0 bg-blue-900/40 rounded-md border border-blue-500/30 shadow-[0_0_10px_rgba(37,99,235,0.1)] group-hover/btn:border-blue-400 transition-colors" />
+                                    <img src={path.thirdIcon} alt={path.third} className="w-10 h-10 object-contain relative z-20 group-hover/btn:scale-110 transition-transform drop-shadow-[0_0_8px_rgba(37,99,235,0.5)]" />
                                   </div>
                                   <span className={`relative z-10 font-display text-[9px] tracking-widest text-center leading-tight transition-colors ${(path.third.includes('Apostle') || path.third.includes('АПОСТОЛ')) && selectedClass === 'Апостол' ? 'text-white' : 'text-blue-300 group-hover/btn:text-white'}`}>
                                     {path.third}
