@@ -6,6 +6,13 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
+  Radar, 
+  RadarChart, 
+  PolarGrid, 
+  PolarAngleAxis, 
+  ResponsiveContainer 
+} from 'recharts';
+import { 
   Shield, 
   Zap, 
   Flame, 
@@ -20,9 +27,13 @@ import {
   Gem,
   X,
   AlertCircle,
-  ChevronDown
+  ChevronDown,
+  User,
+  Target,
+  Activity,
+  Lock
 } from 'lucide-react';
-import { RACES, HUMAN_CLASSES, APOSTLE_SKILLS } from './constants';
+import { RACES, HUMAN_CLASSES, APOSTLE_SKILLS, SKILL_PROGRESSION } from './constants';
 
 const MockupModal = ({ isOpen, onClose, message }: { isOpen: boolean, onClose: () => void, message?: string }) => (
   <AnimatePresence>
@@ -166,6 +177,8 @@ const SkillDetailModal = ({ isOpen, onClose, skill }: { isOpen: boolean, onClose
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<'buffs' | 'magical' | 'physical' | 'debuffs' | 'toggle'>('buffs');
+  const [skillView, setSkillView] = useState<'all' | 'progression'>('all');
+  const [selectedLevel, setSelectedLevel] = useState<number>(40);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState<string | undefined>();
   const [selectedRace, setSelectedRace] = useState<string | null>(null);
@@ -529,32 +542,77 @@ export default function App() {
                       </div>
                     </div>
 
-                    {/* Статы */}
-                    <div className="space-y-6 max-w-md">
-                      <h3 className="font-display text-xs tracking-[0.2em] uppercase text-white/40">Характеристики класса</h3>
-                      {[
-                        { label: 'Соло-игра', val: 40 },
-                        { label: 'Групповой фарм', val: 100 },
-                        { label: 'Групповое PvP', val: 95 },
-                        { label: 'Поддержка', val: 100 },
-                        { label: 'Выживаемость', val: 70 },
-                        { label: 'Контроль', val: 30 },
-                      ].map((stat) => (
-                        <div key={stat.label} className="space-y-2">
-                          <div className="flex justify-between text-[10px] uppercase tracking-widest">
-                            <span className="text-zinc-400">{stat.label}</span>
-                            <span className="text-blue-400">{stat.val}%</span>
-                          </div>
-                          <div className="h-1 w-full bg-blue-900/20 rounded-full overflow-hidden">
-                            <motion.div 
-                              initial={{ width: 0 }}
-                              animate={{ width: `${stat.val}%` }}
-                              transition={{ duration: 1, delay: 0.5 }}
-                              className="h-full bg-gradient-to-r from-blue-700 to-blue-400 shadow-[0_0_10px_rgba(37,99,235,0.5)]"
-                            />
+                    {/* Статы - Радарная диаграмма */}
+                    <div className="space-y-8 relative">
+                      <div className="flex items-center justify-between max-w-md">
+                        <h3 className="font-display text-xs tracking-[0.2em] uppercase text-white/40">Диаграмма потенциала</h3>
+                        <div className="flex gap-4">
+                          <div className="flex items-center gap-2">
+                            <div className="w-2 h-2 bg-blue-500 rounded-full shadow-[0_0_8px_rgba(59,130,246,0.8)]" />
+                            <span className="text-[9px] uppercase tracking-widest text-zinc-500">Апостол</span>
                           </div>
                         </div>
-                      ))}
+                      </div>
+
+                      <div className="relative w-full aspect-square max-w-[450px] -ml-8 md:-ml-12">
+                        {/* Декоративные круги под диаграммой */}
+                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                          <div className="w-[80%] h-[80%] border border-blue-900/10 rounded-full animate-[pulse_4s_infinite]" />
+                          <div className="w-[60%] h-[60%] border border-blue-900/20 rounded-full animate-[pulse_6s_infinite]" />
+                          <div className="w-[40%] h-[40%] border border-blue-900/30 rounded-full" />
+                        </div>
+
+                        <ResponsiveContainer width="100%" height="100%">
+                          <RadarChart cx="50%" cy="50%" outerRadius="70%" data={[
+                            { subject: 'Соло', A: 40, full: 100, icon: <User size={12} /> },
+                            { subject: 'Групп. Фарм', A: 100, full: 100, icon: <Users size={12} /> },
+                            { subject: 'Групп. PvP', A: 95, full: 100, icon: <Target size={12} /> },
+                            { subject: 'Поддержка', A: 100, full: 100, icon: <Activity size={12} /> },
+                            { subject: 'Выживаемость', A: 70, full: 100, icon: <Heart size={12} /> },
+                            { subject: 'Контроль', A: 30, full: 100, icon: <Lock size={12} /> },
+                          ]}>
+                            <PolarGrid stroke="#1e3a8a" strokeOpacity={0.3} />
+                            <PolarAngleAxis 
+                              dataKey="subject" 
+                              tick={({ x, y, payload }) => (
+                                <g transform={`translate(${x},${y})`}>
+                                  <text
+                                    x={0}
+                                    y={0}
+                                    dy={4}
+                                    textAnchor="middle"
+                                    fill="#94a3b8"
+                                    fontSize="9px"
+                                    fontFamily="Inter"
+                                    fontWeight="500"
+                                    letterSpacing="0.1em"
+                                    className="uppercase"
+                                  >
+                                    {payload.value}
+                                  </text>
+                                </g>
+                              )}
+                            />
+                            <Radar
+                              name="Апостол"
+                              dataKey="A"
+                              stroke="#3b82f6"
+                              strokeWidth={2}
+                              fill="#2563eb"
+                              fillOpacity={0.4}
+                              animationBegin={500}
+                              animationDuration={1500}
+                            />
+                          </RadarChart>
+                        </ResponsiveContainer>
+
+                        {/* Центральный элемент */}
+                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                          <div className="w-4 h-4 bg-blue-500 rounded-full shadow-[0_0_20px_rgba(37,99,235,1)] z-20" />
+                        </div>
+                      </div>
+
+                      {/* Текстовые значения для мобилок/читаемости - УДАЛЕНО ПО ПРОСЬБЕ ПОЛЬЗОВАТЕЛЯ */}
                     </div>
                   </div>
 
@@ -582,46 +640,193 @@ export default function App() {
 
               {/* Секция умений */}
               <section id="skills" className="space-y-12">
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-blue-900/50 pb-8">
+                <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 border-b border-blue-900/50 pb-8">
                   <div className="space-y-2">
                     <h2 className="font-display text-5xl text-white tracking-widest uppercase">Умения Апостола</h2>
                     <p className="font-serif italic text-zinc-500">Божественные искусства защиты и усиления</p>
                   </div>
-                  <div className="flex flex-wrap gap-3">
-                    {(Object.keys(tabLabels) as Array<keyof typeof tabLabels>).map((tab) => (
-                      <button
-                        key={tab}
-                        onClick={() => setActiveTab(tab)}
-                        className={`px-6 py-3 font-display text-[10px] tracking-[0.2em] uppercase transition-all duration-300 border rounded-sm relative overflow-hidden group ${
-                          activeTab === tab 
-                            ? 'bg-blue-700/40 border-blue-400 text-white shadow-[0_0_15px_rgba(37,99,235,0.3)]' 
-                            : 'bg-slate-900/40 border-blue-900/50 text-blue-400/60 hover:text-white hover:border-blue-500 hover:bg-blue-900/20'
-                        }`}
+                  
+                  <div className="flex flex-col gap-4">
+                    <div className="flex p-1 bg-slate-900/80 border border-blue-900/50 rounded-sm self-start lg:self-end">
+                      <button 
+                        onClick={() => setSkillView('all')}
+                        className={`px-4 py-2 font-display text-[9px] tracking-widest uppercase transition-all ${skillView === 'all' ? 'bg-blue-600 text-white shadow-[0_0_10px_rgba(37,99,235,0.4)]' : 'text-blue-400/60 hover:text-blue-300'}`}
                       >
-                        {activeTab === tab && (
-                          <motion.div 
-                            layoutId="activeTabGlow"
-                            className="absolute inset-0 bg-blue-500/10 pointer-events-none"
-                          />
-                        )}
-                        <span className="relative z-10">{tabLabels[tab]}</span>
+                        Все умения
                       </button>
-                    ))}
+                      <button 
+                        onClick={() => setSkillView('progression')}
+                        className={`px-4 py-2 font-display text-[9px] tracking-widest uppercase transition-all ${skillView === 'progression' ? 'bg-blue-600 text-white shadow-[0_0_10px_rgba(37,99,235,0.4)]' : 'text-blue-400/60 hover:text-blue-300'}`}
+                      >
+                        Прогрессия (40-83)
+                      </button>
+                    </div>
+
+                    {skillView === 'all' && (
+                      <div className="flex flex-wrap gap-3">
+                        {(Object.keys(tabLabels) as Array<keyof typeof tabLabels>).map((tab) => (
+                          <button
+                            key={tab}
+                            onClick={() => setActiveTab(tab)}
+                            className={`px-6 py-3 font-display text-[10px] tracking-[0.2em] uppercase transition-all duration-300 border rounded-sm relative overflow-hidden group ${
+                              activeTab === tab 
+                                ? 'bg-blue-700/40 border-blue-400 text-white shadow-[0_0_15px_rgba(37,99,235,0.3)]' 
+                                : 'bg-slate-900/40 border-blue-900/50 text-blue-400/60 hover:text-white hover:border-blue-500 hover:bg-blue-900/20'
+                            }`}
+                          >
+                            {activeTab === tab && (
+                              <motion.div 
+                                layoutId="activeTabGlow"
+                                className="absolute inset-0 bg-blue-500/10 pointer-events-none"
+                              />
+                            )}
+                            <span className="relative z-10">{tabLabels[tab]}</span>
+                          </button>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  <AnimatePresence mode="wait">
-                    {APOSTLE_SKILLS[activeTab].map((skill) => (
-                      <SkillCard 
-                        key={skill.name} 
-                        name={skill.name} 
-                        desc={skill.desc} 
-                        onClick={() => openSkillDetail(skill)}
-                      />
-                    ))}
-                  </AnimatePresence>
-                </div>
+                <AnimatePresence mode="wait">
+                  {skillView === 'all' ? (
+                    <motion.div
+                      key="all-skills"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                    >
+                      {APOSTLE_SKILLS[activeTab].map((skill) => (
+                        <SkillCard 
+                          key={skill.name} 
+                          name={skill.name} 
+                          desc={skill.desc} 
+                          onClick={() => openSkillDetail(skill)}
+                        />
+                      ))}
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="progression"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      className="space-y-10"
+                    >
+                      {/* Level Selector */}
+                      <div className="flex flex-wrap justify-center gap-3 md:gap-4">
+                        {SKILL_PROGRESSION.map((stage) => (
+                          <button
+                            key={stage.level}
+                            onClick={() => setSelectedLevel(stage.level)}
+                            className={`relative min-w-[80px] md:min-w-[100px] py-4 px-2 border transition-all rounded-sm group ${
+                              selectedLevel === stage.level 
+                                ? 'bg-blue-600 border-blue-400 text-white shadow-[0_0_20px_rgba(37,99,235,0.4)] scale-110 z-10' 
+                                : 'bg-slate-900/60 border-blue-900/50 text-blue-400/60 hover:border-blue-500 hover:text-blue-300'
+                            }`}
+                          >
+                            <div className="flex flex-col items-center gap-1">
+                              <span className="text-[10px] uppercase tracking-widest opacity-60">Уровень</span>
+                              <span className="font-display text-2xl md:text-3xl font-bold">{stage.level}</span>
+                            </div>
+                            {selectedLevel === stage.level && (
+                              <motion.div 
+                                layoutId="levelGlow"
+                                className="absolute inset-0 bg-blue-400/10 pointer-events-none"
+                              />
+                            )}
+                          </button>
+                        ))}
+                      </div>
+
+                      {/* Selected Level Details */}
+                      <div className="max-w-5xl mx-auto">
+                        <AnimatePresence mode="wait">
+                          {SKILL_PROGRESSION.filter(s => s.level === selectedLevel).map((stage) => (
+                            <motion.div
+                              key={stage.level}
+                              initial={{ opacity: 0, x: 20 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              exit={{ opacity: 0, x: -20 }}
+                              className="stone-card p-6 md:p-10 border-blue-500/30 bg-slate-900/60 rounded-xl relative overflow-hidden"
+                            >
+                              <div className="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
+                                <span className="font-display text-9xl font-bold text-blue-500">{stage.level}</span>
+                              </div>
+
+                              <div className="relative z-10 space-y-8">
+                                <div className="flex items-center gap-6 border-b border-blue-900/40 pb-6">
+                                  <div className="w-16 h-16 rounded-full bg-blue-600 flex items-center justify-center font-display text-2xl text-white shadow-[0_0_20px_rgba(37,99,235,0.6)]">
+                                    {stage.level}
+                                  </div>
+                                  <div className="space-y-1">
+                                    <h4 className="font-display text-2xl text-white tracking-widest uppercase">Навыки {stage.level} уровня</h4>
+                                    <p className="text-blue-400 text-xs uppercase tracking-[0.2em] font-medium">Прогрессия Апостола</p>
+                                  </div>
+                                </div>
+
+                                <div className="grid grid-cols-1 gap-4">
+                                  {stage.skills.map((progSkill, kIdx) => {
+                                    // Поиск данных умения в основном списке по названию
+                                    const skillData = Object.values(APOSTLE_SKILLS)
+                                      .flat()
+                                      .find(s => s.name === progSkill.name);
+                                    
+                                    return (
+                                      <motion.button 
+                                        key={kIdx} 
+                                        onClick={() => skillData && openSkillDetail(skillData)}
+                                        className="p-5 bg-blue-950/20 border border-blue-900/40 rounded-lg flex items-center justify-between group hover:border-blue-400/60 hover:bg-blue-900/30 transition-all text-left"
+                                      >
+                                        <div className="flex items-center gap-4">
+                                          <div className="w-12 h-12 shrink-0 bg-black/60 border border-blue-500/40 rounded-sm overflow-hidden group-hover:border-blue-400 transition-colors">
+                                            <img 
+                                              src="https://i.ibb.co/8Q4nhHL/skill.png" 
+                                              alt={progSkill.name}
+                                              className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity"
+                                              onError={(e) => {
+                                                (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=60&w=100&h=100';
+                                              }}
+                                            />
+                                          </div>
+                                          <div className="flex flex-col gap-1.5">
+                                            <span className="text-base md:text-lg text-white font-display uppercase tracking-wider group-hover:text-blue-200 transition-colors">{progSkill.name}</span>
+                                            {skillData && (
+                                              <span className="text-sm md:text-base text-zinc-200 font-sans leading-relaxed group-hover:text-white transition-colors">{skillData.desc}</span>
+                                            )}
+                                          </div>
+                                        </div>
+                                        <div className="flex flex-col items-end gap-2">
+                                          <div className="px-3 py-1 bg-blue-900/60 rounded-full border border-blue-500/50 shadow-[0_0_10px_rgba(37,99,235,0.2)]">
+                                            <span className="text-[10px] font-mono text-blue-200 whitespace-nowrap font-bold">Ур. {progSkill.level}</span>
+                                          </div>
+                                          <span className="text-[9px] uppercase tracking-widest text-blue-400 font-bold group-hover:text-blue-300 group-hover:underline transition-all decoration-blue-500/50 underline-offset-4">
+                                            Подробнее
+                                          </span>
+                                        </div>
+                                      </motion.button>
+                                    );
+                                  })}
+                                </div>
+
+                                <div className="pt-8 border-t border-blue-900/40 flex justify-center">
+                                  <button 
+                                    onClick={() => setSkillView('all')}
+                                    className="text-[11px] font-display uppercase tracking-[0.2em] text-blue-300 hover:text-white transition-all flex items-center gap-3 group"
+                                  >
+                                    <span className="group-hover:tracking-[0.25em] transition-all">Посмотреть все умения по категориям</span>
+                                    <ChevronDown size={14} className="-rotate-90 group-hover:translate-x-1 transition-transform" />
+                                  </button>
+                                </div>
+                              </div>
+                            </motion.div>
+                          ))}
+                        </AnimatePresence>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </section>
             </motion.div>
           )}
