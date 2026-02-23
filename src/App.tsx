@@ -182,6 +182,7 @@ export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState<string | undefined>();
   const [selectedRace, setSelectedRace] = useState<string | null>(null);
+  const [selectedArchetype, setSelectedArchetype] = useState<'warriors' | 'mystics' | null>(null);
   const [selectedClass, setSelectedClass] = useState<string | null>(null);
   const [selectedSkill, setSelectedSkill] = useState<{ name: string, desc: string } | null>(null);
 
@@ -205,13 +206,18 @@ export default function App() {
   return (
     <div className="min-h-screen selection:bg-blue-900/30 relative overflow-x-hidden bg-[#02040a]">
       {/* Основной фон сайта */}
-      <div 
-        className="fixed inset-0 z-0 opacity-40 pointer-events-none bg-cover bg-center bg-no-repeat"
-        style={{ 
-          backgroundImage: 'url("https://i.ibb.co/DfFxwn51/bg.png")',
-          filter: 'brightness(0.5) saturate(1.2)'
-        }}
-      />
+      <div className="fixed inset-0 z-0 opacity-40 pointer-events-none overflow-hidden">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover"
+          style={{ filter: 'brightness(0.4) saturate(1.2)' }}
+        >
+          <source src="https://frontend-static.scrydecdn.com/static/videos/main/background-valentines.mp4" type="video/mp4" />
+        </video>
+      </div>
       
       <MockupModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} message={modalMessage} />
       <SkillDetailModal isOpen={!!selectedSkill} onClose={() => setSelectedSkill(null)} skill={selectedSkill} />
@@ -221,11 +227,11 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-6">
             <img 
-              src="https://i.ibb.co/nq0Ksmgk/logo.png" 
+              src="/Лого + текст.png" 
               alt="Scryde" 
               className="h-10 brightness-125 drop-shadow-[0_0_10px_rgba(37,99,235,0.3)]"
               onError={(e) => {
-                (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1599305090748-366398a67cb5?auto=format&fit=crop&q=60&w=200';
+                (e.target as HTMLImageElement).src = 'https://i.ibb.co/nq0Ksmgk/logo.png';
               }}
             />
             <div className="hidden md:flex gap-8">
@@ -268,7 +274,8 @@ export default function App() {
                 onClick={() => {
                   if (race === 'Человек') {
                     setSelectedRace(race);
-                    setSelectedClass(null); // Reset class when race changes
+                    setSelectedArchetype(null);
+                    setSelectedClass(null);
                   } else {
                     openMockup(`Раса ${race} не реализована в данном тесте. Доступен только Человек.`);
                   }
@@ -847,9 +854,12 @@ export default function App() {
         />
         <div className="max-w-7xl mx-auto px-6 text-center space-y-12 relative z-10">
           <img 
-            src="https://i.ibb.co/nq0Ksmgk/logo.png" 
+            src="/Лого белый.png" 
             alt="Scryde Footer" 
             className="h-16 mx-auto brightness-125"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = 'https://i.ibb.co/nq0Ksmgk/logo.png';
+            }}
           />
           <div className="flex flex-wrap justify-center gap-x-12 gap-y-6">
             {['База данных', 'Карта', 'Рейтинг', 'Поддержка', 'Форум'].map(link => (
