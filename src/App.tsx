@@ -227,7 +227,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-6">
             <img 
-              src="/Лого + текст.png" 
+              src="/logo_with_text.png" 
               alt="Scryde" 
               className="h-10 brightness-125 drop-shadow-[0_0_15px_rgba(37,99,235,0.5)]"
               onError={(e) => {
