@@ -94,7 +94,7 @@ const SkillCard = ({ name, desc, onClick }: { name: string, desc: string, onClic
         <div className="absolute inset-0 bg-blue-500/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity" />
         <div className="relative w-14 h-14 border-2 border-blue-900/50 bg-black/60 p-1 rounded-sm overflow-hidden group-hover:border-blue-400 transition-colors">
           <img 
-            src="https://i.ibb.co/8Q4nhHL/skill.png" 
+            src="/skill.png" 
             alt="Skill Icon" 
             className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"
             onError={(e) => {
@@ -138,7 +138,7 @@ const SkillDetailModal = ({ isOpen, onClose, skill }: { isOpen: boolean, onClose
             <div className="flex gap-6 items-start">
               <div className="w-20 h-20 border-2 border-blue-500/30 bg-black/60 p-1">
                 <img 
-                  src="https://i.ibb.co/8Q4nhHL/skill.png" 
+                  src="/skill.png" 
                   alt="Skill Icon" 
                   className="w-full h-full object-cover"
                   onError={(e) => {
@@ -229,9 +229,9 @@ export default function App() {
             <img 
               src="/Лого + текст.png" 
               alt="Scryde" 
-              className="h-10 brightness-125 drop-shadow-[0_0_10px_rgba(37,99,235,0.3)]"
+              className="h-10 brightness-125 drop-shadow-[0_0_15px_rgba(37,99,235,0.5)]"
               onError={(e) => {
-                (e.target as HTMLImageElement).src = 'https://i.ibb.co/nq0Ksmgk/logo.png';
+                (e.target as HTMLImageElement).src = '/logo_fallback.png';
               }}
             />
             <div className="hidden md:flex gap-8">
@@ -627,7 +627,7 @@ export default function App() {
                   <div className="lg:col-span-5 relative flex items-start justify-center pt-4">
                     <div className="relative w-full max-w-[400px] h-[500px] md:h-[650px] overflow-hidden">
                       <img 
-                        src="https://i.ibb.co/fGKj02CN/apostle.png" 
+                        src="/apostle.png" 
                         alt="Апостол" 
                         className="w-full h-full object-contain object-top block relative z-0"
                         style={{ 
@@ -714,118 +714,97 @@ export default function App() {
                       ))}
                     </motion.div>
                   ) : (
-                    <motion.div
+                    <motion.div 
                       key="progression"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -20 }}
-                      className="space-y-10"
+                      className="grid grid-cols-1 lg:grid-cols-[200px_1fr] gap-8"
                     >
-                      {/* Level Selector */}
-                      <div className="flex flex-wrap justify-center gap-3 md:gap-4">
-                        {SKILL_PROGRESSION.map((stage) => (
-                          <button
-                            key={stage.level}
-                            onClick={() => setSelectedLevel(stage.level)}
-                            className={`relative min-w-[80px] md:min-w-[100px] py-4 px-2 border transition-all rounded-sm group ${
-                              selectedLevel === stage.level 
-                                ? 'bg-blue-600 border-blue-400 text-white shadow-[0_0_20px_rgba(37,99,235,0.4)] scale-110 z-10' 
-                                : 'bg-slate-900/60 border-blue-900/50 text-blue-400/60 hover:border-blue-500 hover:text-blue-300'
-                            }`}
-                          >
-                            <div className="flex flex-col items-center gap-1">
-                              <span className="text-[10px] uppercase tracking-widest opacity-60">Уровень</span>
-                              <span className="font-display text-2xl md:text-3xl font-bold">{stage.level}</span>
-                            </div>
-                            {selectedLevel === stage.level && (
-                              <motion.div 
-                                layoutId="levelGlow"
-                                className="absolute inset-0 bg-blue-400/10 pointer-events-none"
-                              />
-                            )}
-                          </button>
-                        ))}
+                      {/* Level Selector - Compact Sidebar */}
+                      <div className="lg:border-r lg:border-blue-900/30 lg:pr-8 space-y-4">
+                        <div className="flex lg:flex-col flex-wrap gap-2 max-h-[600px] overflow-y-auto pr-2 custom-scrollbar">
+                          {SKILL_PROGRESSION.map((stage) => (
+                            <button
+                              key={stage.level}
+                              onClick={() => setSelectedLevel(stage.level)}
+                              className={`flex items-center justify-between px-4 py-4 border transition-all rounded-sm group ${
+                                selectedLevel === stage.level 
+                                  ? 'bg-blue-600 border-blue-400 text-white shadow-[0_0_25px_rgba(37,99,235,0.6)] scale-105 z-10' 
+                                  : 'bg-slate-900/60 border-blue-900/40 text-blue-400/70 hover:border-blue-500 hover:text-blue-300'
+                              }`}
+                            >
+                              <span className={`text-xs uppercase tracking-widest font-black transition-all drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] ${selectedLevel === stage.level ? 'scale-110' : ''}`}>Ур. {stage.level}</span>
+                              {selectedLevel === stage.level && <Star size={12} className="fill-current animate-pulse" />}
+                            </button>
+                          ))}
+                        </div>
                       </div>
 
-                      {/* Selected Level Details */}
-                      <div className="max-w-5xl mx-auto">
+                      {/* Selected Level Details - Compact Grid */}
+                      <div className="space-y-6">
                         <AnimatePresence mode="wait">
                           {SKILL_PROGRESSION.filter(s => s.level === selectedLevel).map((stage) => (
                             <motion.div
                               key={stage.level}
-                              initial={{ opacity: 0, x: 20 }}
+                              initial={{ opacity: 0, x: 10 }}
                               animate={{ opacity: 1, x: 0 }}
-                              exit={{ opacity: 0, x: -20 }}
-                              className="stone-card p-6 md:p-10 border-blue-500/30 bg-slate-900/60 rounded-xl relative overflow-hidden"
+                              exit={{ opacity: 0, x: -10 }}
+                              className="space-y-6"
                             >
-                              <div className="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
-                                <span className="font-display text-9xl font-bold text-blue-500">{stage.level}</span>
-                              </div>
-
-                              <div className="relative z-10 space-y-8">
-                                <div className="flex items-center gap-6 border-b border-blue-900/40 pb-6">
-                                  <div className="w-16 h-16 rounded-full bg-blue-600 flex items-center justify-center font-display text-2xl text-white shadow-[0_0_20px_rgba(37,99,235,0.6)]">
+                              <div className="flex items-center justify-between border-b border-blue-900/50 pb-6">
+                                <div className="flex items-center gap-6">
+                                  <div className="w-14 h-14 rounded-full bg-blue-600 border-2 border-blue-400 flex items-center justify-center font-display text-2xl text-white shadow-[0_0_20px_rgba(37,99,235,0.5)]">
                                     {stage.level}
                                   </div>
-                                  <div className="space-y-1">
-                                    <h4 className="font-display text-2xl text-white tracking-widest uppercase">Навыки {stage.level} уровня</h4>
-                                    <p className="text-blue-400 text-xs uppercase tracking-[0.2em] font-medium">Прогрессия Апостола</p>
+                                  <div>
+                                    <h4 className="font-display text-2xl text-white tracking-widest uppercase">Навыки уровня</h4>
+                                    <p className="text-blue-400 text-xs uppercase tracking-[0.3em] font-bold">Прогрессия Апостола</p>
                                   </div>
                                 </div>
+                              </div>
 
-                                <div className="grid grid-cols-1 gap-4">
-                                  {stage.skills.map((progSkill, kIdx) => {
-                                    // Поиск данных умения в основном списке по названию
-                                    const skillData = Object.values(APOSTLE_SKILLS)
-                                      .flat()
-                                      .find(s => s.name === progSkill.name);
-                                    
-                                    return (
-                                      <motion.button 
-                                        key={kIdx} 
-                                        onClick={() => skillData && openSkillDetail(skillData)}
-                                        className="p-5 bg-blue-950/20 border border-blue-900/40 rounded-lg flex items-center justify-between group hover:border-blue-400/60 hover:bg-blue-900/30 transition-all text-left"
-                                      >
-                                        <div className="flex items-center gap-4">
-                                          <div className="w-12 h-12 shrink-0 bg-black/60 border border-blue-500/40 rounded-sm overflow-hidden group-hover:border-blue-400 transition-colors">
-                                            <img 
-                                              src="https://i.ibb.co/8Q4nhHL/skill.png" 
-                                              alt={progSkill.name}
-                                              className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity"
-                                              onError={(e) => {
-                                                (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=60&w=100&h=100';
-                                              }}
-                                            />
-                                          </div>
-                                          <div className="flex flex-col gap-1.5">
-                                            <span className="text-base md:text-lg text-white font-display uppercase tracking-wider group-hover:text-blue-200 transition-colors">{progSkill.name}</span>
-                                            {skillData && (
-                                              <span className="text-sm md:text-base text-zinc-200 font-sans leading-relaxed group-hover:text-white transition-colors">{skillData.desc}</span>
-                                            )}
-                                          </div>
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                {stage.skills.map((progSkill, kIdx) => {
+                                  const skillData = Object.values(APOSTLE_SKILLS)
+                                    .flat()
+                                    .find(s => s.name === progSkill.name);
+                                  
+                                  return (
+                                    <motion.button 
+                                      key={kIdx} 
+                                      onClick={() => skillData && openSkillDetail(skillData)}
+                                      className="p-3 bg-blue-950/10 border border-blue-900/20 rounded-sm flex items-center gap-3 group hover:border-blue-500/40 hover:bg-blue-900/20 transition-all text-left"
+                                    >
+                                      <div className="w-10 h-10 shrink-0 bg-black/40 border border-blue-900/50 p-0.5 rounded-sm overflow-hidden group-hover:border-blue-400 transition-colors">
+                                        <img 
+                                          src="/skill.png" 
+                                          alt={progSkill.name}
+                                          className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                                        />
+                                      </div>
+                                      <div className="flex-1 min-w-0">
+                                        <div className="flex items-center justify-between gap-2">
+                                          <span className="text-[11px] text-white font-display uppercase tracking-wider truncate group-hover:text-blue-200 transition-colors">{progSkill.name}</span>
+                                          <span className="text-[9px] font-mono text-blue-400 font-bold shrink-0">Ур. {progSkill.level}</span>
                                         </div>
-                                        <div className="flex flex-col items-end gap-2">
-                                          <div className="px-3 py-1 bg-blue-900/60 rounded-full border border-blue-500/50 shadow-[0_0_10px_rgba(37,99,235,0.2)]">
-                                            <span className="text-[10px] font-mono text-blue-200 whitespace-nowrap font-bold">Ур. {progSkill.level}</span>
-                                          </div>
-                                          <span className="text-[9px] uppercase tracking-widest text-blue-400 font-bold group-hover:text-blue-300 group-hover:underline transition-all decoration-blue-500/50 underline-offset-4">
-                                            Подробнее
-                                          </span>
-                                        </div>
-                                      </motion.button>
-                                    );
-                                  })}
-                                </div>
+                                        {skillData && (
+                                          <p className="text-[10px] text-zinc-500 font-sans line-clamp-1 group-hover:text-zinc-300 transition-colors">{skillData.desc}</p>
+                                        )}
+                                      </div>
+                                    </motion.button>
+                                  );
+                                })}
+                              </div>
 
-                                <div className="pt-8 border-t border-blue-900/40 flex justify-center">
-                                  <button 
-                                    onClick={() => setSkillView('all')}
-                                    className="text-[11px] font-display uppercase tracking-[0.2em] text-blue-300 hover:text-white transition-all flex items-center gap-3 group"
-                                  >
-                                    <span className="group-hover:tracking-[0.25em] transition-all">Посмотреть все умения по категориям</span>
-                                    <ChevronDown size={14} className="-rotate-90 group-hover:translate-x-1 transition-transform" />
-                                  </button>
-                                </div>
+                              <div className="pt-4 flex justify-center">
+                                <button 
+                                  onClick={() => setSkillView('all')}
+                                  className="text-[9px] font-display uppercase tracking-[0.2em] text-blue-400/60 hover:text-white transition-all flex items-center gap-2 group"
+                                >
+                                  <span>Все умения по категориям</span>
+                                  <ChevronDown size={12} className="-rotate-90 group-hover:translate-x-1 transition-transform" />
+                                </button>
                               </div>
                             </motion.div>
                           ))}
@@ -847,18 +826,18 @@ export default function App() {
         <div 
           className="absolute inset-0 z-0 opacity-40 bg-cover bg-no-repeat"
           style={{ 
-            backgroundImage: 'url("https://i.ibb.co/whxs4Mbc/footer.png")',
+            backgroundImage: 'url("/footer_bg.png")',
             backgroundPosition: 'center center',
             filter: 'brightness(0.4)'
           }}
         />
         <div className="max-w-7xl mx-auto px-6 text-center space-y-12 relative z-10">
           <img 
-            src="/Лого белый.png" 
+            src="/logo_white.png" 
             alt="Scryde Footer" 
             className="h-16 mx-auto brightness-125"
             onError={(e) => {
-              (e.target as HTMLImageElement).src = 'https://i.ibb.co/nq0Ksmgk/logo.png';
+              (e.target as HTMLImageElement).src = '/logo_fallback.png';
             }}
           />
           <div className="flex flex-wrap justify-center gap-x-12 gap-y-6">

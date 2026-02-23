@@ -11,55 +11,55 @@ export const HUMAN_CLASSES = {
   warriors: [
     {
       base: "ВОИТЕЛЬ (Warrior)",
-      icon: "https://i.ibb.co/W4ZhyDnN/Warrior.png",
+      icon: "/Warrior.png",
       paths: [
         { 
           second: "КОПЕЙЩИК (Warlord)", 
-          secondIcon: "https://i.ibb.co/RpW88z5t/Warlord.png",
+          secondIcon: "/Warlord.png",
           third: "ПОЛКОВОДЕЦ (Dreadnought)",
-          thirdIcon: "https://i.ibb.co/XZ0q51p7/Dreadnought.png"
+          thirdIcon: "/Dreadnought.png"
         },
         { 
           second: "ГЛАДИАТОР (Gladiator)", 
-          secondIcon: "https://i.ibb.co/0y0ZntHD/Gladiator.png",
+          secondIcon: "/Gladiator.png",
           third: "ДУЭЛИСТ (Duelist)",
-          thirdIcon: "https://i.ibb.co/BVRW4fV6/Duelist.png"
+          thirdIcon: "/Duelist.png"
         }
       ]
     },
     {
       base: "РЫЦАРЬ (Human Knight)",
-      icon: "https://i.ibb.co/6R1fRG36/Human-Knight.png",
+      icon: "/Human-Knight.png",
       paths: [
         { 
           second: "ПАЛАДИН (Paladin)", 
-          secondIcon: "https://i.ibb.co/k2rh3NxR/Paladin.png",
+          secondIcon: "/Paladin.png",
           third: "РЫЦАРЬ ФЕНИКСА (Phoenix Knight)",
-          thirdIcon: "https://i.ibb.co/cS4Lg2FZ/Phoenix-Knight.png"
+          thirdIcon: "/Phoenix-Knight.png"
         },
         { 
           second: "МСТИТЕЛЬ (Dark Avenger)", 
-          secondIcon: "https://i.ibb.co/0RKQnH2G/Dark-Avenger.png",
+          secondIcon: "/Dark-Avenger.png",
           third: "РЫЦАРЬ АДА (Hell Knight)",
-          thirdIcon: "https://i.ibb.co/2796p1fw/Hell-Knight.png"
+          thirdIcon: "/Hell-Knight.png"
         }
       ]
     },
     {
       base: "РАЗБОЙНИК (Rogue)",
-      icon: "https://i.ibb.co/rRwHh3gg/Rogue.png",
+      icon: "/Rogue.png",
       paths: [
         { 
           second: "ИСКАТЕЛЬ СОКРОВИЩ (Treasure Hunter)", 
-          secondIcon: "https://i.ibb.co/hx4sQY6Z/Treasure-Hunter.png",
+          secondIcon: "/Treasure-Hunter.png",
           third: "АВАНТЮРИСТ (Adventurer)",
-          thirdIcon: "https://i.ibb.co/VcqWVQcv/Adventurer.png"
+          thirdIcon: "/Adventurer.png"
         },
         { 
           second: "СТРЕЛОК (Hawkeye)", 
-          secondIcon: "https://i.ibb.co/G38V74RJ/Hawkeye.png",
+          secondIcon: "/Hawkeye.png",
           third: "СНАЙПЕР (Sagittarius)",
-          thirdIcon: "https://i.ibb.co/XxqSGMfS/Sagittarius.png"
+          thirdIcon: "/Sagittarius.png"
         }
       ]
     }
@@ -67,43 +67,43 @@ export const HUMAN_CLASSES = {
   mystics: [
     {
       base: "МАГ (Mage)",
-      icon: "https://i.ibb.co/3YG77Zbg/Mage.png",
+      icon: "/Mage.png",
       paths: [
         { 
           second: "ВОЛШЕБНИК (Wizard)", 
-          secondIcon: "https://i.ibb.co/BHVJqNY4/Wizard.png",
+          secondIcon: "/Wizard.png",
           third: "АРХИМАГ (Archmage)",
-          thirdIcon: "https://i.ibb.co/0jHfz2kq/Archmage.png"
+          thirdIcon: "/Archmage.png"
         },
         { 
           second: "НЕКРОМАНТ (Necromancer)", 
-          secondIcon: "https://i.ibb.co/B215cyym/Necromancer.png",
+          secondIcon: "/Necromancer.png",
           third: "ПОЖИРАТЕЛЬ ДУШ (Soultaker)",
-          thirdIcon: "https://i.ibb.co/7JsFRzC4/Soultaker.png"
+          thirdIcon: "/Soultaker.png"
         },
         { 
           second: "КОЛДУН (Warlock)", 
-          secondIcon: "https://i.ibb.co/ZpRncp85/Warlock.png",
+          secondIcon: "/Warlock.png",
           third: "ЧЕРНОКНИЖНИК (Arcana Lord)",
-          thirdIcon: "https://i.ibb.co/Xrf80VNs/Arcana-Lord.png"
+          thirdIcon: "/Arcana-Lord.png"
         }
       ]
     },
     {
       base: "КЛЕРИК (Cleric)",
-      icon: "https://i.ibb.co/SWrpSLp/Cleric.png",
+      icon: "/Cleric.png",
       paths: [
         { 
           second: "ЕПИСКОП (Bishop)", 
-          secondIcon: "https://i.ibb.co/spBb7J3k/Bishop.png",
+          secondIcon: "/Bishop.png",
           third: "КАРДИНАЛ (Cardinal)",
-          thirdIcon: "https://i.ibb.co/xqdHBbm1/Cardinal.png"
+          thirdIcon: "/Cardinal.png"
         },
         { 
           second: "ПРОПОВЕДНИК (Prophet)", 
-          secondIcon: "https://i.ibb.co/93V08SLc/Prophet.png",
+          secondIcon: "/Prophet.png",
           third: "АПОСТОЛ (Apostle)",
-          thirdIcon: "https://i.ibb.co/rYHNMwr/Apostle.png"
+          thirdIcon: "/Apostle.png"
         }
       ]
     }
@@ -130,11 +130,13 @@ export const APOSTLE_SKILLS = {
     { name: "Возвращение Группы", desc: "Телепортирует группу в город." },
     { name: "Прогнать", desc: "Отправляет вражеского слугу в другое измерение." },
     { name: "Горение Маны", desc: "Сжигает MP врага. Мощность 117." },
-    { name: "Магическая Сила", desc: "Переносит Вашу магическую силу на члена группы. Эффект будет отменен, если Вы нанесете кому-нибудь урон." },
-    { name: "Отмена Чтения Заклинаний", desc: "Сбивает произношение заклинания у цели." },
+    { name: "Spell Force", desc: "Переносит Вашу магическую силу на члена группы. Эффект будет отменен, если Вы нанесете кому-нибудь урон." },
+    { name: "Spell Turning", desc: "Сбивает произношение заклинания у цели." },
     { name: "Цепное Исцеление", desc: "Восстанавливает HP цели и до 3 союзников." },
     { name: "Божья Кара", desc: "Урон святой магией по монстрам. Мощность 51." },
-    { name: "Божественная Вспышка", desc: "Взрыв святой энергии вокруг. Мощность 29." }
+    { name: "Божественная Вспышка", desc: "Взрыв святой энергии вокруг. Мощность 29." },
+    { name: "Block Shield", desc: "Снимает с противника заклинания, повышающие Физическую Защиту, и предотвращает их повторное наложение. Временно понижает Физическую Защиту." },
+    { name: "Block Wind Walk", desc: "Снимает с противника заклинания, повышающие Скорость Перемещения, и предотвращает их повторное наложение. Временно понижает Скорость Перемещения." }
   ],
   buffs: [
     { name: "Энергичность", desc: "Сопротивление Кровотечению +30%." },
@@ -156,23 +158,20 @@ export const APOSTLE_SKILLS = {
     { name: "Легкая Походка", desc: "Скорость +20." },
     { name: "Наведение", desc: "Точность +2." },
     { name: "Шепот Смерти", desc: "Сила Физ. Крит. Атк. +25%." },
-    { name: "Пророчество Огня", desc: "Комплексный бафф: HP/MP/Атк/Защ +10%, Скорость -20%." },
+    { name: "Prophecy of Fire", desc: "Временно вселяет дух древнего воина. Требуется 5 Spirit Ore." },
     { name: "Пророчество Земли", desc: "Комплексный бафф: Физ. Защ. +15%, Точность +4, Сопротивление Дебаффам +20%." },
     { name: "Ответный Крит. Удар", desc: "Защита от Крит. Атк +10%, шанс увеличить силу крита на 15%." },
     { name: "Совершенство в Бою", desc: "Физ. Атк. и Физ. Защ. +15%." },
     { name: "Совершенство Состояния", desc: "Макс. HP и Макс. MP +35%." },
     { name: "Совершенная Критическая Атака", desc: "Шанс Крит. Атк. +30%, сила Крит. Атк. +35%." },
     { name: "Защита Равновесия", desc: "Сопротивление стихиям +20. При получении урона шанс повысить Маг. Защ." },
-    { name: "Защита Стихий", desc: "Временно повышает сопротивление к атакам стихией огня, воды, воздуха и земли. Эффект 3." },
-    { name: "Здоровье", desc: "Повышает сопротивление к отравлению и кровотечению." },
-    { name: "Мудрость", desc: "Повышает сопротивление ко сну, удерживающим заклинаниям и к ментальным атакам." },
-    { name: "Блокировка Щита", desc: "Снимает с противника заклинания, повышающие Физическую Защиту, и предотвращает их повторное наложение. Временно понижает Физическую Защиту." },
-    { name: "Блокировка Легкой Походки", desc: "Снимает с противника заклинания, повышающие Скорость Перемещения, и предотвращает их повторное наложение. Временно понижает Скорость Перемещения." },
-    { name: "Владение Умениями", desc: "Оттачивает совершенство в скиллах. Низкая вероятность моментального отката умения или двойного времени действия. Зависит от STR." },
-    { name: "Тайная Мудрость", desc: "Значительно повышает эффективность магии и понижает расход маны умениями. Также понижает Скорость Произношения Заклинаний. Непрерывно потребляет Ваше здоровье." },
-    { name: "Божественное Знание", desc: "Снижает потребление маны магическими умениями." },
-    { name: "Пророчество Огня", desc: "Временно вселяет дух древнего воина. Требуется 5 Spirit Ore." },
-    { name: "Мистический Иммунитет", desc: "Делает цель временно невосприимчивой к усиливающим и ослабляющим заклинаниям или атакам." },
+    { name: "Elemental Protection", desc: "Временно повышает сопротивление к атакам стихией огня, воды, воздуха и земли. Эффект 3." },
+    { name: "Health", desc: "Повышает сопротивление к отравлению и кровотечению." },
+    { name: "Wisdom", desc: "Повышает сопротивление ко сну, удерживающим заклинаниям и к ментальным атакам." },
+    { name: "Skill Mastery", desc: "Оттачивает совершенство в скиллах. Низкая вероятность моментального отката умения или двойного времени действия. Зависит от STR." },
+    { name: "Arcane Wisdom", desc: "Значительно повышает эффективность магии и понижает расход маны умениями. Также понижает Скорость Произношения Заклинаний. Непрерывно потребляет Ваше здоровье." },
+    { name: "Divine Lore", desc: "Снижает потребление маны магическими умениями." },
+    { name: "Mystic Immunity", desc: "Делает цель временно невосприимчивой к усиливающим и ослабляющим заклинаниям или атакам." },
     { name: "Улучшенная Воля Стрелка", desc: "Увеличивает дальность атаки и точность при использовании лука." },
     { name: "Улучшенная Воля Воина", desc: "Увеличивает Физ. Атк. и Скор. Атк. при использовании оружия ближнего боя." },
     { name: "Улучшенная Воля Мага", desc: "Увеличивает Маг. Атк. и Скор. Маг." }
@@ -198,33 +197,33 @@ export const SKILL_PROGRESSION = [
   {
     level: 76,
     skills: [
-      { name: "Защита Стихий", level: 1 },
-      { name: "Здоровье", level: 1 },
-      { name: "Мудрость", level: 1 },
+      { name: "Elemental Protection", level: 1 },
+      { name: "Health", level: 1 },
+      { name: "Wisdom", level: 1 },
     ]
   },
   {
     level: 77,
     skills: [
-      { name: "Блокировка Щита", level: 1 },
-      { name: "Блокировка Легкой Походки", level: 1 },
-      { name: "Владение Умениями", level: 1 },
-      { name: "Магическая Сила", level: 1 },
+      { name: "Block Shield", level: 1 },
+      { name: "Block Wind Walk", level: 1 },
+      { name: "Skill Mastery", level: 1 },
+      { name: "Spell Force", level: 1 },
     ]
   },
   {
     level: 78,
     skills: [
-      { name: "Тайная Мудрость", level: 1 },
-      { name: "Божественное Знание", level: 1 },
-      { name: "Пророчество Огня", level: 1 },
+      { name: "Arcane Wisdom", level: 1 },
+      { name: "Divine Lore", level: 1 },
+      { name: "Prophecy of Fire", level: 1 },
     ]
   },
   {
     level: 79,
     skills: [
-      { name: "Мистический Иммунитет", level: 1 },
-      { name: "Отмена Чтения Заклинаний", level: 1 },
+      { name: "Mystic Immunity", level: 1 },
+      { name: "Spell Turning", level: 1 },
     ]
   }
 ];
