@@ -34,6 +34,10 @@ import {
   Lock
 } from 'lucide-react';
 import { RACES, HUMAN_CLASSES, APOSTLE_SKILLS, SKILL_PROGRESSION } from './constants';
+const logoWithText = "/logo.png";
+const logoWhite = "/logo_small.png";
+const apostleBig = "/apostle.png";
+const skillIcon = "/skill.png";
 
 const MockupModal = ({ isOpen, onClose, message }: { isOpen: boolean, onClose: () => void, message?: string }) => (
   <AnimatePresence>
@@ -94,7 +98,7 @@ const SkillCard = ({ name, desc, onClick }: { name: string, desc: string, onClic
         <div className="absolute inset-0 bg-blue-500/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity" />
         <div className="relative w-14 h-14 border-2 border-blue-900/50 bg-black/60 p-1 rounded-sm overflow-hidden group-hover:border-blue-400 transition-colors">
           <img 
-            src="/skill.png" 
+            src={skillIcon} 
             alt="Skill Icon" 
             className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"
             onError={(e) => {
@@ -231,13 +235,13 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-6">
             <img 
-              src="/logo_with_text.png" 
+              src={logoWithText} 
               alt="Scryde" 
               className="h-10 brightness-125 drop-shadow-[0_0_15px_rgba(37,99,235,0.5)]"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
-                if (target.src.includes('logo_fallback.png')) return;
-                target.src = '/logo_fallback.png';
+                if (target.src.includes('logo.png')) return;
+                target.src = '/logo.png';
               }}
             />
             <div className="hidden md:flex gap-8">
@@ -635,7 +639,7 @@ export default function App() {
                   <div className="lg:col-span-5 relative flex items-start justify-center pt-4">
                     <div className="relative w-full max-w-[400px] h-[500px] md:h-[650px] overflow-hidden">
                       <img 
-                        src="/apostle_big.png" 
+                        src={apostleBig} 
                         alt="Апостол" 
                         className="w-full h-full object-contain object-top block relative z-0"
                         style={{ 
@@ -787,7 +791,7 @@ export default function App() {
                                     >
                                       <div className="w-10 h-10 shrink-0 bg-black/40 border border-blue-900/50 p-0.5 rounded-sm overflow-hidden group-hover:border-blue-400 transition-colors">
                                         <img 
-                                          src="/skill.png" 
+                                          src={skillIcon} 
                                           alt={progSkill.name}
                                           className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
                                         />
@@ -842,7 +846,7 @@ export default function App() {
         />
         <div className="max-w-7xl mx-auto px-6 text-center space-y-12 relative z-10">
           <img 
-            src="/logo_white.png" 
+            src={logoWhite} 
             alt="Scryde Footer" 
             className="h-16 mx-auto brightness-125"
             onError={(e) => {

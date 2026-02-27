@@ -11,55 +11,55 @@ export const HUMAN_CLASSES = {
   warriors: [
     {
       base: "ВОИТЕЛЬ (Warrior)",
-      icon: "/Warrior.png",
+      icon: "/class/warrior.png",
       paths: [
         { 
           second: "КОПЕЙЩИК (Warlord)", 
-          secondIcon: "/Warlord.png",
+          secondIcon: "/class/warlord.png",
           third: "ПОЛКОВОДЕЦ (Dreadnought)",
-          thirdIcon: "/Dreadnought.png"
+          thirdIcon: "/class/dreadnought.png"
         },
         { 
           second: "ГЛАДИАТОР (Gladiator)", 
-          secondIcon: "/Gladiator.png",
+          secondIcon: "/class/gladiator.png",
           third: "ДУЭЛИСТ (Duelist)",
-          thirdIcon: "/Duelist.png"
+          thirdIcon: "/class/duelist.png"
         }
       ]
     },
     {
       base: "РЫЦАРЬ (Human Knight)",
-      icon: "/Human-Knight.png",
+      icon: "/class/humanknight.png",
       paths: [
         { 
           second: "ПАЛАДИН (Paladin)", 
-          secondIcon: "/Paladin.png",
+          secondIcon: "/class/paladin.png",
           third: "РЫЦАРЬ ФЕНИКСА (Phoenix Knight)",
-          thirdIcon: "/Phoenix-Knight.png"
+          thirdIcon: "/class/phoenixknight.png"
         },
         { 
           second: "МСТИТЕЛЬ (Dark Avenger)", 
-          secondIcon: "/Dark-Avenger.png",
+          secondIcon: "/class/darkavenger.png",
           third: "РЫЦАРЬ АДА (Hell Knight)",
-          thirdIcon: "/Hell-Knight.png"
+          thirdIcon: "/class/hellknight.png"
         }
       ]
     },
     {
       base: "РАЗБОЙНИК (Rogue)",
-      icon: "/Rogue.png",
+      icon: "/class/rogue.png",
       paths: [
         { 
           second: "ИСКАТЕЛЬ СОКРОВИЩ (Treasure Hunter)", 
-          secondIcon: "/Treasure-Hunter.png",
+          secondIcon: "/class/treasurehunter.png",
           third: "АВАНТЮРИСТ (Adventurer)",
-          thirdIcon: "/Adventurer.png"
+          thirdIcon: "/class/adventurer.png"
         },
         { 
           second: "СТРЕЛОК (Hawkeye)", 
-          secondIcon: "/Hawkeye.png",
+          secondIcon: "/class/hawkeye.png",
           third: "СНАЙПЕР (Sagittarius)",
-          thirdIcon: "/Sagittarius.png"
+          thirdIcon: "/class/sagittarius.png"
         }
       ]
     }
@@ -67,43 +67,43 @@ export const HUMAN_CLASSES = {
   mystics: [
     {
       base: "МАГ (Mage)",
-      icon: "/Mage.png",
+      icon: "/magee/wizard.png",
       paths: [
         { 
           second: "ВОЛШЕБНИК (Wizard)", 
-          secondIcon: "/Wizard.png",
+          secondIcon: "/magee/wizard.png",
           third: "АРХИМАГ (Archmage)",
-          thirdIcon: "/Archmage.png"
+          thirdIcon: "/magee/archmage.png"
         },
         { 
           second: "НЕКРОМАНТ (Necromancer)", 
-          secondIcon: "/Necromancer.png",
+          secondIcon: "/magee/necromancer.png",
           third: "ПОЖИРАТЕЛЬ ДУШ (Soultaker)",
-          thirdIcon: "/Soultaker.png"
+          thirdIcon: "/magee/soultaker.png"
         },
         { 
           second: "КОЛДУН (Warlock)", 
-          secondIcon: "/Warlock.png",
+          secondIcon: "/magee/warlock.png",
           third: "ЧЕРНОКНИЖНИК (Arcana Lord)",
-          thirdIcon: "/Arcana-Lord.png"
+          thirdIcon: "/magee/arcanalord.png"
         }
       ]
     },
     {
       base: "КЛЕРИК (Cleric)",
-      icon: "/Cleric.png",
+      icon: "/magee/cleric.png",
       paths: [
         { 
           second: "ЕПИСКОП (Bishop)", 
-          secondIcon: "/Bishop.png",
+          secondIcon: "/magee/bishop.png",
           third: "КАРДИНАЛ (Cardinal)",
-          thirdIcon: "/Cardinal.png"
+          thirdIcon: "/magee/cardinal.png"
         },
         { 
           second: "ПРОПОВЕДНИК (Prophet)", 
-          secondIcon: "/Prophet.png",
+          secondIcon: "/magee/prophet.png",
           third: "АПОСТОЛ (Apostle)",
-          thirdIcon: "/apostle_icon.png"
+          thirdIcon: "/magee/hierophant.png"
         }
       ]
     }
