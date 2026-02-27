@@ -102,7 +102,6 @@ const SkillCard = ({ name, desc, onClick }: { name: string, desc: string, onClic
               if (target.src.includes('unsplash.com')) return;
               target.src = 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=60&w=100&h=100';
             }}
-            referrerPolicy="no-referrer"
           />
         </div>
       </div>
@@ -149,7 +148,6 @@ const SkillDetailModal = ({ isOpen, onClose, skill }: { isOpen: boolean, onClose
                     if (target.src.includes('unsplash.com')) return;
                     target.src = 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=200&h=200';
                   }}
-                  referrerPolicy="no-referrer"
                 />
               </div>
               <div className="flex-1 space-y-4">
@@ -241,7 +239,6 @@ export default function App() {
                 if (target.src.includes('logo_fallback.png')) return;
                 target.src = '/logo_fallback.png';
               }}
-              referrerPolicy="no-referrer"
             />
             <div className="hidden md:flex gap-8">
               {['Расы', 'Классы', 'Умения', 'Библиотека'].map(item => (
@@ -349,7 +346,7 @@ export default function App() {
                               <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                               <div className="w-12 h-12 shrink-0 relative z-10 flex items-center justify-center">
                                 <div className="absolute inset-0 bg-gradient-to-b from-blue-400/20 to-blue-900/40 rounded-full border border-blue-500/30 shadow-[0_0_10px_rgba(37,99,235,0.2)]" />
-                                <img src={branch.icon} alt={branch.base} className="w-8 h-8 object-contain relative z-20 group-hover:scale-110 transition-transform drop-shadow-[0_0_5px_rgba(255,255,255,0.3)]" referrerPolicy="no-referrer" />
+                                <img src={branch.icon} alt={branch.base} className="w-8 h-8 object-contain relative z-20 group-hover:scale-110 transition-transform drop-shadow-[0_0_5px_rgba(255,255,255,0.3)]" />
                               </div>
                               <span className="relative z-10 font-display text-[10px] tracking-[0.2em] text-white uppercase font-bold text-left leading-tight group-hover:text-blue-200 transition-colors">{branch.base}</span>
                             </button>
@@ -375,7 +372,7 @@ export default function App() {
                                   <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover/btn:opacity-100 transition-opacity" />
                                   <div className="w-12 h-12 mb-2 relative z-10 flex items-center justify-center">
                                     <div className="absolute inset-0 bg-slate-800/80 rounded-lg border border-blue-900/50 shadow-inner group-hover/btn:border-blue-500/50 transition-colors" />
-                                    <img src={path.secondIcon} alt={path.second} className="w-8 h-8 object-contain relative z-20 opacity-80 group-hover/btn:opacity-100 group-hover/btn:scale-110 transition-all drop-shadow-[0_0_3px_rgba(37,99,235,0.3)]" referrerPolicy="no-referrer" />
+                                    <img src={path.secondIcon} alt={path.second} className="w-8 h-8 object-contain relative z-20 opacity-80 group-hover/btn:opacity-100 group-hover/btn:scale-110 transition-all drop-shadow-[0_0_3px_rgba(37,99,235,0.3)]" />
                                   </div>
                                   <span className="relative z-10 font-display text-[9px] tracking-widest text-white/80 group-hover/btn:text-white transition-colors text-center leading-tight">
                                     {path.second}
@@ -395,7 +392,7 @@ export default function App() {
                                   <div className="absolute inset-0 bg-blue-500/10 opacity-0 group-hover/btn:opacity-100 transition-opacity" />
                                   <div className="w-14 h-14 mb-2 relative z-10 flex items-center justify-center">
                                     <div className="absolute inset-0 bg-blue-900/40 rounded-md border border-blue-500/30 shadow-[0_0_10px_rgba(37,99,235,0.1)] group-hover/btn:border-blue-400 transition-colors" />
-                                    <img src={path.thirdIcon} alt={path.third} className="w-10 h-10 object-contain relative z-20 group-hover/btn:scale-110 transition-transform drop-shadow-[0_0_8px_rgba(37,99,235,0.5)]" referrerPolicy="no-referrer" />
+                                    <img src={path.thirdIcon} alt={path.third} className="w-10 h-10 object-contain relative z-20 group-hover/btn:scale-110 transition-transform drop-shadow-[0_0_8px_rgba(37,99,235,0.5)]" />
                                   </div>
                                   <span className="relative z-10 font-display text-[9px] tracking-widest text-blue-300 group-hover/btn:text-white transition-colors text-center leading-tight">
                                     {path.third}
@@ -425,7 +422,7 @@ export default function App() {
                               <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                               <div className="w-12 h-12 shrink-0 relative z-10 flex items-center justify-center">
                                 <div className="absolute inset-0 bg-gradient-to-b from-blue-400/20 to-blue-900/40 rounded-full border border-blue-500/30 shadow-[0_0_10px_rgba(37,99,235,0.2)]" />
-                                <img src={branch.icon} alt={branch.base} className="w-8 h-8 object-contain relative z-20 group-hover:scale-110 transition-transform drop-shadow-[0_0_5px_rgba(255,255,255,0.3)]" referrerPolicy="no-referrer" />
+                                <img src={branch.icon} alt={branch.base} className="w-8 h-8 object-contain relative z-20 group-hover:scale-110 transition-transform drop-shadow-[0_0_5px_rgba(255,255,255,0.3)]" />
                               </div>
                               <span className="relative z-10 font-display text-[10px] tracking-[0.2em] text-white uppercase font-bold text-left leading-tight group-hover:text-blue-200 transition-colors">{branch.base}</span>
                             </button>
@@ -462,7 +459,7 @@ export default function App() {
                                   <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover/btn:opacity-100 transition-opacity" />
                                   <div className="w-12 h-12 mb-2 relative z-10 flex items-center justify-center">
                                     <div className="absolute inset-0 bg-slate-800/80 rounded-lg border border-blue-900/50 shadow-inner group-hover/btn:border-blue-500/50 transition-colors" />
-                                    <img src={path.secondIcon} alt={path.second} className="w-8 h-8 object-contain relative z-20 opacity-80 group-hover/btn:opacity-100 group-hover/btn:scale-110 transition-all drop-shadow-[0_0_3px_rgba(37,99,235,0.3)]" referrerPolicy="no-referrer" />
+                                    <img src={path.secondIcon} alt={path.second} className="w-8 h-8 object-contain relative z-20 opacity-80 group-hover/btn:opacity-100 group-hover/btn:scale-110 transition-all drop-shadow-[0_0_3px_rgba(37,99,235,0.3)]" />
                                   </div>
                                   <span className="relative z-10 font-display text-[9px] tracking-widest text-white/80 group-hover/btn:text-white transition-colors text-center leading-tight">
                                     {path.second}
@@ -491,7 +488,7 @@ export default function App() {
                                   <div className="absolute inset-0 bg-blue-500/10 opacity-0 group-hover/btn:opacity-100 transition-opacity" />
                                   <div className="w-14 h-14 mb-2 relative z-10 flex items-center justify-center">
                                     <div className="absolute inset-0 bg-blue-900/40 rounded-md border border-blue-500/30 shadow-[0_0_10px_rgba(37,99,235,0.1)] group-hover/btn:border-blue-400 transition-colors" />
-                                    <img src={path.thirdIcon} alt={path.third} className="w-10 h-10 object-contain relative z-20 group-hover/btn:scale-110 transition-transform drop-shadow-[0_0_8px_rgba(37,99,235,0.5)]" referrerPolicy="no-referrer" />
+                                    <img src={path.thirdIcon} alt={path.third} className="w-10 h-10 object-contain relative z-20 group-hover/btn:scale-110 transition-transform drop-shadow-[0_0_8px_rgba(37,99,235,0.5)]" />
                                   </div>
                                   <span className={`relative z-10 font-display text-[9px] tracking-widest text-center leading-tight transition-colors ${(path.third.includes('Apostle') || path.third.includes('АПОСТОЛ')) && selectedClass === 'Апостол' ? 'text-white' : 'text-blue-300 group-hover/btn:text-white'}`}>
                                     {path.third}
@@ -570,7 +567,7 @@ export default function App() {
                         </div>
                       </div>
 
-                      <div className="relative w-full aspect-square max-w-[450px] -ml-8 md:-ml-12">
+                      <div className="relative w-full aspect-square max-w-[450px] min-h-[300px] md:min-h-[450px] -ml-8 md:-ml-12 flex items-center justify-center">
                         {/* Декоративные круги под диаграммой */}
                         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                           <div className="w-[80%] h-[80%] border border-blue-900/10 rounded-full animate-[pulse_4s_infinite]" />
@@ -578,8 +575,9 @@ export default function App() {
                           <div className="w-[40%] h-[40%] border border-blue-900/30 rounded-full" />
                         </div>
 
-                        <ResponsiveContainer width="100%" height="100%">
-                          <RadarChart cx="50%" cy="50%" outerRadius="70%" data={[
+                        <div className="w-full h-full">
+                          <ResponsiveContainer width="100%" height="100%">
+                            <RadarChart cx="50%" cy="50%" outerRadius="70%" data={[
                             { subject: 'Соло', A: 40, full: 100, icon: <User size={12} /> },
                             { subject: 'Групп. Фарм', A: 100, full: 100, icon: <Users size={12} /> },
                             { subject: 'Групп. PvP', A: 95, full: 100, icon: <Target size={12} /> },
@@ -621,8 +619,9 @@ export default function App() {
                             />
                           </RadarChart>
                         </ResponsiveContainer>
+                      </div>
 
-                        {/* Центральный элемент */}
+                      {/* Центральный элемент */}
                         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                           <div className="w-4 h-4 bg-blue-500 rounded-full shadow-[0_0_20px_rgba(37,99,235,1)] z-20" />
                         </div>
@@ -647,7 +646,6 @@ export default function App() {
                           if (target.src.includes('unsplash.com')) return;
                           target.src = 'https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&q=80&w=1920&h=1080';
                         }}
-                        referrerPolicy="no-referrer"
                       />
                       {/* Мягкое затемнение снизу для эстетичного перехода */}
                       <div className="absolute inset-0 bg-gradient-to-t from-[#02040a]/80 via-transparent to-transparent pointer-events-none" />
@@ -792,7 +790,6 @@ export default function App() {
                                           src="/skill.png" 
                                           alt={progSkill.name}
                                           className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
-                                          referrerPolicy="no-referrer"
                                         />
                                       </div>
                                       <div className="flex-1 min-w-0">
@@ -853,7 +850,6 @@ export default function App() {
               if (target.src.includes('logo_fallback.png')) return;
               target.src = '/logo_fallback.png';
             }}
-            referrerPolicy="no-referrer"
           />
           <div className="flex flex-wrap justify-center gap-x-12 gap-y-6">
             {['База данных', 'Карта', 'Рейтинг', 'Поддержка', 'Форум'].map(link => (
