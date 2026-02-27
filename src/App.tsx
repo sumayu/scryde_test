@@ -94,7 +94,7 @@ const SkillCard = ({ name, desc, onClick }: { name: string, desc: string, onClic
         <div className="absolute inset-0 bg-blue-500/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity" />
         <div className="relative w-14 h-14 border-2 border-blue-900/50 bg-black/60 p-1 rounded-sm overflow-hidden group-hover:border-blue-400 transition-colors">
           <img 
-            src="/skill.png" 
+            src="/api/icons/skill.png" 
             alt="Skill Icon" 
             className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"
             onError={(e) => {
@@ -138,7 +138,7 @@ const SkillDetailModal = ({ isOpen, onClose, skill }: { isOpen: boolean, onClose
             <div className="flex gap-6 items-start">
               <div className="w-20 h-20 border-2 border-blue-500/30 bg-black/60 p-1">
                 <img 
-                  src="/skill.png" 
+                  src="/api/icons/skill.png" 
                   alt="Skill Icon" 
                   className="w-full h-full object-cover"
                   onError={(e) => {
@@ -227,11 +227,11 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-6">
             <img 
-              src="/logo_with_text.png" 
+              src="/api/icons/logo_with_text.png" 
               alt="Scryde" 
               className="h-10 brightness-125 drop-shadow-[0_0_15px_rgba(37,99,235,0.5)]"
               onError={(e) => {
-                (e.target as HTMLImageElement).src = '/logo_fallback.png';
+                (e.target as HTMLImageElement).src = '/api/icons/logo_fallback.png';
               }}
             />
             <div className="hidden md:flex gap-8">
@@ -627,7 +627,7 @@ export default function App() {
                   <div className="lg:col-span-5 relative flex items-start justify-center pt-4">
                     <div className="relative w-full max-w-[400px] h-[500px] md:h-[650px] overflow-hidden">
                       <img 
-                        src="/apostle.png" 
+                        src="/api/icons/apostle_big.png" 
                         alt="Апостол" 
                         className="w-full h-full object-contain object-top block relative z-0"
                         style={{ 
@@ -778,7 +778,7 @@ export default function App() {
                                     >
                                       <div className="w-10 h-10 shrink-0 bg-black/40 border border-blue-900/50 p-0.5 rounded-sm overflow-hidden group-hover:border-blue-400 transition-colors">
                                         <img 
-                                          src="/skill.png" 
+                                          src="/api/icons/skill.png" 
                                           alt={progSkill.name}
                                           className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
                                         />
@@ -826,18 +826,18 @@ export default function App() {
         <div 
           className="absolute inset-0 z-0 opacity-40 bg-cover bg-no-repeat"
           style={{ 
-            backgroundImage: 'url("/footer_bg.png")',
+            backgroundImage: 'url("/api/icons/footer_bg.png")',
             backgroundPosition: 'center center',
             filter: 'brightness(0.4)'
           }}
         />
         <div className="max-w-7xl mx-auto px-6 text-center space-y-12 relative z-10">
           <img 
-            src="/logo_white.png" 
+            src="/api/icons/logo_white.png" 
             alt="Scryde Footer" 
             className="h-16 mx-auto brightness-125"
             onError={(e) => {
-              (e.target as HTMLImageElement).src = '/logo_fallback.png';
+              (e.target as HTMLImageElement).src = '/api/icons/logo_fallback.png';
             }}
           />
           <div className="flex flex-wrap justify-center gap-x-12 gap-y-6">
