@@ -643,7 +643,9 @@ export default function App() {
                           imageRendering: 'smooth',
                         }}
                         onError={(e) => {
-                          (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1519074063912-ad2fe3f51964?auto=format&fit=crop&q=80&w=1920&h=1080';
+                          const target = e.target as HTMLImageElement;
+                          if (target.src.includes('unsplash.com')) return;
+                          target.src = 'https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&q=80&w=1920&h=1080';
                         }}
                         referrerPolicy="no-referrer"
                       />
