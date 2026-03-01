@@ -834,9 +834,9 @@ export default function App() {
         <div 
           className="absolute inset-0 z-0 opacity-40 bg-cover bg-no-repeat"
           style={{ 
-            backgroundImage: 'url("/footer_bg.png")',
+            backgroundImage: 'url("https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=1920")',
             backgroundPosition: 'center center',
-            filter: 'brightness(0.4)'
+            filter: 'brightness(0.2) saturate(0.5)'
           }}
         />
         <div className="max-w-7xl mx-auto px-6 text-center space-y-12 relative z-10">
@@ -844,11 +844,6 @@ export default function App() {
             src={logoWhite} 
             alt="Scryde Footer" 
             className="h-16 mx-auto brightness-125"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              if (target.src.includes('logo_fallback.png')) return;
-              target.src = '/logo_fallback.png';
-            }}
           />
           <div className="flex flex-wrap justify-center gap-x-12 gap-y-6">
             {['База данных', 'Карта', 'Рейтинг', 'Поддержка', 'Форум'].map(link => (
