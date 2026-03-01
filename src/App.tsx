@@ -238,11 +238,6 @@ export default function App() {
               src={logoWithText} 
               alt="Scryde" 
               className="h-10 brightness-125 drop-shadow-[0_0_15px_rgba(37,99,235,0.5)]"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                if (target.src.includes('logo.png')) return;
-                target.src = '/logo.png';
-              }}
             />
             <div className="hidden md:flex gap-8">
               {['Расы', 'Классы', 'Умения', 'Библиотека'].map(item => (
