@@ -39,6 +39,34 @@ const logoWhite = "/LogoShort.png";
 const apostleBig = "/apostle.png";
 const skillIcon = "/skill.png";
 
+const Particles = () => {
+  return (
+    <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+      {[...Array(30)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-1 h-1 bg-blue-400/40 rounded-full shadow-[0_0_8px_rgba(59,130,246,0.8)]"
+          initial={{
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            scale: Math.random() * 1 + 0.5,
+          }}
+          animate={{
+            top: [`${Math.random() * 100}%`, `-10%`],
+            opacity: [0, 1, 0],
+          }}
+          transition={{
+            duration: Math.random() * 10 + 15,
+            repeat: Infinity,
+            ease: "linear",
+            delay: Math.random() * 10,
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
 const MockupModal = ({ isOpen, onClose, message }: { isOpen: boolean, onClose: () => void, message?: string }) => (
   <AnimatePresence>
     {isOpen && (
@@ -227,6 +255,10 @@ export default function App() {
         </video>
       </div>
       
+      {/* Сетка и частицы */}
+      <div className="fixed inset-0 z-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'linear-gradient(#3b82f6 1px, transparent 1px), linear-gradient(90deg, #3b82f6 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+      <Particles />
+      
       <MockupModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} message={modalMessage} />
       <SkillDetailModal isOpen={!!selectedSkill} onClose={() => setSelectedSkill(null)} skill={selectedSkill} />
 
@@ -267,9 +299,9 @@ export default function App() {
       <main className="max-w-7xl mx-auto px-6 py-16">
         
         {/* Выбор расы */}
-        <section id="races" className="space-y-12 mb-24">
+        <section id="races" className="space-y-12 mb-24 relative z-10">
           <div className="text-center space-y-4">
-            <h2 className="font-display text-4xl text-white tracking-widest uppercase">Выбор Расы</h2>
+            <h2 className="font-display text-4xl tracking-widest uppercase bg-clip-text text-transparent bg-gradient-to-b from-white to-blue-400 drop-shadow-sm">Выбор Расы</h2>
             <p className="font-serif italic text-zinc-500">Выберите свое происхождение в мире Scryde</p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
@@ -331,7 +363,7 @@ export default function App() {
                 <div className="grid grid-cols-1 xl:grid-cols-2 gap-16 items-start">
                   {/* Группа Воинов */}
                   <div className="space-y-12">
-                    <h2 className="font-display text-2xl text-white tracking-[0.3em] uppercase text-center border-b border-blue-900/30 pb-4">Воины Людей</h2>
+                    <h2 className="font-display text-2xl tracking-[0.3em] uppercase text-center border-b border-blue-900/30 pb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-white to-blue-400">Воины Людей</h2>
                     
                     <div className="flex flex-col gap-16">
                       {HUMAN_CLASSES.warriors.map((branch, idx) => (
@@ -407,7 +439,7 @@ export default function App() {
 
                   {/* Группа Мистиков */}
                   <div className="space-y-12">
-                    <h2 className="font-display text-2xl text-white tracking-[0.3em] uppercase text-center border-b border-blue-900/30 pb-4">Мистики Людей</h2>
+                    <h2 className="font-display text-2xl tracking-[0.3em] uppercase text-center border-b border-blue-900/30 pb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-white to-blue-400">Мистики Людей</h2>
                     
                     <div className="flex flex-col gap-16">
                       {HUMAN_CLASSES.mystics.map((branch, idx) => (
@@ -530,7 +562,7 @@ export default function App() {
                         <Scroll size={18} />
                         <span className="font-display text-[10px] tracking-[0.4em] uppercase opacity-70">Класс: Мистик</span>
                       </div>
-                      <h1 className="font-display text-6xl md:text-7xl text-white tracking-tighter uppercase leading-none">
+                      <h1 className="font-display text-6xl md:text-7xl tracking-tighter uppercase leading-none bg-clip-text text-transparent bg-gradient-to-b from-white via-blue-100 to-blue-600 drop-shadow-[0_0_15px_rgba(37,99,235,0.3)]">
                         Апостол
                       </h1>
                       <p className="text-lg text-zinc-400 font-serif italic leading-relaxed max-w-xl">
@@ -654,10 +686,10 @@ export default function App() {
               </section>
 
               {/* Секция умений */}
-              <section id="skills" className="space-y-12">
+              <section id="skills" className="space-y-12 relative z-10">
                 <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 border-b border-blue-900/50 pb-8">
                   <div className="space-y-2">
-                    <h2 className="font-display text-5xl text-white tracking-widest uppercase">Умения Апостола</h2>
+                    <h2 className="font-display text-5xl tracking-widest uppercase bg-clip-text text-transparent bg-gradient-to-b from-white to-blue-400 drop-shadow-sm">Умения Апостола</h2>
                     <p className="font-serif italic text-zinc-500">Божественные искусства защиты и усиления</p>
                   </div>
                   
