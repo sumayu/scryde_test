@@ -34,8 +34,8 @@ import {
   Lock
 } from 'lucide-react';
 import { RACES, HUMAN_CLASSES, APOSTLE_SKILLS, SKILL_PROGRESSION } from './constants';
-const logoWithText = "/logo.png";
-const logoWhite = "/logo_small.png";
+const logoWithText = "/LogoBig.png";
+const logoWhite = "/LogoShort.png";
 const apostleBig = "/apostle.png";
 const skillIcon = "/skill.png";
 
@@ -834,7 +834,7 @@ export default function App() {
         <div 
           className="absolute inset-0 z-0 opacity-40 bg-cover bg-no-repeat"
           style={{ 
-            backgroundImage: 'url("https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=1920")',
+            backgroundImage: 'url("/footer.png")',
             backgroundPosition: 'center center',
             filter: 'brightness(0.2) saturate(0.5)'
           }}
