@@ -67,43 +67,43 @@ export const HUMAN_CLASSES = {
   mystics: [
     {
       base: "МАГ (Mage)",
-      icon: "/mage/wizard.png",
+      icon: "/class/wizard.png",
       paths: [
         { 
           second: "ВОЛШЕБНИК (Wizard)", 
-          secondIcon: "/mage/wizard.png",
+          secondIcon: "/class/wizard.png",
           third: "АРХИМАГ (Archmage)",
-          thirdIcon: "/mage/archmage.png"
+          thirdIcon: "/class/archmage.png"
         },
         { 
           second: "НЕКРОМАНТ (Necromancer)", 
-          secondIcon: "/mage/necromancer.png",
+          secondIcon: "/class/necromancer.png",
           third: "ПОЖИРАТЕЛЬ ДУШ (Soultaker)",
-          thirdIcon: "/mage/soultaker.png"
+          thirdIcon: "/class/soultaker.png"
         },
         { 
           second: "КОЛДУН (Warlock)", 
-          secondIcon: "/mage/warlock.png",
+          secondIcon: "/class/warlock.png",
           third: "ЧЕРНОКНИЖНИК (Arcana Lord)",
-          thirdIcon: "/mage/arcanalord.png"
+          thirdIcon: "/class/arcanalord.png"
         }
       ]
     },
     {
       base: "КЛЕРИК (Cleric)",
-      icon: "/mage/cleric.png",
+      icon: "/class/cleric.png",
       paths: [
         { 
           second: "ЕПИСКОП (Bishop)", 
-          secondIcon: "/mage/bishop.png",
+          secondIcon: "/class/bishop.png",
           third: "КАРДИНАЛ (Cardinal)",
-          thirdIcon: "/mage/cardinal.png"
+          thirdIcon: "/class/cardinal.png"
         },
         { 
           second: "ПРОПОВЕДНИК (Prophet)", 
-          secondIcon: "/mage/prophet.png",
+          secondIcon: "/class/prophet.png",
           third: "АПОСТОЛ (Apostle)",
-          thirdIcon: "/mage/hierophant.png"
+          thirdIcon: "/class/hierophant.png"
         }
       ]
     }
