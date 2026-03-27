@@ -39,6 +39,19 @@ const logoWhite = "/LogoShort.png";
 const apostleBig = "/apostle.png";
 const skillIcon = "/skill.png";
 
+const RACE_BACKGROUNDS: Record<string, string> = {
+  "Человек": "https://images.unsplash.com/photo-1599839619722-39751411ea63?auto=format&fit=crop&q=80&w=1920",
+  "Эльф": "https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&q=80&w=1920",
+  "Темный Эльф": "https://images.unsplash.com/photo-1503431128871-16f5107fa6b2?auto=format&fit=crop&q=80&w=1920",
+  "Орк": "https://images.unsplash.com/photo-1469122312224-c5846564fd31?auto=format&fit=crop&q=80&w=1920",
+  "Гном": "https://images.unsplash.com/photo-1518882170541-e9401768344a?auto=format&fit=crop&q=80&w=1920",
+  "Камаэль": "https://images.unsplash.com/photo-1506452812518-d4c728770b04?auto=format&fit=crop&q=80&w=1920"
+};
+
+const RACE_RUNES: Record<string, string> = {
+  "Человек": "ᚠ", "Эльф": "ᛝ", "Темный Эльф": "ᛟ", "Орк": "ᛉ", "Гном": "ᛃ", "Камаэль": "ᛤ"
+};
+
 const Particles = () => {
   return (
     <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
@@ -139,10 +152,10 @@ const SkillCard = ({ name, desc, onClick }: { name: string, desc: string, onClic
       </div>
       <div className="space-y-1.5 flex-1">
         <div className="flex justify-between items-start">
-          <h4 className="font-display text-white text-sm font-bold tracking-widest uppercase group-hover:text-blue-300 transition-colors">{name}</h4>
-          <Star size={10} className="text-blue-900 group-hover:text-blue-400 transition-colors" />
+          <h4 className="font-display text-white text-lg font-bold tracking-wider uppercase group-hover:text-blue-300 transition-colors">{name}</h4>
+          <Star size={10} className="text-blue-900 group-hover:text-blue-400 transition-colors mt-1" />
         </div>
-        <p className="text-white/90 text-base italic leading-relaxed line-clamp-3 group-hover:text-white transition-colors drop-shadow-sm">{desc}</p>
+        <p className="text-zinc-400 text-sm italic leading-relaxed line-clamp-3 group-hover:text-zinc-300 transition-colors drop-shadow-sm">{desc}</p>
       </div>
     </div>
     
@@ -214,12 +227,15 @@ const SkillDetailModal = ({ isOpen, onClose, skill }: { isOpen: boolean, onClose
 export default function App() {
   const [activeTab, setActiveTab] = useState<'buffs' | 'magical' | 'physical' | 'debuffs' | 'toggle'>('buffs');
   const [skillView, setSkillView] = useState<'all' | 'progression'>('all');
+  const [skillTypeFilter, setSkillTypeFilter] = useState<'all' | 'active' | 'passive'>('all');
   const [selectedLevel, setSelectedLevel] = useState<number>(40);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState<string | undefined>();
   const [selectedRace, setSelectedRace] = useState<string | null>(null);
+  const [hoveredRace, setHoveredRace] = useState<string | null>(null);
   const [selectedArchetype, setSelectedArchetype] = useState<'warriors' | 'mystics' | null>(null);
   const [selectedClass, setSelectedClass] = useState<string | null>(null);
+  const [isComparing, setIsComparing] = useState(false);
   const [selectedSkill, setSelectedSkill] = useState<{ name: string, desc: string } | null>(null);
 
   const openMockup = (message?: string) => {
@@ -242,17 +258,39 @@ export default function App() {
   return (
     <div className="min-h-screen selection:bg-blue-900/30 relative overflow-x-hidden bg-[#02040a]">
       {/* Основной фон сайта */}
-      <div className="fixed inset-0 z-0 opacity-40 pointer-events-none overflow-hidden">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover"
-          style={{ filter: 'brightness(0.4) saturate(1.2)' }}
-        >
-          <source src="https://frontend-static.scrydecdn.com/static/videos/main/background-valentines.mp4" type="video/mp4" />
-        </video>
+      <div className="fixed inset-0 z-0 opacity-40 pointer-events-none overflow-hidden transition-all duration-1000">
+        <AnimatePresence mode="wait">
+          {(hoveredRace || selectedRace) ? (
+            <motion.div
+              key={hoveredRace || selectedRace}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.8 }}
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ 
+                backgroundImage: `url(${RACE_BACKGROUNDS[hoveredRace || selectedRace || "Человек"]})`,
+                filter: 'brightness(0.3) saturate(1.5) contrast(1.2)'
+              }}
+            />
+          ) : (
+            <motion.video
+              key="default-video"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.8 }}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover"
+              style={{ filter: 'brightness(0.4) saturate(1.2)' }}
+            >
+              <source src="https://frontend-static.scrydecdn.com/static/videos/main/background-valentines.mp4" type="video/mp4" />
+            </motion.video>
+          )}
+        </AnimatePresence>
       </div>
       
       {/* Сетка и частицы */}
@@ -308,6 +346,8 @@ export default function App() {
             {RACES.map((race) => (
               <button 
                 key={race}
+                onMouseEnter={() => setHoveredRace(race)}
+                onMouseLeave={() => setHoveredRace(null)}
                 onClick={() => {
                   if (race === 'Человек') {
                     setSelectedRace(race);
@@ -317,15 +357,29 @@ export default function App() {
                     openMockup(`Раса ${race} не реализована в данном тесте. Доступен только Человек.`);
                   }
                 }}
-                className={`group p-6 border transition-all duration-500 relative overflow-hidden ${selectedRace === race ? 'bg-blue-900/30 border-blue-500' : 'bg-slate-900/40 border-blue-900/50 hover:border-blue-500/50'}`}
+                className={`group p-6 border transition-all duration-500 relative overflow-hidden flex flex-col items-center justify-center min-h-[100px] ${selectedRace === race ? 'bg-blue-900/40 border-blue-400 shadow-[0_0_20px_rgba(59,130,246,0.5)]' : 'bg-slate-900/60 border-blue-900/50 hover:border-blue-400/80 hover:shadow-[0_0_15px_rgba(59,130,246,0.3)] hover:-translate-y-1'}`}
               >
-                <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                <h3 className={`font-display text-sm tracking-widest uppercase transition-colors ${selectedRace === race ? 'text-white' : 'text-zinc-100 group-hover:text-blue-400'}`}>
+                <div className="absolute inset-0 bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <h3 className={`font-display text-sm tracking-widest uppercase transition-colors relative z-10 ${selectedRace === race ? 'text-white' : 'text-zinc-300 group-hover:text-white'}`}>
                   {race}
                 </h3>
+                
+                <AnimatePresence>
+                  {selectedRace === race && (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.5, y: 10 }}
+                      animate={{ opacity: 1, scale: 1, y: 0 }}
+                      exit={{ opacity: 0, scale: 0.5, y: 10 }}
+                      className="absolute bottom-2 text-blue-400/50 font-display text-2xl drop-shadow-[0_0_8px_rgba(59,130,246,0.8)]"
+                    >
+                      {RACE_RUNES[race]}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
                 {race !== 'Человек' && (
-                  <div className="absolute top-1 right-1">
-                    <AlertCircle size={10} className="text-zinc-700" />
+                  <div className="absolute top-2 right-2">
+                    <AlertCircle size={12} className="text-zinc-600 group-hover:text-blue-400/50 transition-colors" />
                   </div>
                 )}
               </button>
@@ -590,11 +644,23 @@ export default function App() {
                     <div className="space-y-8 relative">
                       <div className="flex items-center justify-between max-w-md">
                         <h3 className="font-display text-xs tracking-[0.2em] uppercase text-white/40">Диаграмма потенциала</h3>
-                        <div className="flex gap-4">
+                        <div className="flex flex-col items-end gap-2">
                           <div className="flex items-center gap-2">
-                            <div className="w-2 h-2 bg-blue-500 rounded-full shadow-[0_0_8px_rgba(59,130,246,0.8)]" />
-                            <span className="text-[9px] uppercase tracking-widest text-zinc-500">Апостол</span>
+                            <div className="w-2 h-2 bg-blue-400 rounded-full shadow-[0_0_8px_rgba(96,165,250,0.8)]" />
+                            <span className="text-[9px] uppercase tracking-widest text-zinc-300">Апостол</span>
                           </div>
+                          {isComparing && (
+                            <div className="flex items-center gap-2">
+                              <div className="w-2 h-2 bg-purple-500 rounded-full shadow-[0_0_8px_rgba(168,85,247,0.8)]" />
+                              <span className="text-[9px] uppercase tracking-widest text-zinc-300">Кардинал</span>
+                            </div>
+                          )}
+                          <button 
+                            onClick={() => setIsComparing(!isComparing)}
+                            className="text-[9px] uppercase tracking-widest text-blue-400/60 hover:text-blue-300 transition-colors border-b border-blue-900/50 hover:border-blue-400 pb-0.5 mt-1"
+                          >
+                            {isComparing ? "Скрыть сравнение" : "Сравнить с Кардиналом"}
+                          </button>
                         </div>
                       </div>
 
@@ -609,14 +675,14 @@ export default function App() {
                         <div className="w-full h-full">
                           <ResponsiveContainer width="100%" height="100%">
                             <RadarChart cx="50%" cy="50%" outerRadius="70%" data={[
-                            { subject: 'Соло', A: 40, full: 100, icon: <User size={12} /> },
-                            { subject: 'Групп. Фарм', A: 100, full: 100, icon: <Users size={12} /> },
-                            { subject: 'Групп. PvP', A: 95, full: 100, icon: <Target size={12} /> },
-                            { subject: 'Поддержка', A: 100, full: 100, icon: <Activity size={12} /> },
-                            { subject: 'Выживаемость', A: 70, full: 100, icon: <Heart size={12} /> },
-                            { subject: 'Контроль', A: 30, full: 100, icon: <Lock size={12} /> },
+                            { subject: 'Соло', A: 40, B: 20, full: 100, icon: <User size={12} /> },
+                            { subject: 'Групп. Фарм', A: 100, B: 80, full: 100, icon: <Users size={12} /> },
+                            { subject: 'Групп. PvP', A: 95, B: 100, full: 100, icon: <Target size={12} /> },
+                            { subject: 'Поддержка', A: 100, B: 100, full: 100, icon: <Activity size={12} /> },
+                            { subject: 'Выживаемость', A: 70, B: 60, full: 100, icon: <Heart size={12} /> },
+                            { subject: 'Контроль', A: 30, B: 50, full: 100, icon: <Lock size={12} /> },
                           ]}>
-                            <PolarGrid stroke="#1e3a8a" strokeOpacity={0.3} />
+                            <PolarGrid stroke="#1e3a8a" strokeOpacity={0.5} />
                             <PolarAngleAxis 
                               dataKey="subject" 
                               tick={({ x, y, payload }) => (
@@ -626,12 +692,12 @@ export default function App() {
                                     y={0}
                                     dy={4}
                                     textAnchor="middle"
-                                    fill="#94a3b8"
-                                    fontSize="9px"
+                                    fill="#cbd5e1"
+                                    fontSize="10px"
                                     fontFamily="Inter"
-                                    fontWeight="500"
+                                    fontWeight="600"
                                     letterSpacing="0.1em"
-                                    className="uppercase"
+                                    className="uppercase drop-shadow-md"
                                   >
                                     {payload.value}
                                   </text>
@@ -641,13 +707,25 @@ export default function App() {
                             <Radar
                               name="Апостол"
                               dataKey="A"
-                              stroke="#3b82f6"
-                              strokeWidth={2}
-                              fill="#2563eb"
-                              fillOpacity={0.4}
+                              stroke="#60a5fa"
+                              strokeWidth={3}
+                              fill="#3b82f6"
+                              fillOpacity={0.6}
                               animationBegin={500}
                               animationDuration={1500}
                             />
+                            {isComparing && (
+                              <Radar
+                                name="Кардинал"
+                                dataKey="B"
+                                stroke="#a855f7"
+                                strokeWidth={2}
+                                fill="#9333ea"
+                                fillOpacity={0.5}
+                                animationBegin={0}
+                                animationDuration={1000}
+                              />
+                            )}
                           </RadarChart>
                         </ResponsiveContainer>
                       </div>
@@ -710,26 +788,49 @@ export default function App() {
                     </div>
 
                     {skillView === 'all' && (
-                      <div className="flex flex-wrap gap-3">
-                        {(Object.keys(tabLabels) as Array<keyof typeof tabLabels>).map((tab) => (
-                          <button
-                            key={tab}
-                            onClick={() => setActiveTab(tab)}
-                            className={`px-6 py-3 font-display text-[10px] tracking-[0.2em] uppercase transition-all duration-300 border rounded-sm relative overflow-hidden group ${
-                              activeTab === tab 
-                                ? 'bg-blue-700/40 border-blue-400 text-white shadow-[0_0_15px_rgba(37,99,235,0.3)]' 
-                                : 'bg-slate-900/40 border-blue-900/50 text-blue-400/60 hover:text-white hover:border-blue-500 hover:bg-blue-900/20'
-                            }`}
+                      <div className="flex flex-col gap-4">
+                        <div className="flex flex-wrap gap-3">
+                          {(Object.keys(tabLabels) as Array<keyof typeof tabLabels>).map((tab) => (
+                            <button
+                              key={tab}
+                              onClick={() => setActiveTab(tab)}
+                              className={`px-6 py-3 font-display text-[10px] tracking-[0.2em] uppercase transition-all duration-300 border rounded-sm relative overflow-hidden group ${
+                                activeTab === tab 
+                                  ? 'bg-blue-700/40 border-blue-400 text-white shadow-[0_0_15px_rgba(37,99,235,0.3)]' 
+                                  : 'bg-slate-900/40 border-blue-900/50 text-blue-400/60 hover:text-white hover:border-blue-500 hover:bg-blue-900/20'
+                              }`}
+                            >
+                              {activeTab === tab && (
+                                <motion.div 
+                                  layoutId="activeTabGlow"
+                                  className="absolute inset-0 bg-blue-500/10 pointer-events-none"
+                                />
+                              )}
+                              <span className="relative z-10">{tabLabels[tab]}</span>
+                            </button>
+                          ))}
+                        </div>
+                        
+                        <div className="flex gap-2">
+                          <button 
+                            onClick={() => setSkillTypeFilter('all')}
+                            className={`px-3 py-1.5 font-display text-[9px] tracking-widest uppercase transition-all border rounded-sm ${skillTypeFilter === 'all' ? 'bg-blue-600/50 border-blue-400 text-white' : 'bg-transparent border-blue-900/30 text-zinc-500 hover:text-blue-300'}`}
                           >
-                            {activeTab === tab && (
-                              <motion.div 
-                                layoutId="activeTabGlow"
-                                className="absolute inset-0 bg-blue-500/10 pointer-events-none"
-                              />
-                            )}
-                            <span className="relative z-10">{tabLabels[tab]}</span>
+                            Все типы
                           </button>
-                        ))}
+                          <button 
+                            onClick={() => setSkillTypeFilter('active')}
+                            className={`px-3 py-1.5 font-display text-[9px] tracking-widest uppercase transition-all border rounded-sm ${skillTypeFilter === 'active' ? 'bg-blue-600/50 border-blue-400 text-white' : 'bg-transparent border-blue-900/30 text-zinc-500 hover:text-blue-300'}`}
+                          >
+                            Активные
+                          </button>
+                          <button 
+                            onClick={() => setSkillTypeFilter('passive')}
+                            className={`px-3 py-1.5 font-display text-[9px] tracking-widest uppercase transition-all border rounded-sm ${skillTypeFilter === 'passive' ? 'bg-blue-600/50 border-blue-400 text-white' : 'bg-transparent border-blue-900/30 text-zinc-500 hover:text-blue-300'}`}
+                          >
+                            Пассивные
+                          </button>
+                        </div>
                       </div>
                     )}
                   </div>
@@ -744,9 +845,16 @@ export default function App() {
                       exit={{ opacity: 0, y: -20 }}
                       className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
                     >
-                      {APOSTLE_SKILLS[activeTab].map((skill) => (
+                      {APOSTLE_SKILLS[activeTab]
+                        .filter(skill => {
+                          if (skillTypeFilter === 'all') return true;
+                          // Временная логика для демонстрации фильтра (в реальном приложении нужно добавить поле type в данные)
+                          const isPassive = skill.name.toLowerCase().includes('владение') || skill.name.toLowerCase().includes('броня') || skill.name.toLowerCase().includes('сопротивление');
+                          return skillTypeFilter === 'passive' ? isPassive : !isPassive;
+                        })
+                        .map((skill, index) => (
                         <SkillCard 
-                          key={skill.name} 
+                          key={`${skill.name}-${index}`} 
                           name={skill.name} 
                           desc={skill.desc} 
                           onClick={() => openSkillDetail(skill)}
@@ -879,7 +987,7 @@ export default function App() {
           />
           <div className="flex flex-wrap justify-center gap-x-12 gap-y-6">
             {['База данных', 'Карта', 'Рейтинг', 'Поддержка', 'Форум'].map(link => (
-              <button key={link} onClick={() => openMockup()} className="font-display text-[10px] tracking-widest uppercase text-blue-400/40 hover:text-white transition-colors">
+              <button key={link} onClick={() => openMockup()} className="font-display text-[10px] tracking-widest uppercase text-zinc-400 hover:text-blue-400 hover:drop-shadow-[0_0_8px_rgba(96,165,250,0.8)] transition-all duration-300">
                 {link}
               </button>
             ))}
