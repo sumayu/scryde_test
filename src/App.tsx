@@ -36,16 +36,15 @@ import {
 import { RACES, HUMAN_CLASSES, APOSTLE_SKILLS, SKILL_PROGRESSION } from './constants';
 const logoWithText = "/LogoBig.png";
 const logoWhite = "/LogoShort.png";
-const apostleBig = "/apostle.png";
 const skillIcon = "/skill.png";
 
 const RACE_BACKGROUNDS: Record<string, string> = {
-  "Человек": "https://images.unsplash.com/photo-1599839619722-39751411ea63?auto=format&fit=crop&q=80&w=1920",
-  "Эльф": "https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&q=80&w=1920",
-  "Темный Эльф": "https://images.unsplash.com/photo-1503431128871-16f5107fa6b2?auto=format&fit=crop&q=80&w=1920",
-  "Орк": "https://images.unsplash.com/photo-1469122312224-c5846564fd31?auto=format&fit=crop&q=80&w=1920",
-  "Гном": "https://images.unsplash.com/photo-1518882170541-e9401768344a?auto=format&fit=crop&q=80&w=1920",
-  "Камаэль": "https://images.unsplash.com/photo-1506452812518-d4c728770b04?auto=format&fit=crop&q=80&w=1920"
+  "Человек": "/back4.jpg",
+  "Эльф": "/back4.jpg",
+  "Темный Эльф": "/back4.jpg",
+  "Орк": "/back4.jpg",
+  "Гном": "/back4.jpg",
+  "Камаэль": "/back4.jpg"
 };
 
 const RACE_RUNES: Record<string, string> = {
@@ -608,9 +607,9 @@ export default function App() {
               <section className="relative stone-card p-8 md:p-12 rounded-xl border-blue-900/40 bg-slate-950/50 backdrop-blur-sm overflow-hidden">
                 <div className="absolute top-0 right-0 w-1/2 h-full bg-blue-600/5 blur-[120px] pointer-events-none" />
                 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 relative z-10">
-                  {/* Левая колонка: Инфо и Статы */}
-                  <div className="lg:col-span-7 space-y-10">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 relative z-10 items-center">
+                  {/* Левая колонка: Инфо и Роли */}
+                  <div className="space-y-10">
                     <div className="space-y-4">
                       <div className="flex items-center gap-3 text-blue-400">
                         <Scroll size={18} />
@@ -640,9 +639,12 @@ export default function App() {
                       </div>
                     </div>
 
-                    {/* Статы - Радарная диаграмма */}
-                    <div className="space-y-8 relative">
-                      <div className="flex items-center justify-between max-w-md">
+                  </div>
+
+                  {/* Правая колонка: Статы - Радарная диаграмма */}
+                  <div className="space-y-8 relative flex flex-col items-center justify-center w-full">
+                    <div className="w-full max-w-md">
+                      <div className="flex items-center justify-between">
                         <h3 className="font-display text-xs tracking-[0.2em] uppercase text-white/40">Диаграмма потенциала</h3>
                         <div className="flex flex-col items-end gap-2">
                           <div className="flex items-center gap-2">
@@ -664,7 +666,7 @@ export default function App() {
                         </div>
                       </div>
 
-                      <div className="relative w-full aspect-square max-w-[450px] min-h-[300px] md:min-h-[450px] -ml-8 md:-ml-12 flex items-center justify-center">
+                      <div className="relative w-full aspect-square max-w-[450px] min-h-[300px] md:min-h-[450px] flex items-center justify-center">
                         {/* Декоративные круги под диаграммой */}
                         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                           <div className="w-[80%] h-[80%] border border-blue-900/10 rounded-full animate-[pulse_4s_infinite]" />
@@ -737,27 +739,6 @@ export default function App() {
                       </div>
 
                       {/* Текстовые значения для мобилок/читаемости - УДАЛЕНО ПО ПРОСЬБЕ ПОЛЬЗОВАТЕЛЯ */}
-                    </div>
-                  </div>
-
-                  {/* Правая колонка: Изображение */}
-                  <div className="lg:col-span-5 relative flex items-start justify-center pt-4">
-                    <div className="relative w-full max-w-[400px] h-[500px] md:h-[650px] overflow-hidden">
-                      <img 
-                        src={apostleBig} 
-                        alt="Апостол" 
-                        className="w-full h-full object-contain object-top block relative z-0"
-                        style={{ 
-                          imageRendering: 'smooth',
-                        }}
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          if (target.src.includes('unsplash.com')) return;
-                          target.src = 'https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&q=80&w=1920&h=1080';
-                        }}
-                      />
-                      {/* Мягкое затемнение снизу для эстетичного перехода */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#02040a]/80 via-transparent to-transparent pointer-events-none" />
                     </div>
                   </div>
                 </div>
