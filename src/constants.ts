@@ -29,19 +29,19 @@ export const HUMAN_CLASSES = {
     },
     {
       base: "РЫЦАРЬ (Human Knight)",
-      icon: "/humanknight.png",
+      icon: "/human_knight.png",
       paths: [
         { 
           second: "ПАЛАДИН (Paladin)", 
           secondIcon: "/paladin.png",
           third: "РЫЦАРЬ ФЕНИКСА (Phoenix Knight)",
-          thirdIcon: "/phoenixknight.png"
+          thirdIcon: "/phoenix_knight.png"
         },
         { 
           second: "МСТИТЕЛЬ (Dark Avenger)", 
-          secondIcon: "/darkavenger.png",
+          secondIcon: "/dark_avenger.png",
           third: "РЫЦАРЬ АДА (Hell Knight)",
-          thirdIcon: "/hellknight.png"
+          thirdIcon: "/hell_knight.png"
         }
       ]
     },
@@ -51,7 +51,7 @@ export const HUMAN_CLASSES = {
       paths: [
         { 
           second: "ИСКАТЕЛЬ СОКРОВИЩ (Treasure Hunter)", 
-          secondIcon: "/treasurehunter.png",
+          secondIcon: "/treasure_hunter.png",
           third: "АВАНТЮРИСТ (Adventurer)",
           thirdIcon: "/adventurer.png"
         },
@@ -67,11 +67,11 @@ export const HUMAN_CLASSES = {
   mystics: [
     {
       base: "МАГ (Mage)",
-      icon: "/wizard.png",
+      icon: "/human_wizard.png",
       paths: [
         { 
-          second: "ВОЛШЕБНИК (Wizard)", 
-          secondIcon: "/wizard.png",
+          second: "СОРКЕР (Sorcerer)", 
+          secondIcon: "/sorcerer_ss.png",
           third: "АРХИМАГ (Archmage)",
           thirdIcon: "/archmage.png"
         },
@@ -85,7 +85,7 @@ export const HUMAN_CLASSES = {
           second: "КОЛДУН (Warlock)", 
           secondIcon: "/warlock.png",
           third: "ЧЕРНОКНИЖНИК (Arcana Lord)",
-          thirdIcon: "/arcanalord.png"
+          thirdIcon: "/arcana_lord.png"
         }
       ]
     },
@@ -102,12 +102,288 @@ export const HUMAN_CLASSES = {
         { 
           second: "ПРОПОВЕДНИК (Prophet)", 
           secondIcon: "/prophet.png",
-          third: "АПОСТОЛ (Apostle)",
+          third: "ИЕРОФАНТ (Hierophant)",
           thirdIcon: "/hierophant.png"
         }
       ]
     }
   ]
+};
+
+export const ELVEN_CLASSES = {
+  warriors: [
+    {
+      base: "ЭЛЬФИЙСКИЙ ВОИТЕЛЬ (Elven Fighter)",
+      icon: "/elf_warrior.png",
+      paths: [
+        { 
+          second: "СВЕТЛЫЙ РЫЦАРЬ (Elven Knight)", 
+          secondIcon: "/elvenknight.png",
+          third: "РЫЦАРЬ ЕВЫ (Eva's Templar)",
+          thirdIcon: "/evastemplar.png"
+        },
+        { 
+          second: "МЕНЕСТРЕЛЬ (Swordsinger)", 
+          secondIcon: "/swordsinger.png",
+          third: "ВИРТУОЗ (Sword Muse)",
+          thirdIcon: "/swordmuse.png"
+        }
+      ]
+    },
+    {
+      base: "ЭЛЬФИЙСКИЙ РАЗВЕДЧИК (Elven Scout)",
+      icon: "/elf_scout.png",
+      paths: [
+        { 
+          second: "СЛЕДОПЫТ (Plains Walker)", 
+          secondIcon: "/plainswalker.png",
+          third: "СТРАННИК ВЕТРА (Wind Rider)",
+          thirdIcon: "/windrider.png"
+        },
+        { 
+          second: "СЕРЕБРЯНЫЙ РЕЙНДЖЕР (Silver Ranger)", 
+          secondIcon: "/silverranger.png",
+          third: "СТРАЖ БЕЛОГО СВЕТА (Moonlight Sentinel)",
+          thirdIcon: "/moonlightsentinel.png"
+        }
+      ]
+    }
+  ],
+  mystics: [
+    {
+      base: "ЭЛЬФИЙСКИЙ МАГ (Elven Mage)",
+      icon: "/elf_mage.png",
+      paths: [
+        { 
+          second: "СВЕТЛЫЙ МАГ (Elven Wizard)", 
+          secondIcon: "/elvenwizard.png",
+          third: "ПЕВЕЦ ЗАКЛИНАНИЙ (Spellsinger)",
+          thirdIcon: "/spellsinger.png"
+        },
+        { 
+          second: "ПОСЛЕДОВАТЕЛЬ СТИХИЙ (Elemental Summoner)", 
+          secondIcon: "/elementalsummoner.png",
+          third: "МАСТЕР СТИХИЙ (Elemental Master)",
+          thirdIcon: "/elementalmaster.png"
+        },
+        { 
+          second: "ОРАКУЛ (Oracle)", 
+          secondIcon: "/oracle.png",
+          third: "МУДРЕЦ (Eva's Saint)",
+          thirdIcon: "/evassaint.png"
+        }
+      ]
+    }
+  ]
+};
+
+export const DARK_ELVEN_CLASSES = {
+  warriors: [
+    {
+      base: "ТЕМНЫЙ ВОИТЕЛЬ (Dark Fighter)",
+      icon: "/darkelf_warrior.png",
+      paths: [
+        { 
+          second: "РЫЦАРЬ ШИЛЕН (Shillien Knight)", 
+          secondIcon: "/shillienknight.png",
+          third: "ХРАМОВНИК ШИЛЕН (Shillien Templar)",
+          thirdIcon: "/shillientemplar.png"
+        },
+        { 
+          second: "ТАНЦОР СМЕРТИ (Bladedancer)", 
+          secondIcon: "/bladedancer.png",
+          third: "ПРИЗРАЧНЫЙ ТАНЦОР (Spectral Dancer)",
+          thirdIcon: "/spectraldancer_3rd.png"
+        }
+      ]
+    },
+    {
+      base: "ТЕМНЫЙ РАЗВЕДЧИК (Assassin)",
+      icon: "/darkelf_assassin.png",
+      paths: [
+        { 
+          second: "СТРАЖ СМЕРТИ (Abyss Walker)", 
+          secondIcon: "/abysswalker.png",
+          third: "ПРИЗРАЧНЫЙ ОХОТНИК (Ghost Hunter)",
+          thirdIcon: "/ghosthunter.png"
+        },
+        { 
+          second: "ПРИЗРАЧНЫЙ РЕЙНДЖЕР (Phantom Ranger)", 
+          secondIcon: "/phantomranger.png",
+          third: "СТРАЖ ТЕНЕЙ (Ghost Sentinel)",
+          thirdIcon: "/ghostsentinel.png"
+        }
+      ]
+    }
+  ],
+  mystics: [
+    {
+      base: "ТЕМНЫЙ МАГ (Dark Mage)",
+      icon: "/darkelf_mage.png",
+      paths: [
+        { 
+          second: "ТЕМНЫЙ МАГ (Dark Wizard)", 
+          secondIcon: "/darkwizard.png",
+          third: "ЗАКЛИНАТЕЛЬ ВЕТРА (Spellhowler)",
+          thirdIcon: "/spellhowler.png"
+        },
+        { 
+          second: "ПОСЛЕДОВАТЕЛЬ ТЬМЫ (Phantom Summoner)", 
+          secondIcon: "/phantomsummoner.png",
+          third: "ВЛАДЫКА ТЕНЕЙ (Spectral Master)",
+          thirdIcon: "/spectralmaster.png"
+        },
+        { 
+          second: "ОРАКУЛ ШИЛЕН (Shillien Oracle)", 
+          secondIcon: "/shillienoracle.png",
+          third: "МУДРЕЦ ШИЛЕН (Shillien Saint)",
+          thirdIcon: "/shilliensaint.png"
+        }
+      ]
+    }
+  ]
+};
+
+export const ORC_CLASSES = {
+  warriors: [
+    {
+      base: "НАЛЕТЧИК (Orc Raider)",
+      icon: "/orcraider.png",
+      paths: [
+        { 
+          second: "ДЕСТРОЕР (Destroyer)", 
+          secondIcon: "/destroyer.png",
+          third: "ТИТАН (Titan)",
+          thirdIcon: "/titan.png"
+        }
+      ]
+    },
+    {
+      base: "МОНАХ (Monk)",
+      icon: "/monk.png",
+      paths: [
+        { 
+          second: "ТИРАНТ (Tyrant)", 
+          secondIcon: "/tyrant.png",
+          third: "АВАТАР (Grand Khavatari)",
+          thirdIcon: "/grandkhavatari.png"
+        }
+      ]
+    }
+  ],
+  mystics: [
+    {
+      base: "ШАМАН ОРКОВ (Orc Shaman)",
+      icon: "/orc_shaman.png",
+      paths: [
+        { 
+          second: "ВЕРХОВНЫЙ ШАМАН (Overlord)", 
+          secondIcon: "/overlord.png",
+          third: "ОВЕРЛОРД (Dominator)",
+          thirdIcon: "/overlord_3rd.png"
+        },
+        { 
+          second: "ВЕСТНИК ВОЙНЫ (Warcryer)", 
+          secondIcon: "/warcryer.png",
+          third: "ВАРКРАЙЕР (Doomcryer)",
+          thirdIcon: "/warcryer_3rd.png"
+        }
+      ]
+    }
+  ]
+};
+
+export const DWARF_CLASSES = {
+  warriors: [
+    {
+      base: "СОБИРАТЕЛЬ (Scavenger)",
+      icon: "/scavenger.png",
+      paths: [
+        { 
+          second: "ОХОТНИК ЗА НАГРАДОЙ (Bounty Hunter)", 
+          secondIcon: "/bountyhunter.png",
+          third: "КЛАДОИСКАТЕЛЬ (Fortune Seeker)",
+          thirdIcon: "/fortuneseeker.png"
+        }
+      ]
+    },
+    {
+      base: "РЕМЕСЛЕННИК (Artisan)",
+      icon: "/artisan.png",
+      paths: [
+        { 
+          second: "КУЗНЕЦ (Warsmith)", 
+          secondIcon: "/warsmith.png",
+          third: "МАЭСТРО (Maestro)",
+          thirdIcon: "/maestro.png"
+        }
+      ]
+    }
+  ],
+  mystics: []
+};
+
+export const KAMAEL_CLASSES = {
+  warriors: [
+    {
+      base: "ГРЕШНИК (Trooper)",
+      icon: "/kamael_trooper.png",
+      paths: [
+        { 
+          second: "БЕРСЕРК (Berserker)", 
+          secondIcon: "/berserker.png",
+          third: "КАРАТЕЛЬ (Doombringer)",
+          thirdIcon: "/doombringer.png"
+        },
+        { 
+          second: "ПАЛАЧ (Soul Breaker)", 
+          secondIcon: "/soulbreaker.png",
+          third: "ИСТРЕБИТЕЛЬ ДУШ (Soul Hound)",
+          thirdIcon: "/soulhound.png"
+        }
+      ]
+    },
+    {
+      base: "НАДЗИРАТЕЛЬ (Warder)",
+      icon: "/kamael_warder.png",
+      paths: [
+        { 
+          second: "АРБАЛЕТЧИК (Arbalester)", 
+          secondIcon: "/arbalester.png",
+          third: "ДИВЕРСАНТ (Trickster)",
+          thirdIcon: "/trickster.png"
+        },
+        { 
+          second: "ПАЛАЧ (Soul Breaker)", 
+          secondIcon: "/soulbreaker.png",
+          third: "ИСТРЕБИТЕЛЬ ДУШ (Soul Hound)",
+          thirdIcon: "/soulhound.png"
+        }
+      ]
+    },
+    {
+      base: "ИНСПЕКТОР (Inspector)",
+      icon: "/inspector.png",
+      paths: [
+        {
+          second: "АРБИТР (Judicator)",
+          secondIcon: "/judicator.png",
+          third: "АРБИТР (Judicator)",
+          thirdIcon: "/judicator.png"
+        }
+      ]
+    }
+  ],
+  mystics: []
+};
+
+export const RACE_TO_CLASSES: Record<string, any> = {
+  "Человек": HUMAN_CLASSES,
+  "Эльф": ELVEN_CLASSES,
+  "Темный Эльф": DARK_ELVEN_CLASSES,
+  "Орк": ORC_CLASSES,
+  "Гном": DWARF_CLASSES,
+  "Камаэль": KAMAEL_CLASSES
 };
 
 export const APOSTLE_SKILLS = {
