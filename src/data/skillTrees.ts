@@ -926,25 +926,25 @@ export const NORMAL_SKILL_TREE: ClassSkillTree[] = [
   },
   {
     id: 88,
-    name: "Duelist",
+    name: "ДУЭЛИСТ (Duelist)",
     race: "Человек",
     skills: [
-      { name: "Health", minLevel: 76 },
-      { name: "Wisdom", minLevel: 76 },
-      { name: "Riposte Stance", minLevel: 77 },
-      { name: "Skill Mastery", minLevel: 77 },
-      { name: "Eye of Hunter", minLevel: 77 },
-      { name: "Eye of Slayer", minLevel: 78 },
-      { name: "Master of Combat", minLevel: 78 },
-      { name: "Braveheart", minLevel: 78 },
-      { name: "Sonic Rage", minLevel: 78 },
-      { name: "Sonic Mastery", minLevel: 79, maxLevel: 8 },
-      { name: "Sonic Barrier", minLevel: 79 },
-      { name: "Sonic Focus", minLevel: 79, maxLevel: 8 },
-      { name: "Weapon Blockade", minLevel: 80 },
-      { name: "Symbol of Energy", minLevel: 80 },
-      { name: "Maximum Focus Sonic", minLevel: 83 },
-      { name: "Rush Impact", minLevel: 83 },
+      { name: "Здоровье (Health)", minLevel: 76 },
+      { name: "Мудрость (Wisdom)", minLevel: 76 },
+      { name: "Стойкость Отражения (Riposte Stance)", minLevel: 77 },
+      { name: "Мастерство Умений (Skill Mastery)", minLevel: 77 },
+      { name: "Глаз Охотника (Eye of Hunter)", minLevel: 77 },
+      { name: "Глаз Убийцы (Eye of Slayer)", minLevel: 78 },
+      { name: "Мастер Боя (Master of Combat)", minLevel: 78 },
+      { name: "Храброе Сердце (Braveheart)", minLevel: 78 },
+      { name: "Звуковой Гнев (Sonic Rage)", minLevel: 78 },
+      { name: "Звуковое Мастерство (Sonic Mastery)", minLevel: 79, maxLevel: 8 },
+      { name: "Звуковой Барьер (Sonic Barrier)", minLevel: 79 },
+      { name: "Звуковая Фокусировка (Sonic Focus)", minLevel: 79, maxLevel: 8 },
+      { name: "Блокада Оружия (Weapon Blockade)", minLevel: 80 },
+      { name: "Символ Энергии (Symbol of Energy)", minLevel: 80 },
+      { name: "Максимальная Фокусировка Звука (Maximum Focus Sonic)", minLevel: 83 },
+      { name: "Стремительный Натиск (Rush Impact)", minLevel: 83 },
     ]
   },
   {
@@ -952,20 +952,20 @@ export const NORMAL_SKILL_TREE: ClassSkillTree[] = [
     name: "ПОЛКОВОДЕЦ (Dreadnought)",
     race: "Человек",
     skills: [
-      { name: "Health", minLevel: 76 },
-      { name: "Wisdom", minLevel: 76 },
-      { name: "Cursed Pierce", minLevel: 76 },
-      { name: "Skill Mastery", minLevel: 77 },
-      { name: "Eye of Hunter", minLevel: 77 },
-      { name: "Shock Blast", minLevel: 77 },
-      { name: "Earthquake", minLevel: 78 },
-      { name: "Thunder Spear", minLevel: 78, maxLevel: 6 },
-      { name: "Master of Combat", minLevel: 78 },
-      { name: "Parry Stance", minLevel: 78 },
-      { name: "Braveheart", minLevel: 78 },
-      { name: "Symbol of Honor", minLevel: 80 },
-      { name: "Dread Pool", minLevel: 83 },
-      { name: "Rush Impact", minLevel: 83 },
+      { name: "Здоровье (Health)", minLevel: 76 },
+      { name: "Мудрость (Wisdom)", minLevel: 76 },
+      { name: "Проклятый Прокол (Cursed Pierce)", minLevel: 76 },
+      { name: "Мастерство Умений (Skill Mastery)", minLevel: 77 },
+      { name: "Глаз Охотника (Eye of Hunter)", minLevel: 77 },
+      { name: "Шокирующий Взрыв (Shock Blast)", minLevel: 77 },
+      { name: "Землетрясение (Earthquake)", minLevel: 78 },
+      { name: "Громовое Копье (Thunder Spear)", minLevel: 78, maxLevel: 6 },
+      { name: "Мастер Боя (Master of Combat)", minLevel: 78 },
+      { name: "Стойкость Парирования (Parry Stance)", minLevel: 78 },
+      { name: "Храброе Сердце (Braveheart)", minLevel: 78 },
+      { name: "Символ Чести (Symbol of Honor)", minLevel: 80 },
+      { name: "Озеро Страха (Dread Pool)", minLevel: 83 },
+      { name: "Стремительный Натиск (Rush Impact)", minLevel: 83 },
     ]
   },
   {
@@ -1063,20 +1063,20 @@ export const NORMAL_SKILL_TREE: ClassSkillTree[] = [
   },
   {
     id: 97,
-    name: "Cardinal",
+    name: "КАРДИНАЛ (Cardinal)",
     race: "Человек",
     skills: [
-      { name: "Balance Life", minLevel: 76 },
-      { name: "Health", minLevel: 76 },
-      { name: "Wisdom", minLevel: 76 },
-      { name: "Divine Protection", minLevel: 77 },
-      { name: "Cleanse", minLevel: 78 },
-      { name: "Arcane Wisdom", minLevel: 78 },
-      { name: "Salvation", minLevel: 79 },
-      { name: "Miracle", minLevel: 80 },
-      { name: "Enlightenment", minLevel: 81 },
-      { name: "Sublime Self-Sacrifice", minLevel: 83 },
-      { name: "Chain Heal", minLevel: 83 },
+      { name: "Баланс Жизни (Balance Life)", minLevel: 76 },
+      { name: "Здоровье (Health)", minLevel: 76 },
+      { name: "Мудрость (Wisdom)", minLevel: 76 },
+      { name: "Божественная Защита (Divine Protection)", minLevel: 77 },
+      { name: "Очищение (Cleanse)", minLevel: 78 },
+      { name: "Тайная Мудрость (Arcane Wisdom)", minLevel: 78 },
+      { name: "Спасение (Salvation)", minLevel: 79 },
+      { name: "Чудо (Miracle)", minLevel: 80 },
+      { name: "Просветление (Enlightenment)", minLevel: 81 },
+      { name: "Великое Самопожертвование (Sublime Self-Sacrifice)", minLevel: 83 },
+      { name: "Цепное Исцеление (Chain Heal)", minLevel: 83 },
     ]
   },
   {
@@ -1209,7 +1209,7 @@ export const NORMAL_SKILL_TREE: ClassSkillTree[] = [
   },
   {
     id: 105,
-    name: "Eva Saint",
+    name: "МУДРЕЦ (Eva's Saint)",
     race: "Эльф",
     skills: [
       { name: "Prophecy of Water", minLevel: 78 },
@@ -1303,7 +1303,7 @@ export const NORMAL_SKILL_TREE: ClassSkillTree[] = [
   },
   {
     id: 113,
-    name: "ДЕСТРОЕР (Destroyer)",
+    name: "ТИТАН (Titan)",
     race: "Орк",
     skills: [
       { name: "Здоровье (Health)", minLevel: 76, type: "passive" },
@@ -1322,7 +1322,7 @@ export const NORMAL_SKILL_TREE: ClassSkillTree[] = [
   },
   {
     id: 114,
-    name: "ТИРАНТ (Tyrant)",
+    name: "АВАТАР (Grand Khavatari)",
     race: "Орк",
     skills: [
       { name: "Здоровье (Health)", minLevel: 76, type: "passive" },
@@ -1336,7 +1336,7 @@ export const NORMAL_SKILL_TREE: ClassSkillTree[] = [
   },
   {
     id: 115,
-    name: "ОВЕРЛОРД (Overlord)",
+    name: "ОВЕРЛОРД (Dominator)",
     race: "Орк",
     skills: [
       { name: "Печать Болезни (Seal of Disease)", minLevel: 76 },
@@ -1349,7 +1349,7 @@ export const NORMAL_SKILL_TREE: ClassSkillTree[] = [
   },
   {
     id: 116,
-    name: "ВАРКРАЙЕР (Warcryer)",
+    name: "ВАРКРАЙЕР (Doomcryer)",
     race: "Орк",
     skills: [
       { name: "Напев Стихий (Chant of Elements)", minLevel: 76 },
@@ -1364,7 +1364,7 @@ export const NORMAL_SKILL_TREE: ClassSkillTree[] = [
   },
   {
     id: 117,
-    name: "ОХОТНИК ЗА НАГРАДОЙ (Bounty Hunter)",
+    name: "КЛАДОИСКАТЕЛЬ (Fortune Seeker)",
     race: "Гном",
     skills: [
       { name: "Сокрушение Оценкой (Spoil Crush)", minLevel: 76, desc: "Атака с эффектом присвоения." },
@@ -1377,7 +1377,7 @@ export const NORMAL_SKILL_TREE: ClassSkillTree[] = [
   },
   {
     id: 118,
-    name: "КУЗНЕЦ (Warsmith)",
+    name: "МАЭСТРО (Maestro)",
     race: "Гном",
     skills: [
       { name: "Здоровье (Health)", minLevel: 76, type: "passive" },
@@ -1623,7 +1623,7 @@ export const SUB_UNIT_SKILL_TREE: PledgeSkill[] = [
 export const TRANSFER_SKILL_TREE: ClassSkillTree[] = [
   {
     id: 97,
-    name: "Cardinal",
+    name: "КАРДИНАЛ (Cardinal)",
     race: "Человек",
     skills: [
       { name: "Recharge", minLevel: 76 },

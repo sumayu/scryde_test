@@ -316,6 +316,18 @@ export default function App() {
   const [isComparing, setIsComparing] = useState(false);
   const [selectedSkill, setSelectedSkill] = useState<{ name: string, desc: string } | null>(null);
 
+  React.useEffect(() => {
+    if (selectedClass && selectedRace) {
+      setSkillView('all');
+      setSkillTypeFilter('all');
+      const skills = getClassSkills(selectedClass, selectedRace);
+      const levels = Array.from(new Set(skills.map((s: any) => s.minLevel))).sort((a: any, b: any) => a - b);
+      if (levels.length > 0) {
+        setSelectedLevel(levels[0] as number);
+      }
+    }
+  }, [selectedClass, selectedRace]);
+
   const openMockup = (message?: string) => {
     setModalMessage(message);
     setIsModalOpen(true);
@@ -325,24 +337,29 @@ export default function App() {
     setSelectedSkill(skill);
   };
 
+  const parseClassName = (name: string) => {
+    const match = name.match(/\(([^)]+)\)/);
+    const english = (match ? match[1] : name).trim().toLowerCase();
+    const russian = name.split('(')[0].trim().toLowerCase();
+    return { english, russian };
+  };
+
   const getClassSkills = (className: string | null, race: string | null) => {
     if (!className || !race) return [];
     
-    // Extract English name from parentheses if present
-    const match = className.match(/\(([^)]+)\)/);
-    const englishName = match ? match[1].toLowerCase() : className.toLowerCase();
-    const russianName = className.split('(')[0].trim().toLowerCase();
-    
-    // Normalize race for comparison (handle both ё and e)
+    const selected = parseClassName(className);
     const normalizedSelectedRace = race.replace('ё', 'е');
     
     const tree = NORMAL_SKILL_TREE.find(t => {
       const normalizedTreeRace = t.race.replace('ё', 'е');
       if (normalizedTreeRace !== normalizedSelectedRace) return false;
       
-      return t.name.toLowerCase() === englishName || 
-             t.name.toLowerCase() === russianName ||
-             t.name.toLowerCase().includes(englishName);
+      const treeClass = parseClassName(t.name);
+      
+      return treeClass.english === selected.english || 
+             treeClass.russian === selected.russian ||
+             treeClass.russian === selected.english ||
+             treeClass.english === selected.russian;
     });
     return tree?.skills || [];
   };
@@ -441,34 +458,29 @@ export default function App() {
       
       <Particles />
 
-        /* Контентная область с фоном выбранной расы */
+        {/* Контентная область с фоном выбранной расы */}
         <div className="relative w-full">
-          {/* Фон выбранной расы (с параллаксом и стыковкой с хедером/футером) */}
-          <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-            <div className="sticky top-16 h-[calc(100vh-64px)] w-full overflow-hidden">
-              <AnimatePresence>
-                {selectedRace && (
-                  <motion.div
-                    key={`selected-${selectedRace}`}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.8 }}
-                    style={{ y: parallaxY }} 
-                    className="absolute inset-x-0 -top-[10%] h-[120%] opacity-40 transition-all duration-1000"
-                  >
-                    <div
-                      className="absolute inset-0 bg-cover bg-center"
-                      style={{ 
-                        backgroundImage: `url(${RACE_BACKGROUNDS[selectedRace]})`,
-                        filter: 'brightness(0.3) saturate(1.5) contrast(1.2)'
-                      }}
-                    />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          </div>
+          {/* Фон выбранной расы */}
+          <AnimatePresence>
+            {selectedRace && (
+              <motion.div
+                key={`selected-${selectedRace}`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 0.4 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.8 }}
+                className="fixed inset-0 z-0 pointer-events-none overflow-hidden"
+              >
+                <div
+                  className="absolute inset-0 bg-cover bg-center pointer-events-none"
+                  style={{ 
+                    backgroundImage: `url(${RACE_BACKGROUNDS[selectedRace]})`,
+                    filter: 'brightness(0.3) saturate(1.5) contrast(1.2)'
+                  }}
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           <main className="max-w-7xl mx-auto px-6 py-16 relative z-10 w-full">
         
@@ -523,7 +535,7 @@ export default function App() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
-              className="space-y-16 mb-24"
+              className="space-y-16 mb-24 relative z-10"
             >
               <OrnamentalDivider />
               
