@@ -72,7 +72,7 @@ const SkillCardSmall = ({ skill, index }: { skill: any, index: number, key?: Rea
           {skill.enabledOn && (
             <div className="flex gap-1">
               {skill.enabledOn.map((srv: string) => (
-                <span key={srv} className="text-[7px] text-green-400 border border-green-900/30 px-1 uppercase leading-none">{srv}</span>
+                <span key={srv} className="text-[7px] text-green-400 border border-green-905/30 px-1 uppercase leading-none">{srv}</span>
               ))}
             </div>
           )}
@@ -535,7 +535,7 @@ export default function App() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
-              className="space-y-16 mb-24 relative z-10"
+              className="space-y-16 mb-24 relative z-20"
             >
               <OrnamentalDivider />
               
@@ -559,7 +559,7 @@ export default function App() {
                                   document.getElementById('class-details')?.scrollIntoView({ behavior: 'smooth' });
                                 }, 100);
                               }}
-                              className={`w-64 p-4 border-2 transition-all rounded-sm flex items-center gap-4 group hover:scale-105 overflow-hidden ${selectedClass === branch.base ? 'border-blue-400 bg-blue-700 shadow-[0_0_20px_rgba(37,99,235,0.4)]' : 'border-blue-600/50 bg-blue-900/30 hover:border-blue-400'}`}
+                              className={`w-64 p-4 border-2 transition-all rounded-sm flex items-center gap-4 group relative hover:scale-105 overflow-hidden ${selectedClass === branch.base ? 'border-blue-400 bg-blue-700 shadow-[0_0_20px_rgba(37,99,235,0.4)]' : 'border-blue-600/50 bg-blue-900/30 hover:border-blue-400 relative'}`}
                             >
                               <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                               <div className="w-12 h-12 shrink-0 relative z-10 flex items-center justify-center">
@@ -590,9 +590,9 @@ export default function App() {
                                       document.getElementById('class-details')?.scrollIntoView({ behavior: 'smooth' });
                                     }, 100);
                                   }}
-                                  className={`w-full group/btn relative flex flex-col items-center p-2 border transition-all rounded-sm hover:scale-105 overflow-hidden ${selectedClass === path.second ? 'border-blue-400 bg-blue-800 shadow-[0_0_20px_rgba(37,99,235,0.4)]' : 'border-blue-900/50 bg-slate-900/40 hover:border-blue-400'}`}
+                                  className={`w-full group/btn relative flex flex-col items-center p-2 border transition-all rounded-sm hover:scale-105 overflow-hidden ${selectedClass === path.second ? 'border-blue-400 bg-blue-800' : 'border-blue-900/50 bg-slate-900/40 hover:border-blue-400 hover:bg-blue-900/20 hover:shadow-[0_0_12px_rgba(59,130,246,0.3)]'}`}
                                 >
-                                  <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover/btn:opacity-100 transition-opacity pointer-events-none" />
+                                  <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover/btn:opacity-100 transition-opacity" />
                                   <div className="w-12 h-12 mb-2 relative z-10 flex items-center justify-center">
                                     <div className="absolute inset-0 bg-slate-800/80 rounded-lg border border-blue-900/50 shadow-inner group-hover/btn:border-blue-500/50 transition-colors pointer-events-none" />
                                     <img src={path.secondIcon} alt={path.second} referrerPolicy="no-referrer" className="w-8 h-8 object-contain relative z-20 opacity-80 group-hover/btn:opacity-100 group-hover/btn:scale-110 transition-all drop-shadow-[0_0_3px_rgba(37,99,235,0.3)]" />
@@ -615,9 +615,9 @@ export default function App() {
                                       document.getElementById('class-details')?.scrollIntoView({ behavior: 'smooth' });
                                     }, 100);
                                   }}
-                                  className={`w-full group/btn relative flex flex-col items-center p-3 border transition-all rounded-sm hover:scale-105 overflow-hidden shadow-[0_0_15px_rgba(37,99,235,0.1)] ${selectedClass === path.third ? 'border-blue-400 bg-blue-700 shadow-[0_0_20px_rgba(37,99,235,0.4)]' : 'border-blue-900/50 bg-slate-900/40 hover:border-blue-400'}`}
+                                  className={`w-full group/btn relative flex flex-col items-center p-3 border transition-all rounded-sm hover:scale-105 overflow-hidden shadow-[0_0_15px_rgba(37,99,235,0.1)] ${selectedClass === path.third ? 'border-blue-400 bg-blue-700 shadow-[0_0_20px_rgba(37,99,235,0.4)]' : 'border-blue-900/50 bg-slate-900/40 hover:border-blue-400 hover:bg-blue-900/20 hover:shadow-[0_0_12px_rgba(59,130,246,0.3)]'}`}
                                 >
-                                  <div className="absolute inset-0 bg-blue-500/10 opacity-0 group-hover/btn:opacity-100 transition-opacity pointer-events-none" />
+                                  <div className="absolute inset-0 bg-blue-500/10 opacity-0 group-hover/btn:opacity-100 transition-opacity" />
                                   <div className="w-14 h-14 mb-2 relative z-10 flex items-center justify-center">
                                     <div className="absolute inset-0 bg-blue-900/40 rounded-md border border-blue-500/30 shadow-[0_0_10px_rgba(37,99,235,0.1)] group-hover/btn:border-blue-400 transition-colors pointer-events-none" />
                                     <img src={path.thirdIcon} alt={path.third} referrerPolicy="no-referrer" className="w-10 h-10 object-contain relative z-20 group-hover/btn:scale-110 transition-transform drop-shadow-[0_0_8px_rgba(37,99,235,0.5)]" />
@@ -653,7 +653,7 @@ export default function App() {
                                     document.getElementById('class-details')?.scrollIntoView({ behavior: 'smooth' });
                                   }, 100);
                                 }}
-                                className={`w-64 p-4 border-2 transition-all rounded-sm flex items-center gap-4 group hover:scale-105 overflow-hidden ${selectedClass === branch.base ? 'border-blue-400 bg-blue-700 shadow-[0_0_20px_rgba(37,99,235,0.4)]' : 'border-blue-600/50 bg-blue-900/30 hover:border-blue-400'}`}
+                                className={`w-64 p-4 border-2 transition-all rounded-sm flex items-center gap-4 group relative hover:scale-105 overflow-hidden ${selectedClass === branch.base ? 'border-blue-400 bg-blue-700 shadow-[0_0_20px_rgba(37,99,235,0.4)]' : 'border-blue-600/50 bg-blue-900/30 hover:border-blue-400 relative'}`}
                               >
                                 <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                                 <div className="w-12 h-12 shrink-0 relative z-10 flex items-center justify-center">
@@ -695,7 +695,7 @@ export default function App() {
                                         document.getElementById('class-details')?.scrollIntoView({ behavior: 'smooth' });
                                       }, 100);
                                     }}
-                                    className={`w-full group/btn relative flex flex-col items-center p-2 border transition-all rounded-sm hover:scale-105 overflow-hidden ${selectedClass === path.second ? 'border-blue-400 bg-blue-800 shadow-[0_0_20px_rgba(37,99,235,0.4)]' : 'border-blue-900/50 bg-slate-900/40 hover:border-blue-400'}`}
+                                    className={`w-full group/btn relative flex flex-col items-center p-2 border transition-all rounded-sm hover:scale-105 overflow-hidden ${selectedClass === path.second ? 'border-blue-400 bg-blue-800 shadow-[0_0_20px_rgba(37,99,235,0.4)]' : 'border-blue-900/50 bg-slate-900/40 hover:border-blue-400 hover:bg-blue-900/20 hover:shadow-[0_0_15px_rgba(59,130,246,0.3)]'}`}
                                   >
                                     <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover/btn:opacity-100 transition-opacity pointer-events-none" />
                                     <div className="w-12 h-12 mb-2 relative z-10 flex items-center justify-center">
@@ -720,7 +720,7 @@ export default function App() {
                                         document.getElementById('class-details')?.scrollIntoView({ behavior: 'smooth' });
                                       }, 100);
                                     }}
-                                    className={`w-full group/btn relative flex flex-col items-center p-3 border transition-all rounded-sm hover:scale-105 overflow-hidden shadow-[0_0_15px_rgba(37,99,235,0.1)] ${selectedClass === path.third ? 'border-blue-400 bg-blue-700 shadow-[0_0_20px_rgba(37,99,235,0.4)]' : 'border-blue-900/50 bg-slate-900/40 hover:border-blue-400'}`}
+                                    className={`w-full group/btn relative flex flex-col items-center p-3 border transition-all rounded-sm hover:scale-105 overflow-hidden shadow-[0_0_15px_rgba(37,99,235,0.1)] ${selectedClass === path.third ? 'border-blue-400 bg-blue-700 shadow-[0_0_20px_rgba(37,99,235,0.4)]' : 'border-blue-900/50 bg-slate-900/40 hover:border-blue-400 hover:bg-blue-900/20 hover:shadow-[0_0_15px_rgba(59,130,246,0.3)]'}`}
                                   >
                                     <div className="absolute inset-0 bg-blue-500/10 opacity-0 group-hover/btn:opacity-100 transition-opacity pointer-events-none" />
                                     <div className="w-14 h-14 mb-2 relative z-10 flex items-center justify-center">
@@ -757,7 +757,7 @@ export default function App() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="space-y-32"
+              className="space-y-32 relative z-10"
             >
               <OrnamentalDivider />
 
