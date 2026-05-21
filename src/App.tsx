@@ -590,11 +590,11 @@ export default function App() {
                                       document.getElementById('class-details')?.scrollIntoView({ behavior: 'smooth' });
                                     }, 100);
                                   }}
-                                  className={`w-full group/btn relative flex flex-col items-center p-2 border transition-all rounded-sm hover:scale-105 overflow-hidden ${selectedClass === path.second ? 'border-blue-400 bg-blue-800' : 'border-blue-900/50 bg-slate-900/40 hover:border-blue-700'}`}
+                                  className={`w-full group/btn relative flex flex-col items-center p-2 border transition-all rounded-sm hover:scale-105 overflow-hidden ${selectedClass === path.second ? 'border-blue-400 bg-blue-800 shadow-[0_0_20px_rgba(37,99,235,0.4)]' : 'border-blue-900/50 bg-slate-900/40 hover:border-blue-400'}`}
                                 >
-                                  <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover/btn:opacity-100 transition-opacity" />
+                                  <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover/btn:opacity-100 transition-opacity pointer-events-none" />
                                   <div className="w-12 h-12 mb-2 relative z-10 flex items-center justify-center">
-                                    <div className="absolute inset-0 bg-slate-800/80 rounded-lg border border-blue-900/50 shadow-inner group-hover/btn:border-blue-500/50 transition-colors" />
+                                    <div className="absolute inset-0 bg-slate-800/80 rounded-lg border border-blue-900/50 shadow-inner group-hover/btn:border-blue-500/50 transition-colors pointer-events-none" />
                                     <img src={path.secondIcon} alt={path.second} referrerPolicy="no-referrer" className="w-8 h-8 object-contain relative z-20 opacity-80 group-hover/btn:opacity-100 group-hover/btn:scale-110 transition-all drop-shadow-[0_0_3px_rgba(37,99,235,0.3)]" />
                                   </div>
                                   <span className={`relative z-10 font-display text-[9px] tracking-widest text-center leading-tight transition-colors ${selectedClass === path.second ? 'text-white' : 'text-white/80 group-hover/btn:text-white'}`}>
@@ -615,11 +615,11 @@ export default function App() {
                                       document.getElementById('class-details')?.scrollIntoView({ behavior: 'smooth' });
                                     }, 100);
                                   }}
-                                  className={`w-full group/btn relative flex flex-col items-center p-3 border transition-all rounded-sm hover:scale-105 overflow-hidden shadow-[0_0_15px_rgba(37,99,235,0.1)] ${selectedClass === path.third ? 'border-blue-400 bg-blue-700 shadow-[0_0_20px_rgba(37,99,235,0.4)]' : 'border-blue-900/50 bg-slate-900/40 hover:border-blue-700'}`}
+                                  className={`w-full group/btn relative flex flex-col items-center p-3 border transition-all rounded-sm hover:scale-105 overflow-hidden shadow-[0_0_15px_rgba(37,99,235,0.1)] ${selectedClass === path.third ? 'border-blue-400 bg-blue-700 shadow-[0_0_20px_rgba(37,99,235,0.4)]' : 'border-blue-900/50 bg-slate-900/40 hover:border-blue-400'}`}
                                 >
-                                  <div className="absolute inset-0 bg-blue-500/10 opacity-0 group-hover/btn:opacity-100 transition-opacity" />
+                                  <div className="absolute inset-0 bg-blue-500/10 opacity-0 group-hover/btn:opacity-100 transition-opacity pointer-events-none" />
                                   <div className="w-14 h-14 mb-2 relative z-10 flex items-center justify-center">
-                                    <div className="absolute inset-0 bg-blue-900/40 rounded-md border border-blue-500/30 shadow-[0_0_10px_rgba(37,99,235,0.1)] group-hover/btn:border-blue-400 transition-colors" />
+                                    <div className="absolute inset-0 bg-blue-900/40 rounded-md border border-blue-500/30 shadow-[0_0_10px_rgba(37,99,235,0.1)] group-hover/btn:border-blue-400 transition-colors pointer-events-none" />
                                     <img src={path.thirdIcon} alt={path.third} referrerPolicy="no-referrer" className="w-10 h-10 object-contain relative z-20 group-hover/btn:scale-110 transition-transform drop-shadow-[0_0_8px_rgba(37,99,235,0.5)]" />
                                   </div>
                                   <span className={`relative z-10 font-display text-[9px] tracking-widest text-center leading-tight transition-colors ${selectedClass === path.third ? 'text-white' : 'text-blue-300 group-hover/btn:text-white'}`}>
@@ -695,11 +695,11 @@ export default function App() {
                                         document.getElementById('class-details')?.scrollIntoView({ behavior: 'smooth' });
                                       }, 100);
                                     }}
-                                    className={`w-full group/btn relative flex flex-col items-center p-2 border transition-all rounded-sm hover:scale-105 overflow-hidden ${selectedClass === path.second ? 'border-blue-400 bg-blue-800' : 'border-blue-900/50 bg-slate-900/40 hover:border-blue-700'}`}
+                                    className={`w-full group/btn relative flex flex-col items-center p-2 border transition-all rounded-sm hover:scale-105 overflow-hidden ${selectedClass === path.second ? 'border-blue-400 bg-blue-800 shadow-[0_0_20px_rgba(37,99,235,0.4)]' : 'border-blue-900/50 bg-slate-900/40 hover:border-blue-400'}`}
                                   >
-                                    <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover/btn:opacity-100 transition-opacity" />
+                                    <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover/btn:opacity-100 transition-opacity pointer-events-none" />
                                     <div className="w-12 h-12 mb-2 relative z-10 flex items-center justify-center">
-                                      <div className="absolute inset-0 bg-slate-800/80 rounded-lg border border-blue-900/50 shadow-inner group-hover/btn:border-blue-500/50 transition-colors" />
+                                      <div className="absolute inset-0 bg-slate-800/80 rounded-lg border border-blue-900/50 shadow-inner group-hover/btn:border-blue-500/50 transition-colors pointer-events-none" />
                                       <img src={path.secondIcon} alt={path.second} referrerPolicy="no-referrer" className="w-8 h-8 object-contain relative z-20 opacity-80 group-hover/btn:opacity-100 group-hover/btn:scale-110 transition-all drop-shadow-[0_0_3px_rgba(37,99,235,0.3)]" />
                                     </div>
                                     <span className={`relative z-10 font-display text-[9px] tracking-widest text-center leading-tight transition-colors ${selectedClass === path.second ? 'text-white' : 'text-white/80 group-hover/btn:text-white'}`}>
@@ -720,11 +720,11 @@ export default function App() {
                                         document.getElementById('class-details')?.scrollIntoView({ behavior: 'smooth' });
                                       }, 100);
                                     }}
-                                    className={`w-full group/btn relative flex flex-col items-center p-3 border transition-all rounded-sm hover:scale-105 overflow-hidden shadow-[0_0_15px_rgba(37,99,235,0.1)] ${selectedClass === path.third ? 'border-blue-400 bg-blue-700 shadow-[0_0_20px_rgba(37,99,235,0.4)]' : 'border-blue-900/50 bg-slate-900/40 hover:border-blue-700'}`}
+                                    className={`w-full group/btn relative flex flex-col items-center p-3 border transition-all rounded-sm hover:scale-105 overflow-hidden shadow-[0_0_15px_rgba(37,99,235,0.1)] ${selectedClass === path.third ? 'border-blue-400 bg-blue-700 shadow-[0_0_20px_rgba(37,99,235,0.4)]' : 'border-blue-900/50 bg-slate-900/40 hover:border-blue-400'}`}
                                   >
-                                    <div className="absolute inset-0 bg-blue-500/10 opacity-0 group-hover/btn:opacity-100 transition-opacity" />
+                                    <div className="absolute inset-0 bg-blue-500/10 opacity-0 group-hover/btn:opacity-100 transition-opacity pointer-events-none" />
                                     <div className="w-14 h-14 mb-2 relative z-10 flex items-center justify-center">
-                                      <div className="absolute inset-0 bg-blue-900/40 rounded-md border border-blue-500/30 shadow-[0_0_10px_rgba(37,99,235,0.1)] group-hover/btn:border-blue-400 transition-colors" />
+                                      <div className="absolute inset-0 bg-blue-900/40 rounded-md border border-blue-500/30 shadow-[0_0_10px_rgba(37,99,235,0.1)] group-hover/btn:border-blue-400 transition-colors pointer-events-none" />
                                       <img src={path.thirdIcon} alt={path.third} referrerPolicy="no-referrer" className="w-10 h-10 object-contain relative z-20 group-hover/btn:scale-110 transition-transform drop-shadow-[0_0_8px_rgba(37,99,235,0.5)]" />
                                     </div>
                                     <span className={`relative z-10 font-display text-[9px] tracking-widest text-center leading-tight transition-colors ${selectedClass === path.third ? 'text-white' : 'text-blue-300 group-hover/btn:text-white'}`}>
