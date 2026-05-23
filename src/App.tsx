@@ -36,7 +36,7 @@ import {
   Coins,
   BookOpen
 } from 'lucide-react';
-import { RACES, RACE_TO_CLASSES, SKILL_PROGRESSION } from './constants';
+import { RACES, RACE_TO_CLASSES, SKILL_PROGRESSION, CLASS_STATS } from './constants';
 import { NORMAL_SKILL_TREE } from './data/skillTrees';
 
 const SkillCardSmall = ({ skill, index }: { skill: any, index: number, key?: React.Key }) => (
@@ -804,14 +804,18 @@ export default function App() {
                   <div className="w-full flex justify-center">
                     <div className="relative w-full aspect-square max-w-[400px]">
                       <ResponsiveContainer width="100%" height="100%">
-                        <RadarChart cx="50%" cy="50%" outerRadius="70%" data={[
-                          { subject: 'Solo', A: 70 },
-                          { subject: 'PvE', A: 90 },
-                          { subject: 'PvP', A: 85 },
-                          { subject: 'Support', A: 50 },
-                          { subject: 'Surv.', A: 60 },
-                          { subject: 'Control', A: 40 },
-                        ]}>
+                        <RadarChart cx="50%" cy="50%" outerRadius="70%" data={(() => {
+                          const parsed = parseClassName(selectedClass || '');
+                          const stats = CLASS_STATS[parsed.english] || CLASS_STATS[selectedClass || ''] || { solo: 60, pve: 70, pvp: 65, support: 40, surv: 60, control: 35 };
+                          return [
+                            { subject: 'Solo', A: stats.solo },
+                            { subject: 'PvE', A: stats.pve },
+                            { subject: 'PvP', A: stats.pvp },
+                            { subject: 'Support', A: stats.support },
+                            { subject: 'Surv.', A: stats.surv },
+                            { subject: 'Control', A: stats.control },
+                          ];
+                        })()}>
                           <PolarGrid stroke="#1e3a8a" strokeOpacity={0.5} />
                           <PolarAngleAxis dataKey="subject" tick={{ fill: '#4b5563', fontSize: 10 }} />
                           <Radar name={selectedClass} dataKey="A" stroke="#3b82f6" fill="#3b82f6" fillOpacity={0.5} />
