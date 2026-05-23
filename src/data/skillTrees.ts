@@ -1,5 +1,3 @@
-Skilltrees · TS
-Syntax highlighting has been disabled due to code size.
 import { ClassSkillTree } from "../types";
 
 
